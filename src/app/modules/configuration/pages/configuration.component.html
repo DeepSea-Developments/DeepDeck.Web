@@ -1,26 +1,34 @@
 <div class='container'>
     <div class="row">
-        <div class='col-md-12 right-align' style="margin: 0px;">
-            <h3 class="col-md-12 left-align">Nube</h3>
-        </div>
+        <h3 class="col-md-12 left-align">Nube</h3>
     </div>
     <!--Panel de Configuracion (IOTHUB FIRMWARE)-->
-    <div class="box box-full left">
-        <h4>IotHub Setup</h4>
-        <div>
-            <b>ID Client:</b><br>
-            <input type="text" autocapitalize="none" [ngModel]="device.IDClient" pattern=".{50}" title="The field requires NAMEDEVICEXX " maxlength="50" required=""><br>
-            <span class="small-text validMessage">5 characters max</span> <br>
-            <b>Model Inversor:</b><br>
-            <input type="text" autocapitalize="none" [ngModel]="device.ModeloInversor" pattern=".{50}" title="The field requires NAMEDEVICEXX " maxlength="50" required=""><br>
-            <span class="small-text validMessage">50 characters max</span> <br>
-            <b>Connection String:</b><br>
-            <input type="text" autocapitalize="none" [(ngModel)]="device.AzureConnectionString" pattern=".{150}" title="The field requires: HostName=mqtt-XXXX.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=XXXXXX " maxlength="150" required="">            <br>
-            <span class="small-text validMessage">150 characters max</span> <br>
-            <b>ID Device:</b><br>
-            <input type="text" autocapitalize="none" [ngModel]="device.IDDevice" pattern=".{50}" title="The field requires NAMEDEVICEXX " maxlength="50" required=""><br>
-            <span class="small-text validMessage">50 characters max</span> <br>
-            <button class="btn btn-info">Guardar</button>
+    <div class="row">
+        <div class="col-md-12">
+            <form>
+                <div class="form-group mb-3">
+                    <label class="form-label">ID Client:</label>
+                    <input type="text" class="form-control" autocapitalize="none" [(ngModel)]="device.IDClient" name="idClient" pattern=".{50}" title="The field requires NAMEDEVICEXX " maxlength="50">
+                    <span class="form-text text-muted">5 characters max</span>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Model Inversor:</label>
+                    <input type="text" class="form-control" autocapitalize="none" [(ngModel)]="device.ModeloInversor" name="modeInversor" pattern=".{50}" title="The field requires NAMEDEVICEXX " maxlength="50">
+                    <span class="form-text text-muted">50 characters max</span>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Connection String:</label>
+                    <input type="text" class="form-control" autocapitalize="none" [(ngModel)]="device.AzureConnectionString" name="azureConnectionString" pattern=".{150}" title="The field requires: HostName=mqtt-XXXX.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=XXXXXX "
+                        maxlength="150" required="">
+                    <span class="form-text text-muted">150 characters max</span>
+                </div>
+                <div class="form-group mb-3">
+                    <label>ID Device:</label><br>
+                    <input type="text" class="form-control" autocapitalize="none" [(ngModel)]="device.IDDevice" name="idDevice" pattern=".{50}" title="The field requires NAMEDEVICEXX " maxlength="50">
+                    <span class="form-text text-muted">50 characters max</span>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
         </div>
     </div>
 </div>
