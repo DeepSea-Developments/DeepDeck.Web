@@ -1,0 +1,19 @@
+.dsd-logo {
+    // height: 60%;
+    height: 50px;
+    @media screen and (max-width: 599px) {
+        height: 40px !important;
+    }
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+    height: 80px !important;
+    @media screen and (max-width: 599px) {
+        height: 64px !important;
+    }
+}
+
+.full-width-dialog .mat-dialog-container {
+    max-width: 100vw !important;
+}

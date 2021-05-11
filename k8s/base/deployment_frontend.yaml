@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deepiot-frontend
+  namespace: deepiot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deepiot-frontend
+  template:
+    metadata:
+      labels:
+        app: deepiot-frontend
+    spec:
+      containers:
+      - name: deepiot-frontend
+        image: deepiotacr.azurecr.io/deepiot-frontend:latest
+        resources:
+          limits:
+            cpu: 300m
+            memory: 300Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+        ports:
+        - containerPort: 80
+          name: port80
+      imagePullSecrets:
+      - name: app-shared-deepiot-acr

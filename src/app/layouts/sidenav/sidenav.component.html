@@ -1,0 +1,9 @@
+<div class="sidebar_menu" [@onSideNavChange]="sidebarState">
+    <mat-nav-list class="menu-list" *ngFor="let menuitem of menuItems.get(0)">
+        <a *ngIf="menuitem.type === 'link'" mat-list-item routerLinkActive="active-list-item" [routerLink]="['', menuitem.state]" [title]="menuitem.name">
+            <mat-icon class="icon" [@iconAnimation]="sidebarState">{{menuitem.icon}}</mat-icon>
+            <span class="label" [@labelAnimation]="sidebarState">{{menuitem.name}}</span>
+        </a>
+
+    </mat-nav-list>
+</div>

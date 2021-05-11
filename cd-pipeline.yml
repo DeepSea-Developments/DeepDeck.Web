@@ -1,0 +1,69 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-20.04'
+
+variables:
+  - group: ContainerRegistry
+
+  - name: imageRepository
+    value: $(ImageRepositoryFrontend)
+  - name: tag
+    value: $(Build.BuildId)
+    
+  - name: AzureResourceManagerConnectionDev
+    value: 'deepiot-dev-rg'
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+      - task: Docker@2
+        displayName: Build and push image
+        inputs:
+          containerRegistry: '$(ContainerRegistryConnection)'
+          repository: $(imageRepository) 
+          command: buildAndPush
+          dockerFile: '**/Dockerfile'
+          tags: |
+            $(tag)
+            latest
+
+      - task: CmdLine@2
+        displayName: 'Build manifests'
+        inputs:
+          script: 'sed --in-place "s/:latest/":$(tag)"/" k8s/base/deployment_frontend.yaml'
+        
+      - publish: k8s
+        artifact: manifests
+
+- stage: Dev
+  displayName: Deploy Dev
+  dependsOn: Build
+  variables:
+  - group: DeepIotDevelopment
+  - name: env
+    value: 'dev'
+  jobs:
+  - deployment: DeployDevFrontend
+    environment: deepiot-dev
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
+            artifact: manifests
+          - task: Kubernetes@1
+            displayName: 'kubectl apply /manifests/overlays/$(env)'
+            inputs:
+              connectionType: 'Azure Resource Manager'
+              azureSubscriptionEndpoint: '$(AzureResourceManagerConnectionDev)'
+              azureResourceGroup: '$(ResourceGroupName)'
+              kubernetesCluster: '$(AKSClusterName)'
+              namespace: deepiot
+              command: apply
+              arguments: '-k $(Pipeline.Workspace)/manifests/overlays/$(env)'
+              versionSpec: 1.7.0
+              checkLatest: true

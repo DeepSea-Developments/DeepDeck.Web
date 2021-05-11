@@ -1,0 +1,9 @@
+<app-header></app-header>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened="true" style="min-width:60px; background: #F3F3F3;" autosize fixedTopGap="56">
+        <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content [ngStyle]="stateBar?{'margin-left': '218px'} : {'margin-left': '50px'}">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

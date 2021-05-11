@@ -1,0 +1,61 @@
+.sidebar_menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .menu-list {
+    flex: 1;
+    justify-content: normal;
+  }
+
+  .icon {
+    padding: 0 10px 0 0;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .label {
+    margin: 0;
+  }
+
+  .active-list-item {
+    color: #3f51b5 !important;
+  }
+}
+
+.icon-dsd {
+  width: 120px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar.mat-primary {
+  background: #f2f2f2 !important;
+  color: #0E6AB8 !important;
+}
+
+.mat-toolbar {
+  height: 65px !important;
+}
+
+.dsd-logo {
+  // height: 60%;
+  height: 50px;
+  @media screen and (max-width: 599px) {
+      height: 40px !important;
+  }
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: 80px !important;
+  @media screen and (max-width: 599px) {
+      height: 64px !important;
+  }
+}
+
+.full-width-dialog .mat-dialog-container {
+  max-width: 100vw !important;
+}

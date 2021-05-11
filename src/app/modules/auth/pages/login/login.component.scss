@@ -1,0 +1,37 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    background-color: #e8e8e8;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.mat-form-field {
+    width: 100%;
+    min-width: 300px;
+}
+
+.error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+}
+
+.login {
+    width: 100% !important;
+    margin-bottom: 15px;
+}
+
+.recovery-password {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 15px;
+    cursor: pointer;
+    color: grey;
+}

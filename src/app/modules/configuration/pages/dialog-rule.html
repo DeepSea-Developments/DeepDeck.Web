@@ -1,0 +1,72 @@
+<h1 mat-dialog-title>Agregar Regla</h1>
+<div mat-dialog-content>
+    <mat-form-field class="col-md-6" style="margin-right: 10px;">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="data.name">
+    </mat-form-field>
+    <mat-form-field class="col-md-6" style="margin-right: 10px;">
+        <mat-label>Descipción</mat-label>
+        <textarea matInput [(ngModel)]="data.description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="col-md-4" style="margin-right: 10px;">
+        <mat-label>Ventana</mat-label>
+        <mat-select [(value)]="data.aggregation_window">
+            <mat-option *ngFor="let window of data.windowsList" [value]="window.key">
+                {{window.value}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-md-4">
+        <mat-label>Serveridad</mat-label>
+        <mat-select [(value)]="data.severity">
+            <mat-option *ngFor="let severity of data.severityList" [value]="severity.key">
+                {{severity.value}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="col-md-12">
+        <p>Condiciones:</p>
+        <mat-form-field class="col-md-6" style="margin-right: 10px;">
+            <mat-label>Campo</mat-label>
+            <input matInput type="text" [(ngModel)]="data.conditions_data.field">
+        </mat-form-field>
+        <mat-form-field class="col-md-4" style="margin-right: 10px;">
+            <mat-label>Tipo de Calculo</mat-label>
+            <mat-select [(value)]="data.conditions_data.calculation">
+                <mat-option *ngFor="let type of data.typeList" [value]="type.key">
+                    {{type.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-4" style="margin-right: 10px;">
+            <mat-label>Operador</mat-label>
+            <mat-select [(value)]="data.conditions_data.operator">
+                <mat-option *ngFor="let operator of data.operatorList" [value]="operator.key">
+                    {{operator.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <mat-label>Valor</mat-label>
+            <input matInput type="number" [(ngModel)]="data.conditions_data.value">
+        </mat-form-field>
+    </div>
+    <div class="col-md-12">
+        <p>Acciones:</p>
+        <mat-form-field class="col-md-4" style="margin-right: 10px;">
+            <mat-label>Tipo</mat-label>
+            <mat-select [(value)]="data.actions_data.type">
+                <mat-option *ngFor="let action of data.actionList" [value]="action.key">
+                    {{action.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-6" style="margin-right: 10px;">
+            <mat-label>Parametros</mat-label>
+            <textarea matInput type="text" [(ngModel)]="data.actions_data.params"></textarea>
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Agregar</button>

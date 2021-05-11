@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Agregar Inventario</h1>
+<div mat-dialog-content>
+    <mat-form-field class="col-md-6" appearance="fill">
+        <mat-label>Tipo</mat-label>
+        <mat-select [(value)]="data.type">
+            <mat-option value="Ingreso">Ingreso</mat-option>
+            <mat-option value="Salida">Salida</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-md-6" appearance="fill">
+        <mat-label>Producto</mat-label>
+        <mat-select [(value)]="data.product">
+            <mat-option *ngFor="let product of data.productList" [value]="product.code">
+                {{product.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-md-5" style="margin-right: 10px;">
+        <mat-label>Costo</mat-label>
+        <input matInput type="number" [(ngModel)]="data.cost">
+    </mat-form-field>
+    <mat-form-field class="col-md-5" style="margin-right: 10px;">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" [(ngModel)]="data.quantity">
+    </mat-form-field>
+    <mat-form-field class="col-md-6" appearance="fill">
+        <mat-label>Razon</mat-label>
+        <mat-select [(value)]="data.reason">
+            <mat-option *ngFor="let reason of data.reasonList" [value]="reason">
+                {{reason}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Agregar</button>

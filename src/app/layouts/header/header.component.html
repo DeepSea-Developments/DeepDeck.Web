@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+    <h1 style="color: #fff !important;">Deepsea</h1>
+    <!--img class="icon-dsd" src="assets/img/logos/logo_blanco.png" alt=""-->
+    <button mat-icon-button (click)="toggleSideNav()">
+    <mat-icon style="color: #fff !important;">menu</mat-icon>
+  </button>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>notification_important</mat-icon>
+  </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>account_circle</mat-icon>
+  </button> {{username}}
+    <a href="" (click)="logout()" style="margin-left: 10px; margin-top: 10px;"><span class="material-icons">
+      exit_to_app
+      </span></a>
+</mat-toolbar>

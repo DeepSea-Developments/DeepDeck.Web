@@ -1,0 +1,104 @@
+<mat-card>
+    <h1>Deepsea</h1>
+    <!--img src="assets/img/logos/logo.png" height="70px"--><br>
+    <mat-card-content>
+        <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre de usuario</mat-label>
+                    <input formControlName="username" matInput>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input type="password" matInput formControlName="password">
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+            </p>
+            <button class="login" mat-stroked-button>INGRESAR</button>
+        </form>
+        <br>
+        <mat-divider></mat-divider>
+        <p (click)="showRetrieveDialog()" class="recovery-password">Recuperar contraseña</p>
+    </mat-card-content>
+</mat-card>
+<!-- <div style="text-align: center;" id='main-container' class="dsd_full-width-container dsd_full-height-container dsd_no-padding dsd_no-margin">
+    <div class="row dsd_full-height-container">
+        <div id='login-container' class="col l5 m6 dsd_full-height-container">
+            <div class="center">
+                <img src="assets/img/logos/logo.png" width="200" style="padding-top: 20px;" />
+            </div>
+            <div class="dsd_divider"></div>
+            <div class='dsd_title_3 dsd_medium'>Iniciar sesión</div>
+            <div class="dsd_divider-ruler"></div>
+            <div class="row">
+                <div *ngIf="showErrorMessage" class="text-danger">
+                    <div class='dsd_title_3 dsd_orange-text'>
+                        Los datos ingresados son inválidos, intentalo de nuevo.
+                    </div>
+                </div>
+                <div *ngIf="showInvalidForm" class="text-danger">
+                    <div class='dsd_title_3 dsd_orange-text'>
+                        Todos los datos son obligatorios.
+                    </div>
+                </div>
+                <form class="col s12" name="loginForm" [formGroup]="loginForm" novalidate (ngSubmit)="login()">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">person_outline</i>
+                            <input id="email" formControlName="username" type="text" class="validate">
+                            <label for="email">Nombre de usuario</label>
+                            <span class="helper-text" data-error="Error" data-success="Correcto">Ingresa tu correo electrónico</span>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">lock_open</i>
+                            <input id="password" formControlName="password" type="password" class="validate">
+                            <label for="password">Contraseña</label>
+                            <span class="helper-text" data-error="Error" data-success="Correcto">Ingresa tu contraseña</span>
+                        </div>
+                        <div class="dsd_divider"></div>
+                        <div class="col s12">
+                            <button style="border: #2c2f85;" class="waves-effect waves-light dsd_button dsd_text-center dsd_full-width-container submit-button" [disabled]="submitted">
+                              Iniciar sesión
+                            </button>
+                        </div>
+                        <div class="dsd_divider"></div>
+                        <div class="col s12">
+                            <div class='dsd_paragraph dsd_text-center'>¿Olvidaste tu contraseña?<a class="dsd_link modal-trigger" href="#modal-password-recovery">haz clic aquí</a></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div id="modal-password-recovery" class="modal">
+    <div class="modal-content">
+        <div class='dsd_modal-close modal-close'>Cerrar <i class="material-icons">close</i></div>
+        <div class="dsd_divider"></div>
+        <div class='dsd_title_3 dsd_text-center'>Recuperar contraseña</div>
+        <div class='dsd_paragraph dsd_medium dsd_text-center'>Completa los datos</div>
+        <div class='dsd_paragraph dsd_text-center'>Enviaremos a tu email un enlace para recuperar la contraseña</div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">person_outline</i>
+                <input id="email-recovery" type="email" class="validate">
+                <label for="email-recovery">Email</label>
+                <span class="helper-text" data-error="Error" data-success="Correcto">Ingresa tu correo electrónico</span>
+            </div>
+            <div class="dsd_divider"></div>
+            <div class="col s12">
+                <a class="waves-effect waves-light dsd_button dsd_text-center dsd_full-width-container">Enviar</a>
+            </div>
+
+            <div class="col s12">
+                <a class="modal-close waves-effect waves-light dsd_button-secondary dsd_text-center dsd_full-width-container dsd_medium">Cancelar</a>
+            </div>
+            <div class="dsd_divider"></div>
+
+        </div>
+    </div>
+</div> -->

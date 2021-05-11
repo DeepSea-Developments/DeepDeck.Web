@@ -1,0 +1,26 @@
+<div class='container'>
+    <div class="row">
+        <div class='col-md-12 right-align' style="margin: 0px;">
+            <h3 class="col-md-12 left-align">Nube</h3>
+        </div>
+    </div>
+    <!--Panel de Configuracion (IOTHUB FIRMWARE)-->
+    <div class="box box-full left">
+        <h4>IotHub Setup</h4>
+        <div>
+            <b>ID Client:</b><br>
+            <input type="text" autocapitalize="none" [ngModel]="device.IDClient" pattern=".{50}" title="The field requires NAMEDEVICEXX " maxlength="50" required=""><br>
+            <span class="small-text validMessage">5 characters max</span> <br>
+            <b>Model Inversor:</b><br>
+            <input type="text" autocapitalize="none" [ngModel]="device.ModeloInversor" pattern=".{50}" title="The field requires NAMEDEVICEXX " maxlength="50" required=""><br>
+            <span class="small-text validMessage">50 characters max</span> <br>
+            <b>Connection String:</b><br>
+            <input type="text" autocapitalize="none" [(ngModel)]="device.AzureConnectionString" pattern=".{150}" title="The field requires: HostName=mqtt-XXXX.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=XXXXXX " maxlength="150" required="">            <br>
+            <span class="small-text validMessage">150 characters max</span> <br>
+            <b>ID Device:</b><br>
+            <input type="text" autocapitalize="none" [ngModel]="device.IDDevice" pattern=".{50}" title="The field requires NAMEDEVICEXX " maxlength="50" required=""><br>
+            <span class="small-text validMessage">50 characters max</span> <br>
+            <button class="btn btn-info">Guardar</button>
+        </div>
+    </div>
+</div>
