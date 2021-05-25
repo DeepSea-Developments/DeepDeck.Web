@@ -1,9 +1,6 @@
-import { Component, ViewChild, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { ConfigService } from '../../../core/services/config/config.service';
+import { ApiService } from 'src/app/core/services/api/api.service';
 import * as moment from 'moment';
 
 export interface DialogData {
@@ -30,11 +27,24 @@ export class NetworkComponent implements OnInit {
      "ApnPassword": ""
   }
    
-  constructor(public dialog: MatDialog, private billsService:ConfigService) {
+  constructor(
+    public dialog: MatDialog,
+    public apiService: ApiService,
+    ) {
 
   }
-    ngOnInit(): void {   
-     
+    ngOnInit(): void {
+      this.apiService.getCurrentConfigData(false)
+      .subscribe(
+        value => {
+          this.network.InternetConnection = value.InternetConnection;
+          this.network.WifiSSID = value.WifiSSID;
+          this.network.WifiPassword = value.WifiPassword;
+          this.network.Apn = value.Apn;
+          this.network.ApnUser = value.ApnUser;
+          this.network.ApnPassword = value.ApnPassword;
+        }
+      );
     }
     
     refreshModels(value) {
@@ -44,6 +54,13 @@ export class NetworkComponent implements OnInit {
     formatDate(value) {
       const date = moment.utc(value);
       return moment(date).local().format('YYYY-MM-DD HH:mm');
+    }
+
+    saveNetwork(){
+      this.apiService.saveNetwork(this.network).subscribe(
+        data => {
+        }
+      )
     }
   
 }

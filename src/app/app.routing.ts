@@ -32,7 +32,7 @@ export const SITE_ROUTES: Routes = [
           import('./modules/device/device.module').then(m => m.DeviceModule)
       },
       {
-        path: 'clients', loadChildren: () =>
+        path: 'firmware', loadChildren: () =>
           import('./modules/firmware/firmware.module').then(m => m.FirmwareModule)
       }
     ],   

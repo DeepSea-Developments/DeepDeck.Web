@@ -1,75 +1,52 @@
 <div class='container'>
+    <div class="row mb-3">
+        <h3 class="col-md-12 left-align">Dispositivo</h3>
+    </div>
+    <!--Panel de Configuracion (IOTHUB FIRMWARE)-->
     <div class="row">
-        <div class='col-md-12 right-align' style="margin: 0px;">
-            <h3 class="col-md-12 left-align">Dispositivo</h3>
-        </div>
-    </div>
-    <div class="box box-full left">
-        <div>
-            <hr>
-            <p>
-                <b>Direccion Equipo (Modbus RTU):</b><br>
-                <input type="number" [(ngModel)]="config.ModbusTCPAddress" pattern=".{2}" title="The field requires address " maxlength="2" required=""> <br/>
-                <span class="small-text validMessage">2 characters max</span>
-            </p>
-            <p>
-                <b>Baud Rate:</b><br>
-                <input type="number" [(ngModel)]="config.DeviceBaudrate" pattern=".{20}" title="The field requires Chanel " maxlength="20" required=""> <br/>
-                <span class="small-text validMessage">20 characters max</span>
-            </p>
-            <p>
-                <b>IP Equipo (Modbus TCP):</b><br>
-                <input type="text" [(ngModel)]="config.ModbusAddress" pattern=".{20}" title="The field requires address " maxlength="20" required=""> <br/>
-                <span class="small-text validMessage">20 characters max</span> </p>
-            <hr><br>
-            <form>
-                <h3>Equipo</h3>
-                <input type="radio" id="chintdevice" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes" value="chintdevice" checked>
-                <label for="chintdevice">CHINT</label><br/>
-                <input type="radio" id="yaskawadevice" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes" value="yaskawadevice" checked>
-                <label for="yaskawadevice">YASKAWA</label><br/>
-                <input type="radio" id="circutordevice" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes" value="circutordevice" checked>
-                <label for="circutordevice">CIRCUTOR/APSYSTEM</label><br/>
-                <input type="radio" id="victrondeviceretail" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes" value="victrondeviceretail" checked>
-                <label for="victrondeviceretail">VICTRON/RETAIL</label><br/>
-                <input type="radio" id="bessdevice" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes" value="bessdevice" checked>
-                <label for="bessdevice">BESS</label><br/>
-                <input type="radio" id="victrondevice" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes" value="victrondevice" checked>
-                <label for="victrondevice">VICTRON/STORAGE</label><br/>
-                <input type="radio" id="growattdevice" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes" value="growattdevice" checked>
-                <label for="growattdevice">GROWATT</label><br/>
-            </form>
-            <hr>
-            <form>
-                <h3>Comunicación con el Equipo</h3>
-                <input type="radio" id="modbusuart" name="drone" value="modbusuart" checked>
-                <label for="modbusuart">MODBUS RTU UART</label><br/>
-                <input type="radio" id="modbus485" name="drone" value="modbus485" checked>
-                <label for="modbus485">MODBUS RTU RS485</label><br/>
-                <input type="radio" id="modbus232" name="drone" value="modbus232" checked>
-                <label for="modbus232">MODBUS RTU RS232</label><br/>
-                <input type="radio" id="modbustcp" name="drone" value="modbustcp" checked>
-                <label for="modbustcp">MODBUS TCP</label><br/>
-                <input type="radio" id="mk2victron" name="drone" value="mk2victron" checked>
-                <label for="mk2victron">VE.BUS MK2</label><br/>
-            </form>
-            <hr>
-            <form>
-                <h3>Comunicación con Plataforma</h3>
-                <input type="radio" id="wifi" name="drone" [(ngModel)]="config.SupportedHWInterfaces" value="wifi" checked>
-                <label for="wifi">WIFI- Inalambrico</label><br/>
-                <input type="radio" id="ethernet" name="drone" [(ngModel)]="config.SupportedHWInterfaces" value="ethernet" checked>
-                <label for="ethernet">ETHERNET-Cableado</label><br/>
-                <input type="radio" id="gprs" name="drone" [(ngModel)]="config.SupportedHWInterfaces" value="gprs" checked>
-                <label for="gprs">GPRS-Inalambrico Red Movil</label><br/>
-                <p>
-                    <!--button data-bind="click: saveRf, text: (saveRfFetching() ? " Saving " : (saveRfSuccess() ? "Saved " : "Save ")), disable: saveRfFetching">Save</button-->
-                </p>
-            </form>
-        </div>
-        <div class="box box-full left" style="height: 200px;">
-            <button class="btn btn-info" (click)="saveConfig()">Guardar</button>
-        </div>
-    </div>
+        <div class="col-md-12">
 
+            <div class="form-group mb-3">
+                <label class="form-label">Direccion Equipo (Modbus RTU):</label>
+                <input type="number" class="form-control" [(ngModel)]="config.ModbusAddress" name="ModbusAddress"
+                    pattern=".{2}" title="The field requires address " maxlength="2" required>
+                <span class="form-text text-muted">2 characters max</span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label">Baud Rate:</label>
+                <input type="number" class="form-control" [(ngModel)]="config.DeviceBaudrate" name="DeviceBaudrate"
+                    pattern=".{20}" title="The field requires Chanel " maxlength="20" required>
+                <span class="form-text text-muted">20 characters max</span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label">IP Equipo (Modbus TCP):</label>
+                <input type="text" class="form-control" [(ngModel)]="config.ModbusTCPAddress" name="ModbusTCPAddress"
+                    pattern=".{20}" title="The field requires address " maxlength="20" required>
+                <span class="form-text text-muted">Valid IP address</span>
+            </div>
+            <h5 class="col-md-12 left-align">Equipo</h5>
+            <hr>
+            <div class="form-group mb-3">
+                <input type="radio" id="chintdevice" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes"
+                    value="chintdevice" checked disabled>
+                <label for="chintdevice">CHINT</label><br />
+                <input type="radio" id="circutordevice" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes"
+                    value="circutordevice" checked disabled>
+                <label for="circutordevice">CIRCUTOR</label><br />
+            </div>
+            <h5 class="col-md-12 left-align">Comunicación con Plataforma</h5>
+            <hr>
+            <div class="form-group mb-3">
+                <input type="radio" id="wifi" name="drone" [(ngModel)]="config.SupportedHWInterfaces" value="wifi"
+                    checked disabled>
+                <label for="wifi">WIFI- Inalambrico</label><br />
+                <input type="radio" id="gprs" name="drone" [(ngModel)]="config.SupportedHWInterfaces" value="gprs"
+                    checked disabled>
+                <label for="gprs">GPRS-Inalambrico Red Movil</label><br />
+            </div>
+            <div class="form-group mb-5">
+                <button type="submit" class="btn btn-primary" (click)="saveConfig()" >Guardar </button>
+            </div>
+        </div>
+    </div>
 </div>

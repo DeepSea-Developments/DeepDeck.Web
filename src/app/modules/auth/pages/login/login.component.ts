@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ApiService } from 'src/app/core/services/api/api.service';
 import { ProgressBarService } from 'src/app/core/components/progress-bar/progress-bar.service';
 import { ModalComponent } from 'src/app/modules/modal/modal.component'
 
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
     public route: ActivatedRoute,
     public router: Router,
     public authService: AuthService,
+    public apiService: ApiService,
     public formBuilder: FormBuilder,
     public progressBar: ProgressBarService,
     public dialog: MatDialog
@@ -47,22 +49,18 @@ export class LoginComponent implements OnInit {
 
       this.showInvalidForm = false;
       this.submitted = true;
-      console.log("form", formulario);          
       this.authService.login(formulario).subscribe(
         answer => {
-          console.log("user", answer)
           this.submitted = false;
           this.progressBar.hideBar();
           this.router.navigateByUrl('/configurations',);
         },
         error => {
-          console.log('here')          
           this.submitted = false;
           if (error.status === 401) {
-            // this._notificationService.showError("Los datos ingresados son inválidos, intentalo de nuevo.", "dsd");
             this.showErrorMessage = true;
             this.progressBar.hideBar();
-          }          
+          }
         }
       )
     } else {
@@ -73,12 +71,12 @@ export class LoginComponent implements OnInit {
 
   ngAfterViewInit() {
     this.submitted = true;
-      if (this.authService.isLoggedIn() == true) {
-        this.router.navigateByUrl('/configurations');
-      }else{
-        this.submitted = false;
-        this.router.navigateByUrl('/session');
-      }
+    if (this.authService.isLoggedIn() == true) {
+      this.router.navigateByUrl('/configurations');
+    } else {
+      this.submitted = false;
+      this.router.navigateByUrl('/session');
+    }
   }
 
   showRetrieveDialog() {
@@ -91,6 +89,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  
+
 
 }
