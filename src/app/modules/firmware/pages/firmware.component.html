@@ -1,42 +1,36 @@
 <div class='container'>
     <div class="row">
         <div class='col-md-12 right-align' style="margin: 0px;">
-            <h3 class="col-md-12 left-align">Clientes</h3>
-            <button mat-raised-button color="primary" style="margin-bottom:10px; float: right;" (click)="openDialog()">Agregar</button>
+            <h3 class="col-md-12 left-align">Firmware</h3>
         </div>
     </div>
-    <table mat-table [dataSource]="clientList" matSort class="col-md-12 mat-elevation-z8">
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-        <ng-container matColumnDef="nit">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> NIT </th>
-            <td mat-cell *matCellDef="let element"> {{element.nit}} </td>
-        </ng-container>
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-        </ng-container>
-        <ng-container matColumnDef="is_active">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Activo </th>
-            <td mat-cell *matCellDef="let element"> {{element.is_active}} </td>
-        </ng-container>
-        <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> Action </th>
-            <td mat-cell *matCellDef="let element">
-                <a [routerLink]="['/devices/device', element.id]" class="action_icon"><i class="material-icons left">remove_red_eye</i></a>
-                <a href="#" class="action_icon"><i class="material-icons left">edit</i></a>
-                <a href="#" class="action_icon"><i class="material-icons left">delete</i></a>
+    <table class="fixed" border="0">
+        <col width="1000px" />
+        <col width="500px" />
+        <tr>
+            <td>
+                <table border="0">
+                    <tr>
+                        <td>
+                            <label for="newfile">Upload a file</label>
+                        </td>
+                        <td colspan="2">
+                            <input id="newfile" type="file" style="width:100%;" [(ngModel)]="fileInput" >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="filepath">Set path on server</label>
+                        </td>
+                        <td>
+                            <input id="filepath" type="text" style="width:100%;" [(ngModel)]="filePath">
+                        </td>
+                        <td>
+                            <button id="upload" type="button" (click)="upload()">Upload</button>
+                        </td>
+                    </tr>
+                </table>
             </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
-        <tr mat-row *matRowDef="let row; columns: columndefs;"></tr>
+        </tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[20]" [length]="length" showFirstLastButtons (page)="refreshClients($event.pageIndex+1)" class="bg-transparent">
-    </mat-paginator>
 </div>

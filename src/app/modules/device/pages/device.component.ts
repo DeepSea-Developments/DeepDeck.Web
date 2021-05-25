@@ -1,8 +1,8 @@
-import { Component, ViewChild, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ApiService } from 'src/app/core/services/api/api.service';
 import * as moment from 'moment';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-import { InventoryService } from '../../../core/services/inventory/inventory.service';
 
 
 export interface DialogData {
@@ -25,8 +25,6 @@ export interface DialogData {
 
 export class DeviceComponent implements OnInit {
 
-
-
   config: any = {
     "DeviceName": "",
     "AzureConnectionString": "",
@@ -47,7 +45,7 @@ export class DeviceComponent implements OnInit {
     "HWInterfacesInformation": "",
     "DeviceBaudrate": 115200,
     "ModbusAddress": "",
-    "ModbusTCPAddress": "",
+    "ModbusTCPAddress": "255.255.254.254",
     "FWVersion": "1.0.2",
     "Mac": "00:1B:44:11:3A:B7"
   }
@@ -55,15 +53,29 @@ export class DeviceComponent implements OnInit {
   device: any = {    
       "DeviceBaudrate": 115200,
       "ModbusAddress": 1,
-      "ModbusTCPAddress": "255.255.255.255",
-      "HWDeviceType": 0
+      "ModbusTCPAddress": "255.255.255.255"
     }
         
-  constructor(public dialog: MatDialog, private inventoryService:InventoryService) {
+  constructor(
+    public dialog: MatDialog,
+    public apiService: ApiService,
+    ) {
 
   }
 
-    ngOnInit(): void { }
+    ngOnInit(): void { 
+      this.apiService.getCurrentConfigData(false)
+      .subscribe(
+        value => {
+          this.device.DeviceBaudrate = value.DeviceBaudrate;
+          this.device.ModbusAddress = value.ModbusAddress;
+          this.device.ModbusTCPAddress = value.ModbusTCPAddress;
+          for (let key in value) {
+            this.config[key] = value[key];
+          }
+        }
+      );
+     }
 
     formatDate(value) {
       const date = moment.utc(value);
@@ -75,7 +87,10 @@ export class DeviceComponent implements OnInit {
     openDialog(): void {  }
 
     saveConfig() {
-      console.log("config", this.device);
+      this.apiService.saveDevice(this.device).subscribe(
+        data => {
+        }
+      )
     }
 }
 

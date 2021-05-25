@@ -27,7 +27,7 @@
                     <input type="text" class="form-control" autocapitalize="none" [(ngModel)]="device.IDDevice" name="idDevice" pattern=".{50}" title="The field requires NAMEDEVICEXX " maxlength="50">
                     <span class="form-text text-muted">50 characters max</span>
                 </div>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-primary" (click)="saveCloud()">Guardar</button>
             </form>
         </div>
     </div>
