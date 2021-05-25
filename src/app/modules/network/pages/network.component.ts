@@ -19,12 +19,17 @@ export interface DialogData {
 
 export class NetworkComponent implements OnInit {
 
-  billList: any = [];
-  length: number;
-  pageNumber = 1;  
-  columndefs: string[] = ['id','payment_status','payment_type', 'total', 'partner', 'subscription', 'plan', 'items', 'created_at', 'action'];
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+  network: any = {
+    "InternetConnection": 0,
+    "WifiSSID" : "",
+    "WifiPassword" : "",
+    "Apn": "",
+     "ApnUser": "",
+     "ApnPassword": ""
+  }
+   
   constructor(public dialog: MatDialog, private billsService:ConfigService) {
 
   }

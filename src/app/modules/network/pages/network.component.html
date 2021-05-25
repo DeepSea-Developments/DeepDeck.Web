@@ -1,11 +1,37 @@
 <div class='container'>
-    <div class="row">
-        <div class='col-md-12 right-align' style="margin: 0px;">
-            <h3 class="col-md-12 left-align">Network</h3>
-        </div>
+    <div class="row mb-3">
+        <h3 class="col-md-12 left-align">Network</h3>
     </div>
     <!--Panel de Configuracion (IOTHUB FIRMWARE)-->
-    <div class="box box-full left">
-
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="col-md-12 left-align">Wifi</h5>
+            <hr>
+            <div class="form-group mb-3">
+                <label class="form-label">Red Wifi:</label>
+                <input type="text" class="form-control" [(ngModel)]="network.WifiSSID" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label">Contraseña</label>
+                <input type="password" class="form-control" [(ngModel)]="network.WifiPassword" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
+            </div>
+            <h5 class="col-md-12 left-align">Celular</h5>
+            <hr>
+            <div class="form-group mb-3">
+                <label class="form-label">APN:</label>
+                <input type="text" class="form-control" [(ngModel)]="network.WifiSSID" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label">Usuario:</label>
+                <input type="text" class="form-control" [(ngModel)]="network.WifiPassword" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label">Contraseña:</label>
+                <input type="password" class="form-control" [(ngModel)]="network.WifiPassword" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
+            </div>
+            <div class="form-group mb-5">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
     </div>
 </div>
