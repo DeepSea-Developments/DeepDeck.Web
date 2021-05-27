@@ -8,44 +8,37 @@
 
             <div class="form-group mb-3">
                 <label class="form-label">Direccion Equipo (Modbus RTU):</label>
-                <input type="number" class="form-control" [(ngModel)]="config.ModbusAddress" name="ModbusAddress"
-                    pattern=".{2}" title="The field requires address " maxlength="2" required>
-                <span class="form-text text-muted">2 characters max</span>
+                <input type="number" class="form-control" [(ngModel)]="config.ModbusAddress" name="ModbusAddress" pattern=".{2}" title="The field requires address " maxlength="2" required>
+                <span class="form-text text-muted">modbus slave address 1 -247</span>
             </div>
             <div class="form-group mb-3">
                 <label class="form-label">Baud Rate:</label>
-                <input type="number" class="form-control" [(ngModel)]="config.DeviceBaudrate" name="DeviceBaudrate"
-                    pattern=".{20}" title="The field requires Chanel " maxlength="20" required>
-                <span class="form-text text-muted">20 characters max</span>
+                <input type="number" class="form-control" [(ngModel)]="config.DeviceBaudrate" name="DeviceBaudrate" pattern=".{20}" title="The field requires Chanel " maxlength="20" required>
+                <span class="form-text text-muted">baudrate  9600 ,19200,115200</span>
             </div>
             <div class="form-group mb-3">
                 <label class="form-label">IP Equipo (Modbus TCP):</label>
-                <input type="text" class="form-control" [(ngModel)]="config.ModbusTCPAddress" name="ModbusTCPAddress"
-                    pattern=".{20}" title="The field requires address " maxlength="20" required>
+                <input type="text" class="form-control" [(ngModel)]="config.ModbusTCPAddress" name="ModbusTCPAddress" pattern=".{20}" title="The field requires address " maxlength="20" required>
                 <span class="form-text text-muted">Valid IP address</span>
             </div>
             <h5 class="col-md-12 left-align">Equipo</h5>
             <hr>
             <div class="form-group mb-3">
-                <input type="radio" id="chintdevice" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes"
-                    value="chintdevice" checked disabled>
+                <input type="radio" id="chintdevice" name="drone" [(ngModel)]="config.HWDeviceType" value="chintdevice" checked>
                 <label for="chintdevice">CHINT</label><br />
-                <input type="radio" id="circutordevice" name="drone" [(ngModel)]="config.SupportedHWDeviceTypes"
-                    value="circutordevice" checked disabled>
+                <input type="radio" id="circutordevice" name="drone" [(ngModel)]="config.HWDeviceType" value="circutordevice" checked>
                 <label for="circutordevice">CIRCUTOR</label><br />
             </div>
             <h5 class="col-md-12 left-align">Comunicación con Plataforma</h5>
             <hr>
             <div class="form-group mb-3">
-                <input type="radio" id="wifi" name="drone" [(ngModel)]="config.SupportedHWInterfaces" value="wifi"
-                    checked disabled>
+                <input type="radio" id="wifi" name="drone" [(ngModel)]="config.ConnectionType" value="wifi" checked>
                 <label for="wifi">WIFI- Inalambrico</label><br />
-                <input type="radio" id="gprs" name="drone" [(ngModel)]="config.SupportedHWInterfaces" value="gprs"
-                    checked disabled>
+                <input type="radio" id="gprs" name="drone" [(ngModel)]="config.ConnectionType" value="gprs" checked>
                 <label for="gprs">GPRS-Inalambrico Red Movil</label><br />
             </div>
             <div class="form-group mb-5">
-                <button type="submit" class="btn btn-primary" (click)="saveConfig()" >Guardar </button>
+                <button type="submit" class="btn btn-primary" (click)="saveConfig()">Guardar </button>
             </div>
         </div>
     </div>

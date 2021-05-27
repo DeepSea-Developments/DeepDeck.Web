@@ -50,12 +50,7 @@ export class DeviceComponent implements OnInit {
     "Mac": "00:1B:44:11:3A:B7"
   }
   
-  device: any = {    
-      "DeviceBaudrate": 115200,
-      "ModbusAddress": 1,
-      "ModbusTCPAddress": "255.255.255.255"
-    }
-        
+      
   constructor(
     public dialog: MatDialog,
     public apiService: ApiService,
@@ -67,9 +62,11 @@ export class DeviceComponent implements OnInit {
       this.apiService.getCurrentConfigData(false)
       .subscribe(
         value => {
-          this.device.DeviceBaudrate = value.DeviceBaudrate;
-          this.device.ModbusAddress = value.ModbusAddress;
-          this.device.ModbusTCPAddress = value.ModbusTCPAddress;
+          this.config.DeviceBaudrate = value.DeviceBaudrate;
+          this.config.ModbusAddress = value.ModbusAddress;
+          this.config.ModbusTCPAddress = value.ModbusTCPAddress;
+          this.config.ConnectionType = value.ConnectionType,
+          this.config.HWDeviceType = value.HWDeviceType;
           for (let key in value) {
             this.config[key] = value[key];
           }
@@ -87,8 +84,17 @@ export class DeviceComponent implements OnInit {
     openDialog(): void {  }
 
     saveConfig() {
-      this.apiService.saveDevice(this.device).subscribe(
+      let device = {    
+        "DeviceBaudrate": this.config.DeviceBaudrate,
+        "ModbusAddress": this.config.ModbusAddress,
+        "ModbusTCPAddress": this.config.ModbusTCPAddress,
+        "ConnectionType": this.config.ConnectionType,
+        "HWDeviceType": this.config.SupportedHWDeviceTypes
+      }
+
+      this.apiService.saveDevice(device).subscribe(
         data => {
+          alert("Cambios guardados correctamente!")
         }
       )
     }

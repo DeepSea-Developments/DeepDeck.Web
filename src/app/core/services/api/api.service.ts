@@ -62,6 +62,20 @@ export class ApiService {
     );
   }
 
+  resetDevice(data): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Accept-Language', 'es');
+    return this.http.post<any>(
+      '/reset/',
+      JSON.stringify(data),
+      { headers }
+    ).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
   getCurrentConfigData(force): Observable<any> {
     if (this.currentConfig && !force) {
       return of(this.currentConfig);

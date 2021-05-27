@@ -12,21 +12,13 @@
                 <table border="0">
                     <tr>
                         <td>
-                            <label for="newfile">Upload a file</label>
-                        </td>
-                        <td colspan="2">
-                            <input id="newfile" type="file" style="width:100%;" [(ngModel)]="fileInput" >
+                            <input id="newfile" type="file" style="width:100%;" [(ngModel)]="fileInput">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="filepath">Set path on server</label>
-                        </td>
-                        <td>
-                            <input id="filepath" type="text" style="width:100%;" [(ngModel)]="filePath">
-                        </td>
-                        <td>
-                            <button id="upload" type="button" (click)="upload()">Upload</button>
+                            <button class="btn btn-info mt-3" id="upload" type="button" (click)="upload()">Subir Archivo</button>
+                            <button type="submit" class="btn btn-danger ml-2 mt-3" (click)="reset()">Reiniciar </button>
                         </td>
                     </tr>
                 </table>

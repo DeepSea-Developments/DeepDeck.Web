@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AuthService } from '../../../core/services/auth.service';
+import { ApiService } from 'src/app/core/services/api/api.service';
 
 @Component({
   selector: 'app-firmware',
@@ -16,29 +16,25 @@ export class FirmwareComponent implements OnInit {
 
 
   constructor(    
-    private authService: AuthService){
+    public apiService: ApiService){
 
     }
 
     ngOnInit(): void {
-        this.loadClients();
+       
     }
 
-    loadClients() {
-      
-    }
-
-    refreshClients(value) {
-
-    }
-    
-    openDialog() {
-
-    }
+    reset() {
+        this.apiService.resetDevice({reset : true}).subscribe(
+            data => {
+              alert("El dispositivo se esta reiniciando!")
+            }
+          )
+      }
 
     upload() {
       let filePath = this.filePath;
-      let upload_path = "/upload/" + filePath;
+      let upload_path = "/upload/";
       let fileInput = this.fileInput;
 
       /* Max size of an individual file. Make sure this
@@ -47,12 +43,6 @@ export class FirmwareComponent implements OnInit {
 
       if (fileInput.length == 0) {
           alert("No file selected!");
-      } else if (filePath.length == 0) {
-          alert("File path on server is not set!");
-      } else if (filePath.indexOf(' ') >= 0) {
-          alert("File path on server cannot have spaces!");
-      } else if (filePath[filePath.length - 1] == '/') {
-          alert("File name not specified after path!");
       } else if (fileInput[0].size > MAX_FILE_SIZE) {
           alert("File size must be less than 200KB!");
       } else {
