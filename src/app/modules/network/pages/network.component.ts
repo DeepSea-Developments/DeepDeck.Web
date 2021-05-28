@@ -24,7 +24,9 @@ export class NetworkComponent implements OnInit {
     "WifiPassword" : "",
     "Apn": "",
      "ApnUser": "",
-     "ApnPassword": ""
+     "ApnPassword": "",
+     "FWVersion": "1.0.2",
+     "Mac": "00:1B:44:11:3A:B7"
   }
    
   constructor(
@@ -34,6 +36,10 @@ export class NetworkComponent implements OnInit {
 
   }
     ngOnInit(): void {
+      this.loadConfig();
+    }
+    
+    loadConfig() {
       this.apiService.getCurrentConfigData(false)
       .subscribe(
         value => {
@@ -43,14 +49,12 @@ export class NetworkComponent implements OnInit {
           this.network.Apn = value.Apn;
           this.network.ApnUser = value.ApnUser;
           this.network.ApnPassword = value.ApnPassword;
+          this.network.FWVersion = value.FWVersion;
+          this.network.Mac = value.Mac;
         }
       );
-    }
-    
-    refreshModels(value) {
+    } 
 
-    }
-    
     formatDate(value) {
       const date = moment.utc(value);
       return moment(date).local().format('YYYY-MM-DD HH:mm');
@@ -59,6 +63,8 @@ export class NetworkComponent implements OnInit {
     saveNetwork(){
       this.apiService.saveNetwork(this.network).subscribe(
         data => {
+          alert("Cambios guardados correctamente!")
+          this.loadConfig();
         }
       )
     }

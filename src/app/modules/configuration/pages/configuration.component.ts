@@ -11,10 +11,12 @@ import { ApiService } from 'src/app/core/services/api/api.service';
 
 export class ConfigurationComponent implements OnInit {
   device: any = {
-    AzureConnectionString: "xxxxxx-xxxxxxxxx",
-    IDDevice: "DSD00001",
-    ModeloInversor: "CHINT",
-    IDClient: "DSD",
+    AzureConnectionString: "",
+    IDDevice: "",
+    ModeloInversor: "",
+    IDClient: "",
+    FWVersion: "1.0.2",
+    Mac: "00:1B:44:11:3A:B7"
   }
 
   constructor(
@@ -23,19 +25,25 @@ export class ConfigurationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.apiService.getCurrentConfigData(false)
-      .subscribe(
-        value => {
-          this.device.AzureConnectionString = value.AzureConnectionString;
-          this.device.IDDevice = value.IDDevice;
-          this.device.ModeloInversor = value.ModeloInversor;
-          this.device.IDClient = value.IDClient;
-        }
-      );
+    this.loadConfig();
   }
 
   ngOnDestroy() {
 
+  }
+
+  loadConfig() {
+    this.apiService.getCurrentConfigData(false)
+    .subscribe(
+      value => {
+        this.device.AzureConnectionString = value.AzureConnectionString;
+        this.device.IDDevice = value.IDDevice;
+        this.device.ModeloInversor = value.ModeloInversor;
+        this.device.IDClient = value.IDClient;
+        this.device.FWVersion = value.FWVersion;
+        this.device.Mac = value.Mac;
+      }
+    );
   }
 
   saveConfig() {
@@ -45,6 +53,7 @@ export class ConfigurationComponent implements OnInit {
   saveCloud(){
     this.apiService.saveCloud(this.device).subscribe(
       data => {
+        this.loadConfig();
       }
     )
   }

@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   path: string;
   responsiveWatcher: Subscription;
   topGap = 56;
-  username;
+  username: any = "admin";
   
   constructor(
     private route: Router,

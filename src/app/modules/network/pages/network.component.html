@@ -1,6 +1,10 @@
 <div class='container'>
     <div class="row mb-3">
         <h3 class="col-md-12 left-align">Network</h3>
+        <div class="col-md-12">
+            <span class="float-right" style="font-size: 12px;">Firmware: {{network.FWVersion}}</span> <br/>
+            <span class="float-right" style="font-size: 12px;">MAC: {{network.Mac}}</span>
+        </div>
     </div>
     <!--Panel de Configuracion (IOTHUB FIRMWARE)-->
     <div class="row">
@@ -19,7 +23,7 @@
             <hr>
             <div class="form-group mb-3">
                 <label class="form-label">APN:</label>
-                <input type="text" class="form-control" [(ngModel)]="network.Apn" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
+                <input type="text" class="form-control" [(ngModel)]="network.Apn" pattern=".{100}" title="The field requires Chanel " maxlength="100" required="">
             </div>
             <div class="form-group mb-3">
                 <label class="form-label">Usuario:</label>
@@ -30,7 +34,7 @@
                 <input type="password" class="form-control" [(ngModel)]="network.ApnPassword" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
             </div>
             <div class="form-group mb-5">
-                <button type="submit" class="btn btn-primary" (click)="saveNetwork()" >Guardar </button>
+                <button type="submit" class="btn btn-primary" (click)="saveNetwork()">Guardar </button>
             </div>
         </div>
     </div>

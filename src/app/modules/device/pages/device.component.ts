@@ -59,44 +59,51 @@ export class DeviceComponent implements OnInit {
   }
 
     ngOnInit(): void { 
-      this.apiService.getCurrentConfigData(false)
-      .subscribe(
-        value => {
-          this.config.DeviceBaudrate = value.DeviceBaudrate;
-          this.config.ModbusAddress = value.ModbusAddress;
-          this.config.ModbusTCPAddress = value.ModbusTCPAddress;
-          this.config.ConnectionType = value.ConnectionType,
-          this.config.HWDeviceType = value.HWDeviceType;
-          for (let key in value) {
-            this.config[key] = value[key];
-          }
-        }
-      );
+      this.loadConfig();
      }
 
-    formatDate(value) {
-      const date = moment.utc(value);
-      return moment(date).local().format('YYYY-MM-DD HH:mm');
-    }
+    
 
-    refreshModels(value) {  }
+   loadConfig() {
+    this.apiService.getCurrentConfigData(false)
+    .subscribe(
+      value => {
+        this.config.DeviceBaudrate = value.DeviceBaudrate;
+        this.config.ModbusAddress = value.ModbusAddress;
+        this.config.ModbusTCPAddress = value.ModbusTCPAddress;
+        this.config.ConnectionType = value.ConnectionType,
+        this.config.HWDeviceType = value.HWDeviceType;
+        this.config.FWVersion = value.FWVersion;
+        this.config.Mac = value.Mac;
+        for (let key in value) {
+          this.config[key] = value[key];
+        }
+      }
+    );
+   }
     
     openDialog(): void {  }
 
-    saveConfig() {
+    saveConfig() {      
       let device = {    
         "DeviceBaudrate": this.config.DeviceBaudrate,
         "ModbusAddress": this.config.ModbusAddress,
         "ModbusTCPAddress": this.config.ModbusTCPAddress,
         "ConnectionType": this.config.ConnectionType,
-        "HWDeviceType": this.config.SupportedHWDeviceTypes
+        "HWDeviceType": this.config.HWDeviceType
       }
-
+      
       this.apiService.saveDevice(device).subscribe(
         data => {
           alert("Cambios guardados correctamente!")
+          this.loadConfig();
         }
       )
+    }
+
+    formatDate(value) {
+      const date = moment.utc(value);
+      return moment(date).local().format('YYYY-MM-DD HH:mm');
     }
 }
 

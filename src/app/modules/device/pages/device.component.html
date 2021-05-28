@@ -1,6 +1,10 @@
 <div class='container'>
     <div class="row mb-3">
         <h3 class="col-md-12 left-align">Dispositivo</h3>
+        <div class="col-md-12">
+            <span class="float-right" style="font-size: 12px;">Firmware: {{config.FWVersion}}</span> <br/>
+            <span class="float-right" style="font-size: 12px;">MAC: {{config.Mac}}</span>
+        </div>
     </div>
     <!--Panel de Configuracion (IOTHUB FIRMWARE)-->
     <div class="row">
@@ -24,17 +28,17 @@
             <h5 class="col-md-12 left-align">Equipo</h5>
             <hr>
             <div class="form-group mb-3">
-                <input type="radio" id="chintdevice" name="drone" [(ngModel)]="config.HWDeviceType" value="chintdevice" checked>
+                <input type="radio" id="chintdevice" name="device" [(ngModel)]="config.HWDeviceType" value="chintdevice" checked>
                 <label for="chintdevice">CHINT</label><br />
-                <input type="radio" id="circutordevice" name="drone" [(ngModel)]="config.HWDeviceType" value="circutordevice" checked>
+                <input type="radio" id="circutordevice" name="device" [(ngModel)]="config.HWDeviceType" value="circutordevice" checked>
                 <label for="circutordevice">CIRCUTOR</label><br />
             </div>
             <h5 class="col-md-12 left-align">Comunicación con Plataforma</h5>
             <hr>
             <div class="form-group mb-3">
-                <input type="radio" id="wifi" name="drone" [(ngModel)]="config.ConnectionType" value="wifi" checked>
+                <input type="radio" id="wifi" name="network" [(ngModel)]="config.ConnectionType" value="wifi" checked>
                 <label for="wifi">WIFI- Inalambrico</label><br />
-                <input type="radio" id="gprs" name="drone" [(ngModel)]="config.ConnectionType" value="gprs" checked>
+                <input type="radio" id="gprs" name="network" [(ngModel)]="config.ConnectionType" value="gprs" checked>
                 <label for="gprs">GPRS-Inalambrico Red Movil</label><br />
             </div>
             <div class="form-group mb-5">
