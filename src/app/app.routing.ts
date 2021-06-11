@@ -6,7 +6,7 @@ import { SimpleComponent } from '../app/layouts/simple/simple.component'
 export const SITE_ROUTES: Routes = [
   {
     path: '',
-    redirectTo: 'configurations',
+    redirectTo: 'network',
     pathMatch: 'full',
   },
   {

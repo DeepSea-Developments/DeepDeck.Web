@@ -65,7 +65,7 @@ export class DeviceComponent implements OnInit {
     
 
    loadConfig() {
-    this.apiService.getCurrentConfigData(false)
+    this.apiService.getCurrentConfigData(true)
     .subscribe(
       value => {
         this.config.DeviceBaudrate = value.DeviceBaudrate;

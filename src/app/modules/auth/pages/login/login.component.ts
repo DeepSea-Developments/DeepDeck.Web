@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         answer => {
           this.submitted = false;
           this.progressBar.hideBar();
-          this.router.navigateByUrl('/configurations',);
+          this.router.navigateByUrl('/network',);
         },
         error => {
           this.submitted = false;
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
   ngAfterViewInit() {
     this.submitted = true;
     if (this.authService.isLoggedIn() == true) {
-      this.router.navigateByUrl('/configurations');
+      this.router.navigateByUrl('/network');
     } else {
       this.submitted = false;
       this.router.navigateByUrl('/session');

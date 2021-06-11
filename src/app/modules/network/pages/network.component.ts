@@ -40,7 +40,7 @@ export class NetworkComponent implements OnInit {
     }
     
     loadConfig() {
-      this.apiService.getCurrentConfigData(false)
+      this.apiService.getCurrentConfigData(true)
       .subscribe(
         value => {
           this.network.InternetConnection = value.InternetConnection;

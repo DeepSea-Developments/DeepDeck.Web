@@ -18,17 +18,17 @@ export interface Menu {
 
 const MENUITEMS = [
     {
-        state: 'configurations',
-        name: 'Nube',
-        type: 'link',
-        icon: 'settings',
-    },
-    {
         state: 'network',
         name: 'Network',
         type: 'link',
         icon: 'wifi',
     },
+    {
+        state: 'configurations',
+        name: 'Nube',
+        type: 'link',
+        icon: 'settings',
+    },    
     {
         state: 'devices',
         name: 'Dispositivo',

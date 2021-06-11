@@ -33,7 +33,7 @@ export class ConfigurationComponent implements OnInit {
   }
 
   loadConfig() {
-    this.apiService.getCurrentConfigData(false)
+    this.apiService.getCurrentConfigData(true)
     .subscribe(
       value => {
         this.device.AzureConnectionString = value.AzureConnectionString;
