@@ -13,11 +13,11 @@
             <hr>
             <div class="form-group mb-3">
                 <label class="form-label">Red Wifi:</label>
-                <input type="text" class="form-control" [(ngModel)]="network.WifiSSID" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
+                <input type="text" class="form-control" [(ngModel)]="network.WifiSSID" pattern=".{32}" title="The field requires Chanel " maxlength="32" required="">
             </div>
             <div class="form-group mb-3">
                 <label class="form-label">Contraseña</label>
-                <input type="password" class="form-control" [(ngModel)]="network.WifiPassword" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
+                <input type="password" class="form-control" [(ngModel)]="network.WifiPassword" pattern=".{64}" title="The field requires Chanel " maxlength="64" required="">
             </div>
             <h5 class="col-md-12 left-align">Celular</h5>
             <hr>
@@ -27,11 +27,11 @@
             </div>
             <div class="form-group mb-3">
                 <label class="form-label">Usuario:</label>
-                <input type="text" class="form-control" [(ngModel)]="network.ApnUser" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
+                <input type="text" class="form-control" [(ngModel)]="network.ApnUser" pattern=".{100}" title="The field requires Chanel " maxlength="100" required="">
             </div>
             <div class="form-group mb-3">
                 <label class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" [(ngModel)]="network.ApnPassword" pattern=".{20}" title="The field requires Chanel " maxlength="20" required="">
+                <input type="password" class="form-control" [(ngModel)]="network.ApnPassword" pattern=".{100}" title="The field requires Chanel " maxlength="100" required="">
             </div>
             <div class="form-group mb-5">
                 <button type="submit" class="btn btn-primary" (click)="saveNetwork()">Guardar </button>
