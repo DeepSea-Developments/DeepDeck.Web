@@ -14,6 +14,10 @@ export const SITE_ROUTES: Routes = [
       import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'wifi', loadChildren: () =>
+      import('./modules/wifi/wifi.module').then(m => m.WifiModule)
+  },
+  {
     path: '',
     component: SimpleComponent,
     canActivate: [AuthGuard],
