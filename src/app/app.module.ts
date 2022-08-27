@@ -14,7 +14,6 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { MenuItems } from './core/menu/menu-items/menu-items';
 import { CommonModule } from '@angular/common';
-import { DialogOverviewInventoryDialog } from './modules/device/pages/device.component';
 import { ModalComponent } from './modules/modal/modal.component';
 import { SideNavModule } from '../app/layouts/sidenav/sidenav.module';
 import { HeaderModule } from '../app/layouts/header/header.module';
@@ -39,8 +38,7 @@ const config: SocketIoConfig = { url: 'http://retailrealtime-dev-wapp.azurewebsi
     SimpleModule
   ],
   declarations: [
-    AppComponent,
-    DialogOverviewInventoryDialog,
+    AppComponent,    
     ModalComponent
   ],
   providers: [

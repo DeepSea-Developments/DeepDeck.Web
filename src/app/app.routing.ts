@@ -12,11 +12,7 @@ export const SITE_ROUTES: Routes = [
   {
     path: 'session', loadChildren: () =>
       import('./modules/auth/auth.module').then(m => m.AuthModule)
-  },
-  {
-    path: 'wifi', loadChildren: () =>
-      import('./modules/wifi/wifi.module').then(m => m.WifiModule)
-  },
+  },  
   {
     path: '',
     component: SimpleComponent,
@@ -24,17 +20,13 @@ export const SITE_ROUTES: Routes = [
     runGuardsAndResolvers: 'always',
     children: [     
       {
-        path: 'configurations', loadChildren: () =>
-          import('./modules/configuration/configuration.module').then(m => m.ConfigurationModule)
+        path: 'keymap', loadChildren: () =>
+          import('./modules/keymap/keymap.module').then(m => m.KeymapModule)
       },
       {
         path: 'network', loadChildren: () =>
           import('./modules/network/network.module').then(m => m.NetworkModule)
-      },
-      {
-        path: 'devices', loadChildren: () =>
-          import('./modules/device/device.module').then(m => m.DeviceModule)
-      },
+      },      
       {
         path: 'firmware', loadChildren: () =>
           import('./modules/firmware/firmware.module').then(m => m.FirmwareModule)

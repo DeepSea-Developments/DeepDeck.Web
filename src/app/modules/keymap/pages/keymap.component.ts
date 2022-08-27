@@ -5,11 +5,11 @@ import { ApiService } from 'src/app/core/services/api/api.service';
 
 @Component({
   selector: 'app-config',
-  templateUrl: './configuration.component.html',
-  styleUrls: ['./configuration.component.scss']
+  templateUrl: './keymap.component.html',
+  styleUrls: ['./keymap.component.scss']
 })
 
-export class ConfigurationComponent implements OnInit {
+export class KeymapComponent implements OnInit {
   device: any = {
     AzureConnectionString: "",
     IDDevice: "",

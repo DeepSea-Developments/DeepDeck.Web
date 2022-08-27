@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConfigurationRoutingModule } from './configuration.rounting';
-import { ConfigurationComponent } from './pages/configuration.component'; 
+import { KeymapRoutingModule } from './keymap.rounting';
+import { KeymapComponent } from './pages/keymap.component'; 
 import { SharedModule } from '../../shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
-    ConfigurationRoutingModule,
+    KeymapRoutingModule,
     SharedModule
   ],
   declarations: [
-    ConfigurationComponent,
+    KeymapComponent,
   ],
   providers: [
   ],
 })
-export class ConfigurationModule { }
+export class KeymapModule { }

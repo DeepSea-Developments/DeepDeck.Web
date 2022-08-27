@@ -20,6 +20,7 @@ $custom-typography: mat-typography-config( $headline: mat-typography-level(32px,
 html,
 body {
     height: 100%;
+    
 }
 
 body {
@@ -27,26 +28,33 @@ body {
     overflow: hidden;
 }
 
+.mat-drawer-content{
+    background-color: #222222;
+}
+
 .mat-sidenav-container {
     height: 100vh !important;
 }
 
 .mat-icon {
-    color: #000000 !important;
+    color: #b0a697 !important;
 }
 
 .mat-stroked-button {
-    color: #fff !important;
-    background-color: #000000 !important;
+    color: #b0a697 !important;
+    background-color: #222222 !important;
 }
 
 .mat-sidenav {
     box-shadow: -1px -1px 22px 5px rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: -1px -1px 22px 5px rgba(0, 0, 0, 0.19);
     -moz-box-shadow: -1px -1px 22px 5px rgba(0, 0, 0, 0.19);
-    background: #ffffff !important;
+    background: #222222 !important;
 }
 
+.mat-list-base .mat-list-item {
+  color: #b0a697;
+}
 .mat-list-base {
     padding-top: 0px !important;
 }
