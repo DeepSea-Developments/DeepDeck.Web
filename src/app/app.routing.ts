@@ -9,15 +9,15 @@ export const SITE_ROUTES: Routes = [
     redirectTo: 'network',
     pathMatch: 'full',
   },
-  {
-    path: 'session', loadChildren: () =>
-      import('./modules/auth/auth.module').then(m => m.AuthModule)
-  },  
+  // {
+  //   path: 'session', loadChildren: () =>
+  //     import('./modules/auth/auth.module').then(m => m.AuthModule)
+  // },  
   {
     path: '',
     component: SimpleComponent,
-    canActivate: [AuthGuard],
-    runGuardsAndResolvers: 'always',
+    // canActivate: [AuthGuard],
+    // runGuardsAndResolvers: 'always',
     children: [     
       {
         path: 'keymap', loadChildren: () =>
