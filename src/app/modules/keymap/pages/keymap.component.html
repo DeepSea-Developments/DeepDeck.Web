@@ -1,104 +1,72 @@
 <div class='container'>
-    <!--Panel de Configuracion (IOTHUB FIRMWARE)-->
-    <div class="row">
-        <div id="ahuyama" class="col-md-5">
-            <div class="row mb-3">
-                <div class="col-md-12 text-right">
-                    <button style="background: #dc9f10; border-radius: 5px; padding: 5px; width: 130px;">TEST
-                        MODE</button>
-                </div>
-            </div>
-            <div id="deepdeck">
-                <div class="col-md-12" style="display: flex;">
-                    <div class="knob-surround">
-                        <div id="knob" class="knob"></div>                        
-                        <div id="tickContainer" class="ticks"></div>
-                    </div>
-                    <div style="height: 60px; width: 100px; background-color: #000; margin-left: 40px;">
-
-                    </div>
-                    <div class="knob-surround" style="margin-left: 40px;">
-                        <div id="knob" class="knob"></div>                        
-                        <div id="tickContainer" class="ticks"></div>
-                    </div>
-                </div>
-                <ul>
-                    <li class="symbol"><span class="off">1</span><span class="on">~</span></li>
-                    <li class="symbol"><span class="off">2</span><span class="on">!</span></li>
-                    <li class="symbol"><span class="off">3</span><span class="on">@</span></li>
-                    <li class="symbol"><span class="off">LAYER</span><span class="on">#</span></li>
-
-                    <li class="symbol"><span class="off">4</span><span class="on">~</span></li>
-                    <li class="symbol"><span class="off">5</span><span class="on">!</span></li>
-                    <li class="symbol"><span class="off">6</span><span class="on">@</span></li>
-                    <li class="symbol"><span class="off">+</span><span class="on">#</span></li>
-
-                    <li class="symbol"><span class="off">7</span><span class="on">~</span></li>
-                    <li class="symbol"><span class="off">8</span><span class="on">!</span></li>
-                    <li class="symbol"><span class="off">9</span><span class="on">@</span></li>
-                    <li class="symbol"><span class="off">-</span><span class="on">#</span></li>
-
-                    <li class="symbol"><span class="off">.</span><span class="on">~</span></li>
-                    <li class="symbol"><span class="off">0</span><span class="on">!</span></li>
-                    <li class="symbol"><span class="off">*</span><span class="on">@</span></li>
-                    <li class="symbol"><span class="off">/</span><span class="on">#</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-7">
+    <!--Panel de Configuracion (IOTHUB FIRMWARE)-->        
+    <div class="row mt-3">
+        <div class="col-md-12 d-flex justify-content-between">
             <div>
-                <ul id="keyboard">
-                    <li class="symbol"><span class="off">`</span><span class="on">~</span></li>
-                    <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
-                    <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
-                    <li class="symbol"><span class="off">3</span><span class="on">#</span></li>
-                    <li class="symbol"><span class="off">4</span><span class="on">$</span></li>
-                    <li class="symbol"><span class="off">5</span><span class="on">%</span></li>
-                    <li class="symbol"><span class="off">6</span><span class="on">^</span></li>
-                    <li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
-                    <li class="symbol"><span class="off">8</span><span class="on">*</span></li>
-                    <li class="symbol"><span class="off">9</span><span class="on">(</span></li>
-                    <li class="symbol"><span class="off">0</span><span class="on">)</span></li>
-                    <li class="symbol"><span class="off">-</span><span class="on">_</span></li>
-                    <li class="symbol"><span class="off">=</span><span class="on">+</span></li>
-                    <li class="letter">q</li>
-                    <li class="letter">w</li>
-                    <li class="letter">e</li>
-                    <li class="letter">r</li>
-                    <li class="letter">t</li>
-                    <li class="letter">y</li>
-                    <li class="letter">u</li>
-                    <li class="letter">i</li>
-                    <li class="letter">o</li>
-                    <li class="letter">p</li>
-                    <!--li class="symbol"><span class="off">[</span><span class="on">{</span></li>
-                <li class="symbol"><span class="off">]</span><span class="on">}</span></li-->
-                    <li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
-                    <li class="letter">a</li>
-                    <li class="letter">s</li>
-                    <li class="letter">d</li>
-                    <li class="letter">f</li>
-                    <li class="letter">g</li>
-                    <li class="letter">h</li>
-                    <li class="letter">j</li>
-                    <li class="letter">k</li>
-                    <li class="letter">l</li>
-                    <li class="symbol"><span class="off">;</span><span class="on">:</span></li>
-                    <li class="symbol"><span class="off">'</span><span class="on">&quot;</span></li>
-                    <li class="letter">z</li>
-                    <li class="letter">x</li>
-                    <li class="letter">c</li>
-                    <li class="letter">v</li>
-                    <li class="letter">b</li>
-                    <li class="letter">n</li>
-                    <li class="letter">m</li>
-                    <li class="letter">m</li>
-                    <li class="symbol"><span class="off">,</span><span class="on">&lt;</span></li>
-                    <li class="symbol"><span class="off">.</span><span class="on">&gt;</span></li>
-                    <li class="symbol"><span class="off">/</span><span class="on">?</span></li>
-                    <li class="space lastitem">&nbsp;</li>                    
-                </ul>
+                <h2 class="title">LAYERS</h2>
+            </div>
+            <div>
+                <a [routerLink]="['/keymap/setting']" style="color:black; background: #dc9f10; border-radius: 5px; padding: 5px;">ADD LAYER</a>
             </div>
         </div>
+        <table mat-table [dataSource]="layerList" matSort class="col-md-12 mat-elevation-z8">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="keys">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Keys </th>
+                <td mat-cell *matCellDef="let element"> {{element.keys}} </td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <a [routerLink]="['/partners/profile', element.name]" class="action_icon"><i
+                            class="material-icons left">remove_red_eye</i></a>
+                    <a (click)="edit(element)" class="action_icon" style="cursor: pointer;"><i
+                            class="material-icons left">edit</i></a>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
+            <tr mat-row *matRowDef="let row; columns: columndefs;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[20]" [length]="length" showFirstLastButtons
+            (page)="refreshLayer($event.pageIndex+1)" class="bg-transparent mb-3">
+        </mat-paginator>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-md-12 d-flex justify-content-between">
+            <div>
+                <h2 class="title">MACROS</h2>
+            </div>
+            <div>
+                <button style="background: #dc9f10; border-radius: 5px; padding: 5px;">Add Macro</button>
+            </div>
+        </div>
+        <table mat-table [dataSource]="macroList" matSort class="col-md-12 mat-elevation-z8">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="keys">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Layer </th>
+                <td mat-cell *matCellDef="let element"> {{element.keys}} </td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <a [routerLink]="['/partners/profile', element.identification]" class="action_icon"><i
+                            class="material-icons left">remove_red_eye</i></a>
+                    <a (click)="edit(element)" class="action_icon" style="cursor: pointer;"><i
+                            class="material-icons left">edit</i></a>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
+            <tr mat-row *matRowDef="let row; columns: columndefs;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[20]" [length]="lengthMacro" showFirstLastButtons
+            (page)="refreshMacro($event.pageIndex+1)" class="bg-transparent mb-3">
+        </mat-paginator>
+
     </div>
 </div>

@@ -30,8 +30,18 @@ body {
 
 .mat-drawer-content{
     background-color: #222222;
+    color: #ffffff;
 }
 
+.mat-paginator-container, .mat-button-wrapper{
+    color: #ffffff;
+}
+.mat-table {
+    background-color: #414141;
+}
+.mat-header-cell,  .mat-cell {
+    color: #ffffff;
+}
 .mat-sidenav-container {
     height: 100vh !important;
 }

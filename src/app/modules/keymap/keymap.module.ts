@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { KeymapRoutingModule } from './keymap.rounting';
-import { KeymapComponent } from './pages/keymap.component'; 
+import { KeymapComponent } from './pages/keymap.component';
+import { SettingComponent } from './pages/setting/setting.component'; 
 import { SharedModule } from '../../shared/shared.module';
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import { SharedModule } from '../../shared/shared.module';
   ],
   declarations: [
     KeymapComponent,
+    SettingComponent
   ],
   providers: [
   ],

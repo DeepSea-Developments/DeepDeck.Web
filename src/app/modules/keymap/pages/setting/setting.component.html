@@ -1,0 +1,37 @@
+<div class='container'>
+    <!--Panel de Configuracion (IOTHUB FIRMWARE)-->
+    <div class="row mb-3">
+        <div class="col-md-12 text-right">
+            <button style="background: #dc9f10; border-radius: 5px; padding: 5px; width: 130px;">SAVE</button>
+        </div>
+    </div>
+    <div class="row">
+        <div id="ahuyama" class="col-md-5">
+            <div id="deepdeck">
+                <div class="col-md-12" style="display: flex;">
+                    <div class="knob-surround">
+                        <div id="knob" class="knob"></div>
+                        <div id="tickContainer" class="ticks"></div>
+                    </div>
+                    <div style="height: 60px; width: 100px; background-color: #000; margin-left: 40px;">
+
+                    </div>
+                    <div class="knob-surround" style="margin-left: 40px;">
+                        <div id="knob" class="knob"></div>
+                        <div id="tickContainer" class="ticks"></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <ul id="keydeck" *ngFor="let item of deepKeys; let i = index">
+                        <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(item, i)">{{item.key}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7" style="height: 400px; overflow-y: auto;">
+            <ul id="keyboard" *ngFor="let key of  objectKeys(keyList)">
+                <li (click)="pressKey(key, keyList[key])">{{key}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
