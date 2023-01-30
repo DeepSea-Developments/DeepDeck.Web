@@ -1,9 +1,14 @@
 <div class='container'>
     <!--Panel de Configuracion (IOTHUB FIRMWARE)-->
     <div class="row mb-3">
-        <div class="col-md-12 text-right">
-            <button style="background: #dc9f10; border-radius: 5px; padding: 5px; width: 130px;">SAVE</button>
-        </div>
+        <div class="col-md-12 d-flex justify-content-between">
+            <div>
+                <input type="text" class="form-control input-layer" [(ngModel)]="layer.name">
+            </div>
+            <div>
+                <button (click)="saveLayer()" style="background: #dc9f10; border-radius: 5px; padding: 5px; width: 130px;">SAVE</button>
+            </div>
+        </div>        
     </div>
     <div class="row">
         <div id="ahuyama" class="col-md-5">
@@ -31,6 +36,16 @@
         <div class="col-md-7" style="height: 400px; overflow-y: auto;">
             <ul id="keyboard" *ngFor="let key of  objectKeys(keyList)">
                 <li (click)="pressKey(key, keyList[key])">{{key}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12 mt-3">
+        <div>
+            <h2 class="title">MACROS</h2>
+        </div>
+        <div style="height: 200px; overflow-y: auto;">
+            <ul id="keyboard" *ngFor="let macro of  deepMacros">
+                <li>{{macro}}</li>
             </ul>
         </div>
     </div>
