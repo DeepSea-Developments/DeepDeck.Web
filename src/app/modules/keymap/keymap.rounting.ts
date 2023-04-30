@@ -10,7 +10,11 @@ export const routes: Routes = [
         component: KeymapComponent
     },
     {
-        path: 'setting',        
+        path: 'setting',
+        component: SettingComponent
+    },
+    {
+        path: 'setting/:id',        
         component: SettingComponent
     },
 ];

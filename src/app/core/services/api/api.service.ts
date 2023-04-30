@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { mergeMap } from 'rxjs/operators';
@@ -21,13 +21,12 @@ export class ApiService {
   }
 
   saveNetwork(data): Observable<any> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('Accept-Language', 'es');
+    //let headers = new HttpHeaders();
+    //headers = headers.set('Content-Type', 'application/json');
+    // headers = headers.set('Accept-Language', 'es');
     return this.http.post<any>(
-      '/save-network/',
+      'http://192.168.4.1/api/connect',
       JSON.stringify(data),
-      { headers }
     ).pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -99,6 +98,45 @@ export class ApiService {
   setConfigData(configData): any {
     this.currentConfig = configData;
     localStorage.setItem('current_config', JSON.stringify(this.currentConfig));
+  }
+
+  getLayersName(): Observable<any> {
+    // TODO Delete after local tests
+    return this.http.get<any>('http://192.168.1.12/api/layers/layer_names').pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    ); 
+  }
+
+  
+  getLayersLayout(uuid, pos): Observable<any> {
+    let params = new HttpParams();
+    
+    if (uuid) {
+      params = params.set('uuid', uuid);
+      params = params.set('pos', pos);
+    }
+
+    // TODO Delete after local tests
+    return this.http.get<any>('http://192.168.1.12/api/layers', {params}).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
+  updateLayersLayout(data): Observable<any> {        
+    // TODO Delete after local tests
+    return this.http.put<any>('http://192.168.1.12/api/layers',  JSON.stringify(data)).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
+   createLayer(data): Observable<any> {    
+    return this.http.post<any>( 'http://192.168.1.12/api/layers', JSON.stringify(data),).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
   }
 
   cleanData(): any {

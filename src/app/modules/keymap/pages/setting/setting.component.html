@@ -27,8 +27,17 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <ul id="keydeck" *ngFor="let item of deepKeys; let i = index">
-                        <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(item, i)">{{item.key}}</li>
+                    <ul id="keydeck" *ngFor="let item of layer.row0; let i = index">
+                        <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)">{{item.name}}</li>
+                    </ul>
+                    <ul id="keydeck" *ngFor="let item of layer.row1; let i = index">
+                        <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row1, item, i)">{{item.name}}</li>
+                    </ul>
+                    <ul id="keydeck" *ngFor="let item of layer.row2; let i = index">
+                        <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row2, item, i)">{{item.name}}</li>
+                    </ul>
+                    <ul id="keydeck" *ngFor="let item of layer.row3; let i = index">
+                        <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row3, item, i)">{{item.name}}</li>
                     </ul>
                 </div>
             </div>

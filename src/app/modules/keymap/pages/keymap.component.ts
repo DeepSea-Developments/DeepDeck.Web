@@ -16,12 +16,12 @@ export class KeymapComponent implements OnInit {
   macroList: any = [];
   lengthMacro: number;
   pageNumberMacro = 1;
-  columndefsMacro: string[] = ['name', 'keys', 'action'];
+  columndefsMacro: string[] = ['pos', 'name', 'action'];
 
   layerList: any = [];
   length: number;
   pageNumber = 1;
-  columndefs: string[] = ['name', 'keys', 'action'];
+  columndefs: string[] = ['pos', 'name', 'action'];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -36,15 +36,9 @@ export class KeymapComponent implements OnInit {
   }
   
   loadLayers() {
-    this.layerList = [{
-      "name": "Layer 1",
-      "keys": "A1, A2, A3"
-    },
-    {
-      "name": "Layer 2",
-      "keys": "A, B, C"
-    }
-    ]
+    this.apiService.getLayersName().subscribe(response => {
+      this.layerList = response.data;
+    });
   }
 
   loadMacros() {

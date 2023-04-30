@@ -19,14 +19,8 @@ export class NetworkComponent implements OnInit {
 
 
   network: any = {
-    "InternetConnection": 0,
-    "WifiSSID" : "",
-    "WifiPassword" : "",
-    "Apn": "",
-     "ApnUser": "",
-     "ApnPassword": "",
-     "FWVersion": "1.0.2",
-     "Mac": "00:1B:44:11:3A:B7"
+    "ssid": "",
+    "pass": "",
   }
    
   constructor(
@@ -61,6 +55,7 @@ export class NetworkComponent implements OnInit {
     }
 
     saveNetwork(){
+      console.log(this.network);
       this.apiService.saveNetwork(this.network).subscribe(
         data => {
           alert("Cambios guardados correctamente!")
