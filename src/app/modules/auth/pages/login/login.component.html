@@ -5,18 +5,11 @@
         <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
             <p>
                 <mat-form-field appearance="outline">
-                    <mat-label>UserName</mat-label>
-                    <input formControlName="username" matInput>
+                    <mat-label>IP Address</mat-label>
+                    <input formControlName="ip" matInput>
                     <mat-icon matSuffix>person</mat-icon>
                 </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input type="password" matInput formControlName="password">
-                    <mat-icon matSuffix>lock</mat-icon>
-                </mat-form-field>
-            </p>
+            </p>        
             <button class="login" mat-stroked-button>LogIn</button>
         </form>
         <br>

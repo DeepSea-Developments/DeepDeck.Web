@@ -29,10 +29,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.getCurrentUserData(false)
+    /*this.authService.getCurrentUserData(false)
     .subscribe(
       value => this.username = value.username
-    );
+    );*/
   }
 
   toggleSideNav() {

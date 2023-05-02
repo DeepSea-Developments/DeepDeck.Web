@@ -12,22 +12,19 @@ import {catchError, retry} from 'rxjs/operators';
 })
 export class ApiService {
   public currentConfig: any;
+  public ipAddress: any;
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) {
     this.currentConfig = JSON.parse(localStorage.getItem('current_config'));
+    this.ipAddress =  localStorage.getItem('accessToken');
+    console.log(this.ipAddress);
   }
-
-  saveNetwork(data): Observable<any> {
-    //let headers = new HttpHeaders();
-    //headers = headers.set('Content-Type', 'application/json');
-    // headers = headers.set('Accept-Language', 'es');
-    return this.http.post<any>(
-      'http://192.168.4.1/api/connect',
-      JSON.stringify(data),
-    ).pipe(
+ 
+  saveNetwork(data): Observable<any> {    
+    return this.http.post<any>(`http://${this.ipAddress}/api/connect`, JSON.stringify(data),).pipe(
       retry(1),
       catchError(this.errorHandl)
     );
@@ -102,7 +99,7 @@ export class ApiService {
 
   getLayersName(): Observable<any> {
     // TODO Delete after local tests
-    return this.http.get<any>('http://192.168.1.12/api/layers/layer_names').pipe(
+    return this.http.get<any>(`http://${this.ipAddress}/api/layers/layer_names`).pipe(
       retry(1),
       catchError(this.errorHandl)
     ); 
@@ -118,7 +115,7 @@ export class ApiService {
     }
 
     // TODO Delete after local tests
-    return this.http.get<any>('http://192.168.1.12/api/layers', {params}).pipe(
+    return this.http.get<any>(`http://${this.ipAddress}/api/layers`, {params}).pipe(
       retry(1),
       catchError(this.errorHandl)
     );
@@ -126,14 +123,14 @@ export class ApiService {
 
   updateLayersLayout(data): Observable<any> {        
     // TODO Delete after local tests
-    return this.http.put<any>('http://192.168.1.12/api/layers',  JSON.stringify(data)).pipe(
+    return this.http.put<any>(`http://${this.ipAddress}/api/layers`,  JSON.stringify(data)).pipe(
       retry(1),
       catchError(this.errorHandl)
     );
   }
 
    createLayer(data): Observable<any> {    
-    return this.http.post<any>( 'http://192.168.1.12/api/layers', JSON.stringify(data),).pipe(
+    return this.http.post<any>( `http://${this.ipAddress}/api/layers`, JSON.stringify(data),).pipe(
       retry(1),
       catchError(this.errorHandl)
     );

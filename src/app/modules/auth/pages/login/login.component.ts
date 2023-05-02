@@ -37,23 +37,25 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.maxLength(150)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      ip: ['', [Validators.required, Validators.maxLength(150)]],      
     });
   }
 
   login() {
+    console.log("login")
     this.progressBar.showBar();
     if (this.loginForm.dirty && this.loginForm.valid) {
       const formulario = this.loginForm.value;
-
+      console.log(formulario);
       this.showInvalidForm = false;
-      this.submitted = true;
+      this.submitted = true;     
       this.authService.login(formulario).subscribe(
         answer => {
+          console.log(answer);
           this.submitted = false;
           this.progressBar.hideBar();
-          this.router.navigateByUrl('/network',);
+          this.router.navigateByUrl('/keymap',);
+          location.reload();
         },
         error => {
           this.submitted = false;

@@ -23,9 +23,6 @@ export class AuthService {
     private router: Router
   ) {
     this.accessToken = localStorage.getItem('accessToken');
-    this.refreshToken = localStorage.getItem('refreshToken');
-    this.tokenExpiration = localStorage.getItem('tokenExpiration');
-    this.backendUser = JSON.parse(localStorage.getItem('current_user'));
 
     this.logoutSubject = new Subject();
     this.loginSubject = new Subject();
@@ -63,7 +60,7 @@ export class AuthService {
   }
 
   login(data): Observable<any> {
-    let headers = new HttpHeaders();
+    /*let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     headers = headers.set('Accept-Language', 'es');
     // TODO Delete after local tests
@@ -84,18 +81,21 @@ export class AuthService {
         }
         return of(result.key);
       })
-    );
+    );*/
+    this.accessToken = data.ip;
+    localStorage.setItem('accessToken', data.ip);          
+    return of(true);
   }
 
 
 
-  getCurrentUserData(force): Observable<any> {
+  /*getCurrentUserData(force): Observable<any> {
     if (this.backendUser && !force) {
       return of(this.backendUser);
     } else {
       return throwError(new Error('Not Logged In'));
     }
-  }
+  }*/
 
 
 
@@ -109,8 +109,6 @@ export class AuthService {
 
   logout(): any {
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('current_user');
     this.accessToken = null;
     this.refreshToken = null;
     this.backendUser = null;

@@ -22,7 +22,7 @@ export class RequestInterceptor implements HttpInterceptor {
   ) { }
 
   addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
-    return req.clone({ setHeaders: { Authorization: 'JWT ' + token } });
+    return req.clone();
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
