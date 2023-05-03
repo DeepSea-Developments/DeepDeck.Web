@@ -43,9 +43,19 @@
             </div>
         </div>
         <div class="col-md-7" style="height: 400px; overflow-y: auto;">
-            <ul id="keyboard" *ngFor="let key of  objectKeys(keyList)">
+            <!-- <ul id="keyboard" *ngFor="let key of  objectKeys(keyList)">
                 <li (click)="pressKey(key, keyList[key])">{{key}}</li>
+            </ul> -->
+            <!-- <ul id="keyboard" *ngFor="let key of  objectKeys(keyList_basic)">
+                <li (click)="pressKey(key, keyList_basic[key])">{{keyList_basic[key][1]}}</li>
+            </ul> -->
+
+            <ul id="keyboard" *ngFor="let key of  objectKeys(keyList_basic)">
+                <li (click)="pressKey(keyList_basic[key][1], keyList_basic[key][2])" 
+                    [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][1])}"
+                        >{{keyList_basic[key][1]}}</li>
             </ul>
+
         </div>
     </div>
     <div class="col-md-12 mt-3">

@@ -12,15 +12,15 @@
             <h5 class="col-md-12 left-align">Wifi</h5>
             <hr>
             <div class="form-group mb-3">
-                <label class="form-label">Red Wifi:</label>
+                <label class="form-label">Wifi Network:</label>
                 <input type="text" class="form-control" [(ngModel)]="network.ssid" pattern=".{32}" title="The field requires Chanel " maxlength="32" required="">
             </div>
             <div class="form-group mb-3">
-                <label class="form-label">Contraseña</label>
+                <label class="form-label">Password</label>
                 <input type="password" class="form-control" [(ngModel)]="network.pass" pattern=".{64}" title="The field requires Chanel " maxlength="64" required="">
             </div>            
             <div class="form-group mb-5">
-                <button type="submit" class="btn btn-primary" (click)="saveNetwork()">Guardar </button>
+                <button type="submit" class="btn btn-primary" (click)="saveNetwork()">Save </button>
             </div>
         </div>
     </div>

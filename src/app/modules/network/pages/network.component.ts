@@ -58,7 +58,7 @@ export class NetworkComponent implements OnInit {
       console.log(this.network);
       this.apiService.saveNetwork(this.network).subscribe(
         data => {
-          alert("Cambios guardados correctamente!")
+          alert("Changes saved. DeepDeck should restart now!")
           this.loadConfig();
         }
       )

@@ -72,6 +72,12 @@ export class ApiService {
     );
   }
 
+
+  // return this.http.get<any>(`http://${this.ipAddress}/api/layers/layer_names`).pipe(
+  //   retry(1),
+  //   catchError(this.errorHandl)
+  // ); 
+
   getCurrentConfigData(force): Observable<any> {
     if (this.currentConfig && !force) {
       return of(this.currentConfig);
@@ -80,14 +86,14 @@ export class ApiService {
       headers = headers.set('Content-Type', 'application/json');
       headers = headers.set('Accept-Language', 'es');
       // TODO Delete after local tests
-      return this.http.get<any>('/config/',
-        { headers }
-      ).pipe(
+      return this.http.get<any>(`http://${this.ipAddress}/api/config`).pipe(
         mergeMap(result => {
           const configData = result;
           this.setConfigData(configData);
           return of(configData);
         })
+        // retry(1),
+        // catchError(this.errorHandl)
       );
     }
   }

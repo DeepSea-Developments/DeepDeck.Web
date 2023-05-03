@@ -21,7 +21,7 @@ export class KeymapComponent implements OnInit {
   layerList: any = [];
   length: number;
   pageNumber = 1;
-  columndefs: string[] = ['pos', 'name', 'action'];
+  columndefs: string[] = ['pos', 'name','active', 'action'];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
