@@ -68,3 +68,31 @@ body {
 .mat-list-base {
     padding-top: 0px !important;
 }
+
+/* Round the top corners of the tabs */
+.custom-tabs .mat-tab-label, .custom-tabs .mat-tab-label-active {
+    border-top-left-radius: 8px; /* Adjust the radius as needed */
+    border-top-right-radius: 8px; /* Adjust the radius as needed */
+  }
+
+/* Style the tab background */
+.custom-tabs .mat-tab-label, .custom-tabs .mat-tab-label-active {
+background-color: #414141;
+}
+
+/* Style the active tab background */
+.custom-tabs .mat-tab-label.mat-tab-label-active {
+background-color: #dc9f10;
+}
+
+/* Style the tab label (font) */
+.custom-tabs .mat-tab-label, .custom-tabs .mat-tab-label-active {
+font-family: 'Your font family', sans-serif;
+font-size: 16px;
+color: #b0a697;
+}
+
+/* Style the active tab label (font) */
+.custom-tabs .mat-tab-label.mat-tab-label-active {
+color: #ffffff;
+}
