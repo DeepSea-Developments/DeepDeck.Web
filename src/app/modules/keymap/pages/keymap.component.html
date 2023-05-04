@@ -26,9 +26,15 @@
                 <th mat-header-cell *matHeaderCellDef> Action </th>
                 <td mat-cell *matCellDef="let element">
                     <a [routerLink]="['/keymap/setting/', {id: element.uuid, pos: element.pos}]" class="action_icon"><i
-                            class="material-icons left">remove_red_eye</i></a>
-                    <a (click)="edit(element.uuid)" class="action_icon" style="cursor: pointer;"><i
                             class="material-icons left">edit</i></a>
+                    
+                    <a (click)="openConfirmationDialog(element)" class="action_icon" style="cursor: pointer;">
+                        <i class="material-icons left">delete</i></a>
+                    <a (click)="openConfirmationDialog(element)" class="action_icon" style="cursor: pointer;">
+                        <i class="material-icons left">content_copy</i></a>
+                    <a (click)="openConfirmationDialog(element)" class="action_icon" style="cursor: pointer;">
+                        <i class="material-icons left">file_download</i></a>
+
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="columndefs"></tr>

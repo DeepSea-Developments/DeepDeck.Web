@@ -1,0 +1,56 @@
+:host {
+    
+    // .confirmation-dialog {
+    // // Dialog background color
+    // background-color: #414141; // Bright green background
+    // border-radius: 8px;
+    // // padding: 2rem;
+    // }   
+    
+    .mat-dialog-title {
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+  
+    .mat-dialog-content {
+      color: #c9c9c9;
+      font-size: 1rem;
+      line-height: 1.5em;
+    }
+  
+    .mat-dialog-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 1rem;
+  
+      button {
+        font-weight: 500;
+  
+        // Cancel button
+        &:first-child {
+          color: #ffffff;
+          background-color: #8d8d8d;
+          border-radius: 4px;
+          padding: 6px 12px;
+  
+          &:hover {
+            background-color: darken(#8d8d8d, 5%);
+          }
+        }
+  
+        // Delete button
+        &:last-child {
+          color: #fff;
+          background-color: #f44336;
+          border-radius: 4px;
+          padding: 6px 12px;
+  
+          &:hover {
+            background-color: darken(#f44336, 5%);
+          }
+        }
+      }
+    }
+  }

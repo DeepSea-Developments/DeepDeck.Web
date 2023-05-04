@@ -28,7 +28,19 @@
                 </div>
                 <div class="col-md-12">
                     <ul id="keydeck" *ngFor="let item of layer.row0; let i = index">
-                        <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)">{{item.name}}</li>
+                        <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)">
+                            <span class="editable-field" contenteditable="true">{{item.name}}</span>
+                            <span class="fixed-name" contenteditable="false">{{item.name}}</span>
+                        </li>
+
+
+                        <!-- <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keylist_mouse[key][1])}">
+                            {{keylist_mouse[key][1]}}
+                        </span>
+                        <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keylist_mouse[key][0])}">
+                            {{keylist_mouse[key][0]}}
+                        </span> -->
+
                     </ul>
                     <ul id="keydeck" *ngFor="let item of layer.row1; let i = index">
                         <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row1, item, i)">{{item.name}}</li>
@@ -60,28 +72,66 @@
         <!-- </div> -->
     </div>
     <div class="col-md-12 mt-3">
-        <mat-tab-group class="custom-tabs">
-            <mat-tab label="Alphanumeric">
+        <mat-tab-group class="custom-tabs" (matTabHeaderFocusChanged)="onTabHeaderFocusChanged($event)">
+            <mat-tab label="Basic">
               <ul id="keyboard" *ngFor="let key of objectKeys(keyList_basic)">
                 <li
                   (click)="pressKey(keyList_basic[key][1], keyList_basic[key][2])"
-                  [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][1])}"
                 >
-                  {{keyList_basic[key][1]}}
+                  <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][1])}">
+                    {{keyList_basic[key][1]}}
+                  </span>
+                  <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][0])}">
+                    {{keyList_basic[key][0]}}
+                  </span>
                 </li>
               </ul>
             </mat-tab>
-            <mat-tab label="Punctuation">
-              <ul id="keyboard" *ngFor="let key of objectKeys(keyList_basic)">
+            <mat-tab label="Functions">
+              <ul id="keyboard" *ngFor="let key of objectKeys(keylist_functions)">
                 <li
-                  (click)="pressKey(keyList_basic[key][1], keyList_basic[key][2])"
-                  [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][1])}"
+                  (click)="pressKey(keylist_functions[key][1], keylist_functions[key][2])"
                 >
-                  {{keyList_basic[key][1]}}
+                  <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keylist_functions[key][1])}">
+                    {{keylist_functions[key][1]}}
+                  </span>
+                  <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keylist_functions[key][0])}">
+                    {{keylist_functions[key][0]}}
+                  </span>
                 </li>
               </ul>
             </mat-tab>
-            <mat-tab label="Media and Mouse">
+            <mat-tab label="Media">
+                <ul id="keyboard" *ngFor="let key of objectKeys(keylist_media)">
+                  <li
+                    (click)="pressKey(keylist_media[key][1], keylist_media[key][2])"
+                    [ngStyle]="{'font-size': getTextFontSize(keylist_media[key][1])}"
+                  >
+                    <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keylist_media[key][1])}">
+                        {{keylist_media[key][1]}}
+                    </span>
+                    <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keylist_media[key][0])}">
+                        {{keylist_media[key][0]}}
+                    </span>
+                  </li>
+                </ul>
+              </mat-tab>
+              <mat-tab label="Mouse">
+                <ul id="keyboard" *ngFor="let key of objectKeys(keylist_mouse)">
+                  <li
+                    (click)="pressKey(keylist_mouse[key][1], keylist_mouse[key][2])"
+                    [ngStyle]="{'font-size': getTextFontSize(keylist_mouse[key][1])}"
+                  >
+                    <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keylist_mouse[key][1])}">
+                        {{keylist_mouse[key][1]}}
+                    </span>
+                    <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keylist_mouse[key][0])}">
+                        {{keylist_mouse[key][0]}}
+                    </span>
+                  </li>
+                </ul>
+              </mat-tab>
+              <!-- <mat-tab label="DeepDeck">
                 <ul id="keyboard" *ngFor="let key of objectKeys(keyList_basic)">
                   <li
                     (click)="pressKey(keyList_basic[key][1], keyList_basic[key][2])"
@@ -90,28 +140,7 @@
                     {{keyList_basic[key][1]}}
                   </li>
                 </ul>
-              </mat-tab>
-              <mat-tab label="Macros">
-                <ul id="keyboard" *ngFor="let key of objectKeys(keyList_basic)">
-                  <li
-                    (click)="pressKey(keyList_basic[key][1], keyList_basic[key][2])"
-                    [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][1])}"
-                  >
-                    {{keyList_basic[key][1]}}
-                  </li>
-                </ul>
-              </mat-tab>
-              <mat-tab label="DeepDeck">
-                <ul id="keyboard" *ngFor="let key of objectKeys(keyList_basic)">
-                  <li
-                    (click)="pressKey(keyList_basic[key][1], keyList_basic[key][2])"
-                    [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][1])}"
-                  >
-                    {{keyList_basic[key][1]}}
-                  </li>
-                </ul>
-              </mat-tab>
-            <!-- Add more mat-tab elements for additional categories -->
+              </mat-tab> -->
           </mat-tab-group>
 
     </div>

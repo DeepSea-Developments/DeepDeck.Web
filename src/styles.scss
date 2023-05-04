@@ -71,8 +71,8 @@ body {
 
 /* Round the top corners of the tabs */
 .custom-tabs .mat-tab-label, .custom-tabs .mat-tab-label-active {
-    border-top-left-radius: 8px; /* Adjust the radius as needed */
-    border-top-right-radius: 8px; /* Adjust the radius as needed */
+    border-top-left-radius: 12px; /* Adjust the radius as needed */
+    border-top-right-radius: 12px; /* Adjust the radius as needed */
   }
 
 /* Style the tab background */
@@ -95,4 +95,10 @@ color: #b0a697;
 /* Style the active tab label (font) */
 .custom-tabs .mat-tab-label.mat-tab-label-active {
 color: #ffffff;
+}
+
+.mat-dialog-container {
+background-color: #414141;
+border-radius: 20px;
+padding: 2rem;
 }
