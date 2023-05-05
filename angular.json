@@ -29,8 +29,7 @@
                         ],
                         "styles": [
                             "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-                            "src/styles.scss",
-                            "node_modules/ng2-daterangepicker/assets/daterangepicker.css"
+                            "src/styles.scss"
                         ],
                         "scripts": []
                     },

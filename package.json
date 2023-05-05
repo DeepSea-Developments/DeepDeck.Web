@@ -35,7 +35,6 @@
     "moment": "^2.29.0",
     "ng-material-multilevel-menu": "^5.5.3",
     "ng2-date-picker": "^10.0.0",
-    "ng2-daterangepicker": "^3.0.1",
     "ngx-moment": "^5.0.0",
     "ngx-socket-io": "^3.2.0",
     "npm": "^6.14.8",
