@@ -11,7 +11,7 @@
 // @import "assets/scss/partials/reset";
 // @import "assets/scss/core";
 @import "~bootstrap/dist/css/bootstrap.css";
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 // Define a custom typography config that overrides the font-family as well as the
 // `headlines` and `body-1` levels.
 $custom-typography: mat.define-typography-config( $headline: mat.define-typography-level(32px, 48px, 700), $body-1: mat.define-typography-level(16px, 24px, 500));
