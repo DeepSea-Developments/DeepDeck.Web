@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import { AppRoutingModule } from './app.routing';
@@ -21,6 +20,10 @@ import { SideNavModule } from '../app/layouts/sidenav/sidenav.module';
 import { HeaderModule } from '../app/layouts/header/header.module';
 import { SimpleModule } from '../app/layouts/simple/simple.module';
 
+
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+
 const config: SocketIoConfig = { url: 'http://retailrealtime-dev-wapp.azurewebsites.net/', options: {} };
 
 @NgModule({
@@ -38,7 +41,8 @@ const config: SocketIoConfig = { url: 'http://retailrealtime-dev-wapp.azurewebsi
     SideNavModule,
     HeaderModule,
     SimpleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule,
   ],
   declarations: [
     AppComponent,    
