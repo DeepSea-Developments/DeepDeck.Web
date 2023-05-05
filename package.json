@@ -1,6 +1,7 @@
 {
   "name": "esp-frontend",
   "version": "0.0.0",
+  "main":"main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,7 +13,8 @@
     "compress-artifacts": "gzip-all \"dist/esp-frontend/*.{css,js}\" && rimraf dist/esp-frontend/*.js && rimraf dist/esp-frontend/*.css",
     "move-artifacts": "move .\\dist\\esp-frontend\\*.* .\\..\\DeepDeck.Ahuyama.fw\\spiffs_image",
     "bundle-analyze": "ng build --prod --stats-json --output-hashing none && webpack-bundle-analyzer dist/esp-frontend/stats.json",
-    "serve-artifacts": "lite-server --baseDir=\"dist/esp-frontend\""
+    "serve-artifacts": "lite-server --baseDir=\"dist/esp-frontend\"",
+    "electron": "ng build && electron ."
   },
   "private": true,
   "dependencies": {
