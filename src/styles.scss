@@ -1,4 +1,5 @@
 // Import Bootstrap
+@use '@angular/material' as mat;
 //@import "~bootstrap/scss/bootstrap.scss";
 // @import "assets/scss/partials/variables";
 // @import "~bootstrap/scss/functions";
@@ -10,13 +11,12 @@
 // @import "assets/scss/partials/reset";
 // @import "assets/scss/core";
 @import "~bootstrap/dist/css/bootstrap.css";
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import '~@angular/material/theming';
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 // Define a custom typography config that overrides the font-family as well as the
 // `headlines` and `body-1` levels.
-$custom-typography: mat-typography-config( $headline: mat-typography-level(32px, 48px, 700), $body-1: mat-typography-level(16px, 24px, 500));
+$custom-typography: mat.define-typography-config( $headline: mat.define-typography-level(32px, 48px, 700), $body-1: mat.define-typography-level(16px, 24px, 500));
 // Override the typography in the core CSS.
-@include mat-core($custom-typography);
+@include mat.core($custom-typography);
 html,
 body {
     height: 100%;

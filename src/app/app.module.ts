@@ -6,9 +6,6 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-// import { AgmCoreModule } from '@agm/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { MomentModule } from 'ngx-moment';
 
 import { SharedModule } from './shared/shared.module';
@@ -24,8 +21,6 @@ import { SimpleModule } from '../app/layouts/simple/simple.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 
-const config: SocketIoConfig = { url: 'http://retailrealtime-dev-wapp.azurewebsites.net/', options: {} };
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -35,8 +30,6 @@ const config: SocketIoConfig = { url: 'http://retailrealtime-dev-wapp.azurewebsi
     HttpClientModule,
     SharedModule,
     CoreModule,
-    FontAwesomeModule,
-    SocketIoModule.forRoot(config),
     MomentModule,
     SideNavModule,
     HeaderModule,

@@ -29,26 +29,27 @@
                         ],
                         "styles": [
                             "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-                            "src/styles.scss",
-                            "node_modules/ng2-daterangepicker/assets/daterangepicker.css"
+                            "src/styles.scss"
                         ],
                         "scripts": []
                     },
                     "configurations": {
                         "production": {
-                            "fileReplacements": [{
-                                "replace": "src/environments/environment.ts",
-                                "with": "src/environments/environment.prod.ts"
-                            }],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
-                            "extractCss": true,
                             "namedChunks": false,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
-                            "budgets": [{
+                            "budgets": [
+                                {
                                     "type": "initial",
                                     "maximumWarning": "2mb",
                                     "maximumError": "5mb"
@@ -125,7 +126,6 @@
             }
         }
     },
-    "defaultProject": "esp-frontend",
     "cli": {
         "analytics": "592ea557-ead8-4e2e-be15-f64311b239cb"
     }
