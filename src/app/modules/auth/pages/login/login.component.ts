@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,7 +18,7 @@ declare let $: any;
 export class LoginComponent implements OnInit {
 
   submitted = false;
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   showErrorMessage = false;
   hide = true;
   showInvalidForm = false;
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     public router: Router,
     public authService: AuthService,
     public apiService: ApiService,
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     public progressBar: ProgressBarService,
     public dialog: MatDialog
     //public dialog: MatDialog,

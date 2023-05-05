@@ -126,7 +126,6 @@
             }
         }
     },
-    "defaultProject": "esp-frontend",
     "cli": {
         "analytics": "592ea557-ead8-4e2e-be15-f64311b239cb"
     }
