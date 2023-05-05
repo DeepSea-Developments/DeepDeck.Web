@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
@@ -35,7 +37,8 @@ const config: SocketIoConfig = { url: 'http://retailrealtime-dev-wapp.azurewebsi
     MomentModule,
     SideNavModule,
     HeaderModule,
-    SimpleModule
+    SimpleModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     AppComponent,    

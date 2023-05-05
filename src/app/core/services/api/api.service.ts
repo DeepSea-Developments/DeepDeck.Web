@@ -6,7 +6,6 @@ import { of, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {catchError, retry} from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +24,30 @@ export class ApiService {
  
   saveNetwork(data): Observable<any> {    
     return this.http.post<any>(`http://${this.ipAddress}/api/connect`, JSON.stringify(data),).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
+  // deleteElement(uuid: string): Observable<any> {
+  //   const url = `http://${this.ipAddress}/api/layers?uuid=${uuid}`;
+  //   return this.http.delete<any>(url).pipe(
+  //     retry(1),
+  //     catchError(this.errorHandl)
+  //   );
+  // }
+
+  deleteElement(uuid: string): Observable<any> {
+    const url = `http://${this.ipAddress}/api/layers?uuid=${uuid}`;
+  
+    console.log('Sending DELETE request to:', url);
+  
+    return this.http.delete<any>(url).pipe(
+      //retry(1),
+      //catchError((error) => {
+      //  console.error('Error in deleteElement:', error);
+      //  return of({ success: false, message: 'Error deleting the element.' });
+      //}
       retry(1),
       catchError(this.errorHandl)
     );

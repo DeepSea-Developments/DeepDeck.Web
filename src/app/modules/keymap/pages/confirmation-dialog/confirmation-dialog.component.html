@@ -4,7 +4,10 @@
       <p>Are you sure you want to delete the layer <strong>{{element.name}}</strong>?</p>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="onCancelClick()">Cancel</button>
-      <button mat-button color="warn" (click)="onConfirmClick()">Delete</button>
-    </div>
+        <button mat-button [disabled]="isLoading" (click)="onCancelClick()">Cancel</button>
+        <button mat-button color="warn" [disabled]="isLoading" (click)="onConfirmClick()" style="position: relative;">
+          <span *ngIf="!isLoading">Delete</span>
+          <mat-spinner *ngIf="isLoading" [diameter]="24" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></mat-spinner>
+        </button>
+      </div>
   </div>
