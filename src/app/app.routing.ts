@@ -39,7 +39,7 @@ export const SITE_ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(SITE_ROUTES, { useHash: true, relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(SITE_ROUTES, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
