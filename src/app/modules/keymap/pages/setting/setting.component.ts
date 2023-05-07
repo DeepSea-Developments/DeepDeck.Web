@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ApiService } from '../../../../../../src/app/core/services/api/api.service';
+import { ApiService } from 'src/app/core/services/api/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -157,7 +157,7 @@ const keylist_mouse_tuple:KeyArray = [
 export class SettingComponent implements OnInit {
   
   layer: any = {
-    "uuid": uuidv4(),    
+    "uuid": uuidv4().slice(0,6), //use short ID generation
     "name":	"Name",
     "active":	true,
     "row0":	[{
@@ -277,20 +277,18 @@ export class SettingComponent implements OnInit {
   ngOnInit(): void {  
     this.activatedRoute.params.subscribe(params => {
       this.uuid = params.id;
-      this.pos = params.pos
       console.log(this.uuid);
       console.log(this.pos);
       if(this.uuid) {
-        this.getLayersLayout(this.uuid, this.pos);
+        this.getLayersLayout(this.uuid);
       }     
     }); 
   }
 
-  getLayersLayout(uuid, pos){
-    this.apiService.getLayersLayout(uuid, pos).subscribe(response => {      
+  getLayersLayout(uuid){
+    this.apiService.getLayersLayout(uuid).subscribe(response => {      
       this.layer = response; 
       this.layer.uuid = this.uuid;
-      this.layer.pos = parseInt(this.pos);
     })
   }
 
@@ -313,10 +311,7 @@ export class SettingComponent implements OnInit {
 
   saveLayer(){    
     console.log(this.layer);    
-    if(this.uuid){
-      let { name: new_name, ...rest } = this.layer;
-      this.layer = { new_name, ...rest};
-      console.log(this.layer);    
+    if(this.uuid){ 
       this.apiService.updateLayersLayout(this.layer).subscribe(response => {
         console.log(response);
         this.router.navigate(['/keymap']); 
