@@ -1,13 +1,14 @@
 <div class='container'>
-    <!--Panel de Configuracion (IOTHUB FIRMWARE)-->
     <div class="row mb-3">
         <div class="col-md-12 d-flex justify-content-between">
             <div>
                 <input type="text" class="form-control input-layer" [(ngModel)]="layer.name">
             </div>
             <div>
-                <button (click)="saveLayer()" style="background: #dc9f10; border-radius: 5px; padding: 5px; width: 130px;">SAVE</button>
-            </div>
+                <button (click)="saveLayer()" style="background: #dc9f10; border-radius: 5px; padding: 5px; width: 130px;">Save</button>
+                <button [routerLink]="['/keymap']" style="background: #dc9f10; border-radius: 5px; padding: 5px; width: 130px;">Cancel</button>
+              
+              </div>
         </div>        
     </div>
     <div class="row">
@@ -29,7 +30,7 @@
                 <div class="col-md-12">
                     <ul id="keydeck" *ngFor="let item of layer.row0; let i = index">
                         <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)">
-                            <span class="editable-field" contenteditable="true">{{item.name}}</span>
+                            <span class="regular-name" contenteditable="true">{{item.name}}</span>
                             <span class="fixed-name" contenteditable="false">{{item.name}}</span>
                         </li>
 
