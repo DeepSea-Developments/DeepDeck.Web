@@ -1,27 +1,35 @@
-# RetailFrontend
+# DeepDeck Configuration Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
+## Quick start guide
+To start testing in local, install all the dependencies.
+- Install latest angular. Current version uses Angular 15 and Material 14 https://angular.io/guide/setup-local
+- in the terminal run npm install to install all the dependencies
+- Run `ng serve` to run the server locally
+- Navigate to `http://localhost:4200/` to acces the content.
+- If the content is white, try exploring the dev tools (F12 in chrome). Make sure that the index.html has this line <base href="http://localhost:4200/">
 
-## Development server
+## Upload to DeepDeck
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+You can run the following commands:
+- `npm run build-prod` to build the project
+- `npm run compress-artifacts` to compress the ocmponents
+- Copy all the contents of dist/esp-frontend to the folder spiffs on the DeepDeck project
+- Compile and run DeepDeck 
 
-## Code scaffolding
+# Online version
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+There is an online version at https://deepsea-developments.github.io/DeepDeck.Web
+note: As https is not implemented yet on DeepDeck, you have to change the browser settings to allow insecure content. Otherwhise it will not allow the connection to the DeepDeck
 
-## Build
+# Desktop version
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+A desktop version is being develop using electron. change to the branch feature/electron to have the version
 
-## Running unit tests
+# Git organization
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Main branch will have the most stable release
+- develop branch will have the latest changes
+- there will be feature/<name of feature> branches with specific developments
+- When a release is done it will be taggued, so also look for tagged versions
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

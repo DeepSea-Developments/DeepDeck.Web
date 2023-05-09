@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('current_config');
     this.apiService.cleanData();
     this.authService.logout();
-    this.route.navigateByUrl('/');
+    this.route.navigateByUrl('/index.html');
     
   }
 

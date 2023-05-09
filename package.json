@@ -1,7 +1,27 @@
 {
+  "build": {
+    "productName": "DeepDeck",
+    "appId": "com.deepdeck.ahuyama",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "main.js"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
   "name": "esp-frontend",
   "version": "0.0.0",
-  "main":"main.js",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,12 +29,14 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-deepdeck": "ng build --prod --output-hashing none && npm run compress-artifacts && npm run move-artifacts",
+    "build-prod": "ng build --configuration production --output-hashing none",
+    "build-deepdeck": "npm run build-prod && npm run compress-artifacts && npm run move-artifacts",
     "compress-artifacts": "gzip-all \"dist/esp-frontend/*.{css,js}\" && rimraf dist/esp-frontend/*.js && rimraf dist/esp-frontend/*.css",
     "move-artifacts": "move .\\dist\\esp-frontend\\*.* .\\..\\DeepDeck.Ahuyama.fw\\spiffs_image",
     "bundle-analyze": "ng build --prod --stats-json --output-hashing none && webpack-bundle-analyzer dist/esp-frontend/stats.json",
     "serve-artifacts": "lite-server --baseDir=\"dist/esp-frontend\"",
-    "electron": "ng build && electron ."
+    "electron": "ng build && electron .",
+    "dist": "electron-builder"
   },
   "private": true,
   "dependencies": {
@@ -53,6 +75,7 @@
     "angular-cli-ghpages": "^1.0.5",
     "codelyzer": "^6.0.0",
     "electron": "^24.2.0",
+    "electron-builder": "^23.6.0",
     "gzip-all": "^1.0.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.4.2",
