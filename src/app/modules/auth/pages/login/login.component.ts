@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
   ngAfterViewInit() {
     this.submitted = true;
     if (this.authService.isLoggedIn() == true) {
-      this.router.navigateByUrl('/network');
+      this.router.navigateByUrl('/keymap');
     } else {
       this.submitted = false;
       this.router.navigateByUrl('/session');
