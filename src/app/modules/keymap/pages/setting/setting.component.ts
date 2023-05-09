@@ -13,7 +13,9 @@ type KeyArray = KeyTuple[];
 
 
 const keylist_basic_tuple:KeyArray = [
-  // ['KC_NO','NO',0],
+  ['LY_RISE','Next Layer',258],
+  ['LY_LOWER','Prev Layer',257],
+  ['KC_NO','NO',0],
   // ['KC_ROLL_OVER','KC_ROLL_OVER',1],
   // ['KC_POST_FAIL','KC_POST_FAIL',2],
   // ['KC_UNDEFINED','KC_UNDEFINED',3],
@@ -127,10 +129,10 @@ const keylist_media_tuple:KeyArray = [
 ];
 
 const keylist_mouse_tuple:KeyArray = [
-  ['KC_MS_UP', 'MsUP', 240],
-  ['KC_MS_DOWN', 'MsDOWN', 241],
-  ['KC_MS_LEFT', 'MsLEFT', 242],
-  ['KC_MS_RIGHT', 'MsRIGHT', 243],
+  ['KC_MS_UP', 'MsUP', 241],
+  ['KC_MS_DOWN', 'MsDOWN', 240], // Inverted to work better
+  ['KC_MS_LEFT', 'MsLEFT', 243],
+  ['KC_MS_RIGHT', 'MsRIGHT', 242], // Inverted to work better
   ['KC_MS_BTN1', 'MsBTN1', 244],
   ['KC_MS_BTN2', 'MsBTN2', 245],
   ['KC_MS_BTN3', 'MsBTN3', 246],
@@ -144,6 +146,34 @@ const keylist_mouse_tuple:KeyArray = [
   ['KC_MS_ACCEL1', 'MsACCEL1', 254],
   ['KC_MS_ACCEL2', 'MsACCEL2', 255],
 ];
+
+const keylist_macro_tuple: KeyArray = [
+  ['M1', 'Macro1', 259],
+  ['M2', 'Macro2', 260],
+  ['M3', 'Macro3', 261],
+];
+
+const lastElementNumber = 40;
+
+for (let i = 4; i <= lastElementNumber; i++) {
+  const tuple: [string, string, number] = [`M${i}`, `Macro${i}`, i + 255];
+  keylist_macro_tuple.push(tuple);
+}
+
+const all_keylist: KeyArray = [...keylist_basic_tuple, 
+                              ...keylist_functions_tuple, 
+                              ...keylist_media_tuple, 
+                              ...keylist_mouse_tuple, 
+                              ...keylist_macro_tuple];
+
+function GetKeyNameByKeyCode(keyNumber: number): string | undefined {
+  for (const tuple of all_keylist) {
+    if (tuple[2] === keyNumber) {
+      return tuple[0];
+    }
+  }
+  return undefined; // Return undefined if no match is found
+}
 
 
 @Component({
@@ -161,78 +191,93 @@ export class SettingComponent implements OnInit {
     "name":	"Name",
     "active":	true,
     "row0":	[{
-        "name":	"7",
-        "key_code":	36
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"8",
-        "key_code":	37
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"9",
-        "key_code":	38
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
         "name":	"layer",
         "key_code":	258
       }],
     "row1":	[{
-        "name":	"4",
-        "key_code":	33
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"5",
-        "key_code":	34
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"6",
-        "key_code":	35
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"/",
-        "key_code":	84
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }],
     "row2":	[{
-        "name":	"1",
-        "key_code":	30
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"2",
-        "key_code":	31
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"3",
-        "key_code":	32
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"*",
-        "key_code":	85
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }],
     "row3":	[{
-        "name":	".",
-        "key_code":	55
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"0",
-        "key_code":	39
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"-",
-        "key_code":	86
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }, {
-        "name":	"+",
-        "key_code":	87
+        "name":	"No",
+        "key_code":	0,
+        "key_code_name": "KC_NO"
       }],
     "left_encoder_map":	{
-      "cw":	80,
-      "ccw":	79,
-      "single_press":	292,
-      "long_press":	293,
-      "double_press":	293
+      "cw":	0,
+      "ccw":	0,
+      "single_press":	0,
+      "long_press":	0,
+      "double_press":	0
     },
     "right_encoder_map":	{
-      "cw":	81,
-      "ccw":	82,
-      "single_press":	40,
-      "long_press":	43,
-      "double_press":	43
+      "cw":	0,
+      "ccw":	0,
+      "single_press":	0,
+      "long_press":	0,
+      "double_press":	0
     },
     "gesture_map":	{
-      "up":	39,
-      "down":	30,
-      "left":	31,
-      "right":	32,
-      "near":	33,
-      "far":	34
+      "up":	0,
+      "down":	0,
+      "left":	0,
+      "right":	0,
+      "near":	0,
+      "far":	0
     }
   }
 
@@ -243,6 +288,7 @@ export class SettingComponent implements OnInit {
   keylist_functions = keylist_functions_tuple;
   keylist_media = keylist_media_tuple;
   keylist_mouse = keylist_mouse_tuple;
+  keylist_macros = keylist_macro_tuple;
 
   deepKeys: any;
   
@@ -260,6 +306,7 @@ export class SettingComponent implements OnInit {
   }
 
   seletedDeepKey: any;
+  seletedDeepFunctionKey: any;
   indexDeepKey: any;
   seletedBoard: any;
   uuid: any;
@@ -273,6 +320,10 @@ export class SettingComponent implements OnInit {
     public apiService: ApiService,
     private router : Router
   ) { }
+
+  GetKeyNameByKeyCode(keyNumber: number): string | undefined {
+    return GetKeyNameByKeyCode(keyNumber); // Return undefined if no match is found
+  }
 
   ngOnInit(): void {  
     this.activatedRoute.params.subscribe(params => {
@@ -289,35 +340,82 @@ export class SettingComponent implements OnInit {
     this.apiService.getLayersLayout(uuid).subscribe(response => {      
       this.layer = response; 
       this.layer.uuid = this.uuid;
+      // Search name of the keys by their keycode, and add key_code_name into the later.
+      for (const item of this.layer.row0) {
+        item.key_code_name = GetKeyNameByKeyCode(item.key_code)
+      }
+      for (const item of this.layer.row1) {
+        item.key_code_name = GetKeyNameByKeyCode(item.key_code)
+      }
+      for (const item of this.layer.row2) {
+        item.key_code_name = GetKeyNameByKeyCode(item.key_code)
+      }
+      for (const item of this.layer.row3) {
+        item.key_code_name = GetKeyNameByKeyCode(item.key_code)
+      }
     })
   }
 
-  pressKey(name, key_code){    
+  pressKey(name, key_code, key_code_name){    
     this.seletedBoard = name;    
-    if(this.seletedDeepKey) {       
-      Object.assign(this.deepKeys[this.indexDeepKey], {name, key_code});      
+    if(this.seletedDeepKey) {    
+      console.log(this.seletedDeepKey); 
+      Object.assign(this.deepKeys[this.indexDeepKey], {name, key_code, key_code_name});      
+    }
+    if(this.seletedDeepFunctionKey) {   
+      console.log(this.seletedDeepFunctionKey);
+      console.log(name,key_code,key_code_name); 
+      
+      
+      // this.layer.left_encoder_map.cw = key_code;   
+      const propertyAccessString = `this.${this.seletedDeepFunctionKey}`;
+      eval(`${propertyAccessString} = ${key_code}`);
+      console.log(this.layer.left_encoder_map.cw)   
     }
   }
 
-  pressDeepKey(deepKeys, item, index){    
+  pressDeepKey(deepKeys, item, index){  
+    this. seletedDeepFunctionKey = null;  
     this.seletedDeepKey = item;
     this.indexDeepKey = index;
     this.deepKeys = deepKeys;
+  }
+
+  pressDeepFunctionKey(item){   
+    this.seletedDeepKey = null; 
+
+    console.log(item);
+    this.seletedDeepFunctionKey = item; 
   }
 
   onTabHeaderFocusChanged(event: FocusEvent): void {
     event.preventDefault();
   }
 
-  saveLayer(){    
-    console.log(this.layer);    
+  saveLayer(){ 
+    
+    const modifiedJson = JSON.parse(JSON.stringify(this.layer));
+    for (const item of modifiedJson.row0) {
+      delete item.key_code_name;
+    }
+    for (const item of modifiedJson.row1) {
+      delete item.key_code_name;
+    }
+    for (const item of modifiedJson.row2) {
+      delete item.key_code_name;
+    }
+    for (const item of modifiedJson.row3) {
+      delete item.key_code_name;
+    }
+
+    console.log(modifiedJson);    
     if(this.uuid){ 
-      this.apiService.updateLayersLayout(this.layer).subscribe(response => {
+      this.apiService.updateLayersLayout(modifiedJson).subscribe(response => {
         console.log(response);
         this.router.navigate(['/keymap']); 
       });
     } else {
-      this.apiService.createLayer(this.layer).subscribe(response => {
+      this.apiService.createLayer(modifiedJson).subscribe(response => {
         console.log(response);
         this.router.navigate(['/keymap']); 
       })

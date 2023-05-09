@@ -1,15 +1,5 @@
-// Import Bootstrap
+
 @use '@angular/material' as mat;
-//@import "~bootstrap/scss/bootstrap.scss";
-// @import "assets/scss/partials/variables";
-// @import "~bootstrap/scss/functions";
-// @import "~bootstrap/scss/variables";
-// @import "~bootstrap/scss/mixins";
-// @import "~bootstrap/scss/reboot";
-// @import "~bootstrap/scss/grid";
-// @import "~bootstrap/scss/utilities";
-// @import "assets/scss/partials/reset";
-// @import "assets/scss/core";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 // Define a custom typography config that overrides the font-family as well as the
