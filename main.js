@@ -6,7 +6,7 @@ createWindow = () => {
   appWin = new BrowserWindow({
     width: 1600,
     height: 900,
-    title: "Angular and Electron",
+    title: "DeepDeck WebServer v0.5.3",
     resizable: true, // Enable window resizing
     webPreferences: {
       contextIsolation: false,
