@@ -18,17 +18,17 @@ export interface Menu {
 
 const MENUITEMS = [
     {
-        state: 'keymap',
-        name: 'KEYMAP',
-        type: 'link',
-        icon: 'keyboard',
-    },   
-    {
         state: 'network',
         name: 'NETWORK',
         type: 'link',
         icon: 'wifi',
-    },         
+    },  
+    {
+        state: 'keymap',
+        name: 'KEYMAP',
+        type: 'link',
+        icon: 'keyboard',
+    },          
     {
         state: 'firmware',
         name: 'FIRMWARE',

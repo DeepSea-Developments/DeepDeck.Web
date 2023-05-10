@@ -260,8 +260,12 @@ export class ApiService {
     private router: Router
   ) {
     this.currentConfig = JSON.parse(localStorage.getItem('current_config'));
-    this.ipAddress =  localStorage.getItem('accessToken');
+    this.ipAddress =  localStorage.getItem('ipAddress');
     console.log(this.ipAddress);
+  }
+
+  updateIP(IP:string){
+    this.ipAddress =  IP;
   }
 
   validateJsonLayer(jsonData: any, uuid_needed: boolean) {

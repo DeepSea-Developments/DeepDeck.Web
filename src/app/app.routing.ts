@@ -6,7 +6,7 @@ import { SimpleComponent } from '../app/layouts/simple/simple.component'
 export const SITE_ROUTES: Routes = [
   {
     path: '',
-    redirectTo: 'session',
+    redirectTo: 'network',
     pathMatch: 'full',
   },
   {
@@ -16,7 +16,7 @@ export const SITE_ROUTES: Routes = [
   {
     path: '',
     component: SimpleComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always',
     children: [     
       {

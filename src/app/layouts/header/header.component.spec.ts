@@ -37,4 +37,7 @@ describe('SidenavComponent', () => {
   it('should compile', () => {
     expect(component).toBeTruthy();
   });
+
+  
+
 });
