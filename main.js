@@ -4,8 +4,8 @@ let appWin;
 
 createWindow = () => {
   appWin = new BrowserWindow({
-    width: 1200,
-    height: 980,
+    width: 1600,
+    height: 900,
     title: "Angular and Electron",
     resizable: true, // Enable window resizing
     webPreferences: {
@@ -18,7 +18,7 @@ createWindow = () => {
 
   appWin.setMenu(null);
 
-  appWin.webContents.openDevTools();
+  // appWin.webContents.openDevTools();
 
   appWin.on("closed", () => {
     appWin = null;
