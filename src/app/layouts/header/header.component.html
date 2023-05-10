@@ -5,7 +5,16 @@
     <mat-icon style="color: #fff !important;">menu</mat-icon>
   </button>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+
+    <mat-form-field>
+      <input matInput placeholder="DeepDeck IP" [(ngModel)]="ipAddress">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="testConnection()">Test Connection</button>
+
+    <mat-icon [ngClass]="{'loading': loading, 'green': isConnected && !loading, 'red': !isConnected && !loading}">circle</mat-icon>
+
+  
+    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>notification_important</mat-icon>
   </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
@@ -13,5 +22,5 @@
   </button> {{username}}
     <a href="" (click)="logout()" style="margin-left: 10px; margin-top: 10px;"><span class="material-icons">
       exit_to_app
-      </span></a>
+      </span></a> -->
 </mat-toolbar>
