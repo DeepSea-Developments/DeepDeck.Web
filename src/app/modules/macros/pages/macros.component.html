@@ -1,0 +1,61 @@
+<div class='container'>
+
+    <button mat-icon-button (click)="addMacro()">
+            Add
+    </button>
+    <!-- <button mat-icon-button (click)="removeMacro()">
+        Remove
+    </button> -->
+
+    <ul>
+        <li *ngFor="let macro of macroKeys; let i = index">
+            
+            <button (click)="removeMacro(i)">{{ macro }}</button>
+        </li>
+    </ul>
+
+    <div class="col-md-12 mt-3">
+        <ul id="keyboard" *ngFor="let key of macroKeys">
+            <li>
+                {{key}}
+            </li>
+        </ul>
+    </div>
+
+    
+    
+
+
+    <div class="col-md-12 mt-3">
+        <mat-tab-group class="custom-tabs" (matTabHeaderFocusChanged)="onTabHeaderFocusChanged($event)">
+            <mat-tab label="Basic">
+            <ul id="keyboard" *ngFor="let key of objectKeys(keyList_basic)">
+                <li
+                (click)="pressKey(keyList_basic[key][1], keyList_basic[key][2],keyList_basic[key][0])"
+                >
+                <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][1])}">
+                    {{keyList_basic[key][1]}}
+                </span>
+                <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][0])}">
+                    {{keyList_basic[key][0]}}
+                </span>
+                </li>
+            </ul>
+            </mat-tab>
+            <mat-tab label="Functions">
+            <ul id="keyboard" *ngFor="let key of objectKeys(keylist_functions)">
+                <li
+                (click)="pressKey(keylist_functions[key][1], keylist_functions[key][2], keylist_functions[key][0])"
+                >
+                <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keylist_functions[key][1])}">
+                    {{keylist_functions[key][1]}}
+                </span>
+                <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keylist_functions[key][0])}">
+                    {{keylist_functions[key][0]}}
+                </span>
+                </li>
+            </ul>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
