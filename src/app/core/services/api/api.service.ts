@@ -295,33 +295,33 @@ export class ApiService {
     );
   }
 
-  saveCloud(data): Observable<any> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('Accept-Language', 'es');
-    return this.http.post<any>(
-      '/save-cloud/',
-      JSON.stringify(data),
-      { headers }
-    ).pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    );
-  }
+  // saveCloud(data): Observable<any> {
+  //   let headers = new HttpHeaders();
+  //   headers = headers.set('Content-Type', 'application/json');
+  //   headers = headers.set('Accept-Language', 'es');
+  //   return this.http.post<any>(
+  //     '/save-cloud/',
+  //     JSON.stringify(data),
+  //     { headers }
+  //   ).pipe(
+  //     retry(1),
+  //     catchError(this.errorHandl)
+  //   );
+  // }
 
-  saveDevice(data): Observable<any> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('Accept-Language', 'es');
-    return this.http.post<any>(
-      '/save-device/',
-      JSON.stringify(data),
-      { headers }
-    ).pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    );
-  }
+  // saveDevice(data): Observable<any> {
+  //   let headers = new HttpHeaders();
+  //   headers = headers.set('Content-Type', 'application/json');
+  //   headers = headers.set('Accept-Language', 'es');
+  //   return this.http.post<any>(
+  //     '/save-device/',
+  //     JSON.stringify(data),
+  //     { headers }
+  //   ).pipe(
+  //     retry(1),
+  //     catchError(this.errorHandl)
+  //   );
+  // }
 
   resetDevice(data): Observable<any> {
     let headers = new HttpHeaders();
@@ -425,9 +425,11 @@ export class ApiService {
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
+      alert(errorMessage);
     } else {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      alert(errorMessage);
     }
     return throwError(errorMessage);
   }

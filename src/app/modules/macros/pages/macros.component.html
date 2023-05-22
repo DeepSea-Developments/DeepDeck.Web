@@ -1,61 +1,84 @@
+
 <div class='container'>
+    <div class="row">
+        <h2>Macros</h2>
+    </div>
 
-    <button mat-icon-button (click)="addMacro()">
+    <div class ="row">
+        <mat-expansion-panel class="custom-panel">
+            <mat-expansion-panel-header class="custom-header">
+              <mat-panel-title>
+                Macro List ->
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <!-- <button [ngClass]="{'active': seletedDeepFunctionKey == 'layer.left_encoder_map.cw'}" 
+                    (click)="pressDeepFunctionKey('layer.left_encoder_map.cw')">
+              {{GetKeyNameByKeyCode(layer.left_encoder_map.cw)}}
+            </button> -->
+
+            <ul id="keydeck" *ngFor="let macro of keylist_macros; let i = index">
+                <li [ngClass]="{'active': selectedMacroIndex == i}" (click)="pressMacroKey(i)">
+                    <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(macro[1])}">
+                        {{macro[1]}}
+                    </span>
+                    <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(macro[0])}">
+                        {{macro[0]}}
+                    </span>
+                </li> 
+            </ul>
+          </mat-expansion-panel>
+        
+    </div>
+
+    <div class="row">
+        <button mat-icon-button (click)="addMacro()">
             Add
-    </button>
-    <!-- <button mat-icon-button (click)="removeMacro()">
-        Remove
-    </button> -->
-
-    <ul>
-        <li *ngFor="let macro of macroKeys; let i = index">
-            
-            <button (click)="removeMacro(i)">{{ macro }}</button>
-        </li>
-    </ul>
-
-    <div class="col-md-12 mt-3">
-        <ul id="keyboard" *ngFor="let key of macroKeys">
-            <li>
-                {{key}}
-            </li>
+        </button>
+    </div>
+    <div class="row">
+        <ul id="keyboard"  *ngFor="let macro of macroKeys; let i = index">
+            <li (click)="removeMacro(i)">
+                <span class="regular-name">
+                    {{ macro }} njj
+                </span>
+            </li>   
         </ul>
     </div>
 
-    
-    
+    <div class="row">
+        <div class="col">
 
-
-    <div class="col-md-12 mt-3">
-        <mat-tab-group class="custom-tabs" (matTabHeaderFocusChanged)="onTabHeaderFocusChanged($event)">
-            <mat-tab label="Basic">
-            <ul id="keyboard" *ngFor="let key of objectKeys(keyList_basic)">
-                <li
-                (click)="pressKey(keyList_basic[key][1], keyList_basic[key][2],keyList_basic[key][0])"
-                >
-                <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][1])}">
-                    {{keyList_basic[key][1]}}
-                </span>
-                <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][0])}">
-                    {{keyList_basic[key][0]}}
-                </span>
-                </li>
-            </ul>
-            </mat-tab>
-            <mat-tab label="Functions">
-            <ul id="keyboard" *ngFor="let key of objectKeys(keylist_functions)">
-                <li
-                (click)="pressKey(keylist_functions[key][1], keylist_functions[key][2], keylist_functions[key][0])"
-                >
-                <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keylist_functions[key][1])}">
-                    {{keylist_functions[key][1]}}
-                </span>
-                <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keylist_functions[key][0])}">
-                    {{keylist_functions[key][0]}}
-                </span>
-                </li>
-            </ul>
-            </mat-tab>
-        </mat-tab-group>
+            <mat-tab-group class="custom-tabs" (matTabHeaderFocusChanged)="onTabHeaderFocusChanged($event)">
+                <mat-tab label="Basic">
+                <ul id="keyboard" *ngFor="let key of objectKeys(keyList_basic)">
+                    <li
+                    (click)="pressKey(keyList_basic[key][1], keyList_basic[key][2],keyList_basic[key][0])"
+                    >
+                    <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][1])}">
+                        {{keyList_basic[key][1]}}
+                    </span>
+                    <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keyList_basic[key][0])}">
+                        {{keyList_basic[key][0]}}
+                    </span>
+                    </li>
+                </ul>
+                </mat-tab>
+                <mat-tab label="Functions">
+                <ul id="keyboard" *ngFor="let key of objectKeys(keylist_functions)">
+                    <li
+                    (click)="pressKey(keylist_functions[key][1], keylist_functions[key][2], keylist_functions[key][0])"
+                    >
+                    <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keylist_functions[key][1])}">
+                        {{keylist_functions[key][1]}}
+                    </span>
+                    <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keylist_functions[key][0])}">
+                        {{keylist_functions[key][0]}}
+                    </span>
+                    </li>
+                </ul>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
     </div>
 </div>

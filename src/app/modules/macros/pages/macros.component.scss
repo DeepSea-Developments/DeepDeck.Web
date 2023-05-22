@@ -17,9 +17,6 @@ table {
     background-color: #222222;
   }
   
-  .container {
-    padding: 0px;
-  }
   
   .modal {
     max-width: 620px !important;
@@ -323,4 +320,24 @@ table {
 
   .keydeck-thin .material-icons {
     font-size: 15px; /* Set the desired font size */
+  }
+
+  .custom-panel {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .custom-header {
+    background-color: #dc9f10;
+  }
+  
+  .custom-header:hover {
+    background-color: #e0e0e0;
+  }
+
+  mat-panel-title {
+    color:#e0e0e0;
   }

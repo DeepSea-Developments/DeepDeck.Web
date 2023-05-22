@@ -24,6 +24,8 @@ export class MacrosComponent {
   keylist_mouse = this.keyboardService.getKeyListMouse();
   keylist_macros = this.keyboardService.getKeyListMacro();
 
+  selectedMacroIndex: number;
+
   onTabHeaderFocusChanged(event: FocusEvent): void {
     event.preventDefault();
   }
@@ -40,6 +42,10 @@ export class MacrosComponent {
     if (index >= 0 && index < this.macroKeys.length) {
       this.macroKeys.splice(index, 1);
     }
+  }
+
+  pressMacroKey(index: number): void {
+    this.selectedMacroIndex = index;
   }
 
 }
