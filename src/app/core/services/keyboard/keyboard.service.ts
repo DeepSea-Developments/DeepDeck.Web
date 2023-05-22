@@ -152,7 +152,7 @@ export class KeyboardService {
   private populateKeyListMacro() {
 
     for (let i = 1; i <= 40; i++) {
-      const tuple: KeyTuple = [`M${i}`, `Macro${i}`, i + 255];
+      const tuple: KeyTuple = [`M${i}`, `Macro${i}`, i + 500];
       this.keyListMacro.push(tuple);
     }
 
@@ -169,6 +169,15 @@ export class KeyboardService {
     for (const tuple of this.keyListAll) {
       if (tuple[2] === keyNumber) {
         return tuple[0];
+      }
+    }
+    return undefined; // Return undefined if no match is found
+  }
+
+  GetKeyShortNameByKeyCode(keyNumber: number): string | undefined {
+    for (const tuple of this.keyListAll) {
+      if (tuple[2] === keyNumber) {
+        return tuple[1];
       }
     }
     return undefined; // Return undefined if no match is found

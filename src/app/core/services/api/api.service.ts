@@ -420,6 +420,20 @@ export class ApiService {
     this.currentConfig = null;
   }
 
+  getMacros(): Observable<any> {
+    return this.http.get<any>(`http://${this.ipAddress}/api/macros`).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    ); 
+  }
+
+  updateMacro(data): Observable<any> {
+    return this.http.put<any>(`http://${this.ipAddress}/api/macros`,  JSON.stringify(data)).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    ); 
+  }
+
   errorHandl(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

@@ -16,8 +16,6 @@ export interface DialogData {
 
 export class NetworkComponent implements OnInit {
 
-
-
   network: any = {
     "ssid": "",
     "pass": "",
