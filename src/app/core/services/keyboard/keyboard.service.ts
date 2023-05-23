@@ -9,8 +9,8 @@ type KeyArray = KeyTuple[];
 })
 export class KeyboardService {
   private keyListBasic: KeyArray = [
-    ['LY_RISE','Next Layer',258],
-    ['LY_LOWER','Prev Layer',257],
+    ['LY_RISE','Next Layer',401],
+    ['LY_LOWER','Prev Layer',402],
     ['KC_NO','NO',0],
     // ['KC_ROLL_OVER','KC_ROLL_OVER',1],
     // ['KC_POST_FAIL','KC_POST_FAIL',2],
@@ -145,13 +145,15 @@ export class KeyboardService {
 
   private keyListAll: KeyArray = [];
 
+  private keyListMacroSelection = [];
+
   constructor() {
     this.populateKeyListMacro();
   }
 
   private populateKeyListMacro() {
 
-    for (let i = 1; i <= 40; i++) {
+    for (let i = 0; i < 40; i++) {
       const tuple: KeyTuple = [`M${i}`, `Macro${i}`, i + 500];
       this.keyListMacro.push(tuple);
     }
@@ -162,6 +164,11 @@ export class KeyboardService {
       ...this.keyListMedia, 
       ...this.keyListMouse, 
       ...this.keyListMacro
+    ];
+
+    this.keyListMacroSelection = [
+      ...this.keyListBasic.slice(3),
+      ...this.keyListFunctions
     ];
   }
 
@@ -218,6 +225,10 @@ export class KeyboardService {
 
   getKeyListAll(): KeyArray {
     return this.keyListAll;
+  }
+
+  getKeyListMacroSelection(): KeyArray {
+    return this.keyListMacroSelection;
   }
 
 }

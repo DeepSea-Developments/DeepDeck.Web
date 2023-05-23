@@ -35,12 +35,12 @@ const MENUITEMS = [
         type: 'link',
         icon: 'wifi',
     },      
-    {
-        state: 'firmware',
-        name: 'FIRMWARE',
-        type: 'link',
-        icon: 'wysiwyg',      
-    },
+    // {
+    //     state: 'firmware',
+    //     name: 'FIRMWARE',
+    //     type: 'link',
+    //     icon: 'wysiwyg',      
+    // },
 
     
 ];

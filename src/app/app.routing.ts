@@ -31,10 +31,10 @@ export const SITE_ROUTES: Routes = [
         path: 'network', loadChildren: () =>
           import('./modules/network/network.module').then(m => m.NetworkModule)
       },      
-      {
-        path: 'firmware', loadChildren: () =>
-          import('./modules/firmware/firmware.module').then(m => m.FirmwareModule)
-      }
+      // {
+      //   path: 'firmware', loadChildren: () =>
+      //     import('./modules/firmware/firmware.module').then(m => m.FirmwareModule)
+      // }
     ],   
   },{
     path: '**',

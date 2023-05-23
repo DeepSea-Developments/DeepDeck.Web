@@ -23,17 +23,20 @@ export class MacrosComponent {
 
   objectKeys = Object.keys;
 
-  keyList_basic = this.keyboardService.getKeyListBasic();
-  keylist_functions = this.keyboardService.getKeyListFunctions();
-  keylist_media = this.keyboardService.getKeyListMedia();
-  keylist_mouse = this.keyboardService.getKeyListMouse();
+  // keyList_basic = this.keyboardService.getKeyListBasic();
+  // keylist_functions = this.keyboardService.getKeyListFunctions();
+  // keylist_media = this.keyboardService.getKeyListMedia();
+  // keylist_mouse = this.keyboardService.getKeyListMouse();
   keylist_macros = this.keyboardService.getKeyListMacro();
+  keylist_macros_selection = this.keyboardService.getKeyListMacroSelection();
+
   deepdeckMacros = [];
 
   selectedMacroIndex: number;
   macroShortName = ""
   macroName = ""
   showMacroSection: boolean = false;
+  showDeepDeckMacros: boolean = true;
 
   ngOnInit(): void {  
     
@@ -181,6 +184,10 @@ export class MacrosComponent {
 
   pressKey(keyElement: any):void {
     this.addMacro(keyElement);
+  }
+
+  toggleDDMacros(): void {
+    this.showDeepDeckMacros = !this.showDeepDeckMacros;
   }
 
 }
