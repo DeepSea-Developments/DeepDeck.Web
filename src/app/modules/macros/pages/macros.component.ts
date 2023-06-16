@@ -23,10 +23,6 @@ export class MacrosComponent {
 
   objectKeys = Object.keys;
 
-  // keyList_basic = this.keyboardService.getKeyListBasic();
-  // keylist_functions = this.keyboardService.getKeyListFunctions();
-  // keylist_media = this.keyboardService.getKeyListMedia();
-  // keylist_mouse = this.keyboardService.getKeyListMouse();
   keylist_macros = this.keyboardService.getKeyListMacro();
   keylist_macros_selection = this.keyboardService.getKeyListMacroSelection();
 
@@ -104,50 +100,6 @@ export class MacrosComponent {
       }
     );
   }
-
-  // this.apiService.getCurrentConfigData(true).subscribe(
-  //   () => {
-  //     // Connection successful
-  //     this.isConnected = true;
-  //     this.loading = false; // Set loading state to false
-  //   },
-  //   (error) => {
-  //     // Connection failed
-  //     this.isConnected = false;
-  //     console.error(error); // Log the error for debugging purposes
-  //     this.loading = false; // Set loading state to false
-  //   }
-
-
-  // saveLayer(){ 
-    
-  //   const modifiedJson = JSON.parse(JSON.stringify(this.layer));
-  //   for (const item of modifiedJson.row0) {
-  //     delete item.key_code_name;
-  //   }
-  //   for (const item of modifiedJson.row1) {
-  //     delete item.key_code_name;
-  //   }
-  //   for (const item of modifiedJson.row2) {
-  //     delete item.key_code_name;
-  //   }
-  //   for (const item of modifiedJson.row3) {
-  //     delete item.key_code_name;
-  //   }
-
-  //   console.log(modifiedJson);    
-  //   if(this.uuid){ 
-  //     this.apiService.updateLayersLayout(modifiedJson).subscribe(response => {
-  //       console.log(response);
-  //       this.router.navigate(['/keymap']); 
-  //     });
-  //   } else {
-  //     this.apiService.createLayer(modifiedJson).subscribe(response => {
-  //       console.log(response);
-  //       this.router.navigate(['/keymap']); 
-  //     })
-  //   }
-  // }
 
   deleteMacro():void {
 

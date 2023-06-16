@@ -114,7 +114,9 @@ export class SettingComponent implements OnInit {
   keylist_functions = this.keyboardService.getKeyListFunctions();
   keylist_media = this.keyboardService.getKeyListMedia();
   keylist_mouse = this.keyboardService.getKeyListMouse();
-  keylist_macros = this.keyboardService.getKeyListMacro();
+  keylist_macro_aux = []
+  keylist_macros = [];
+  tuple = [];
 
   deepKeys: any;
   
@@ -128,8 +130,6 @@ export class SettingComponent implements OnInit {
   seletedBoard: any;
   uuid: any;
   pos: any;
-  deepMacros = ["M1", "M2", "M3", "M4", "M5"]
-
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -152,6 +152,14 @@ export class SettingComponent implements OnInit {
         this.getLayersLayout(this.uuid);
       }     
     }); 
+  
+    this.apiService.getMacros()
+      .subscribe(
+        value => {
+          this.keylist_macro_aux = value.macros;
+          this.keylist_macros = this.keylist_macro_aux.map(obj => [obj.name, obj.name, obj.keycode]);
+        }
+      );
   }
 
   getLayersLayout(uuid){

@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
     this.route.events.subscribe((val) => {
       this.path = this.route.url.split('?')[0];
     });
-    this.ipAddress =  localStorage.getItem('ipAddress');
+    // this.ipAddress =  localStorage.getItem('ipAddress');
   }
 
 
@@ -63,28 +63,28 @@ export class HeaderComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  testConnection() {
+  // testConnection() {
 
-    // Store the IP address in the localStorage
-    localStorage.setItem('ipAddress', this.ipAddress);
+  //   // Store the IP address in the localStorage
+  //   localStorage.setItem('ipAddress', this.ipAddress);
 
-    this.apiService.updateIP(this.ipAddress);
+  //   this.apiService.updateIP(this.ipAddress);
 
-    this.loading = true; // Set loading state to true
+  //   this.loading = true; // Set loading state to true
 
-    this.apiService.getCurrentConfigData(true).subscribe(
-      () => {
-        // Connection successful
-        this.isConnected = true;
-        this.loading = false; // Set loading state to false
-      },
-      (error) => {
-        // Connection failed
-        this.isConnected = false;
-        console.error(error); // Log the error for debugging purposes
-        this.loading = false; // Set loading state to false
-      }
-    );
-  }
+  //   this.apiService.getCurrentConfigData(true).subscribe(
+  //     () => {
+  //       // Connection successful
+  //       this.isConnected = true;
+  //       this.loading = false; // Set loading state to false
+  //     },
+  //     (error) => {
+  //       // Connection failed
+  //       this.isConnected = false;
+  //       console.error(error); // Log the error for debugging purposes
+  //       this.loading = false; // Set loading state to false
+  //     }
+  //   );
+  //}
 
 }
