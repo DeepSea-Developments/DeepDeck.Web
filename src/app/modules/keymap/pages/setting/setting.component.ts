@@ -5,6 +5,13 @@ import { ApiService } from 'src/app/core/services/api/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { KeyboardService } from 'src/app/core/services/keyboard/keyboard.service';
+ 
+//FORZAR VISTA ESCRITORIO MOVIL
+import { ViewportScroller } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
+import { Inject } from '@angular/core';
+
+console.log('aqui miguel');
 
 @Component({
   selector: 'app-setting',
@@ -137,13 +144,24 @@ export class SettingComponent implements OnInit {
     public apiService: ApiService,
     private router : Router,
     private keyboardService: KeyboardService, 
+    private viewportScroller: ViewportScroller,
+    @Inject(DOCUMENT) private document: Document
   ) { }
 
   GetKeyNameByKeyCode(keyNumber: number): string | undefined {
     return this.keyboardService.GetKeyNameByKeyCode(keyNumber); // Return undefined if no match is found
   }
 
-  ngOnInit(): void {  
+  ngOnInit(): void { 
+    
+    const isMobile = this.isMobileDevice();
+  
+    if (isMobile) {
+      console.log('forceDesktopView')
+      //this.forceDesktopView();
+      
+    }
+
     this.activatedRoute.params.subscribe(params => {
       this.uuid = params.id;
       console.log(this.uuid);
@@ -160,6 +178,17 @@ export class SettingComponent implements OnInit {
           this.keylist_macros = this.keylist_macro_aux.map(obj => [obj.name, obj.name, obj.keycode]);
         }
       );
+  }
+
+  private isMobileDevice(): boolean {
+    const userAgent = navigator.userAgent.toLowerCase();
+    return userAgent.includes('android') || userAgent.includes('iphone');
+  }
+  
+  private forceDesktopView() {
+    const viewportMetaTag = this.document.querySelector('meta[name="viewport"]');
+    viewportMetaTag.setAttribute('content', 'width=1280, user-scalable=no');
+    this.viewportScroller.scrollToPosition([0, 0]);
   }
 
   getLayersLayout(uuid){
