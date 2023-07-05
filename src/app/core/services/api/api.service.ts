@@ -260,8 +260,8 @@ export class ApiService {
     private router: Router
   ) {
     this.currentConfig = JSON.parse(localStorage.getItem('current_config'));
-    // this.ipAddress =  localStorage.getItem('ipAddress');
-    this.ipAddress =  '100.64.66.218'//'192.168.4.1';
+    this.ipAddress =  localStorage.getItem('ipAddress');
+    // this.ipAddress =  '192.168.4.1';
     console.log(this.ipAddress);
   }
 
