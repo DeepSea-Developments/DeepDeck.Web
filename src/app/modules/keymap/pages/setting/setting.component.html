@@ -11,64 +11,78 @@
     </div>
     
     <div class="row"> 
-
       <div class="col-md-6 bg-deepDeck">
+        <div class="col-md-12">
+          <button (click)="saveLayer()"       class="btn-p">Keyboard</button>
+          <button [routerLink]="['/keymap']"  class="btn-p">Knobs</button>
+          <button [routerLink]="['/keymap']"  class="btn-p">Gestures</button>
+        </div> 
+  
         <div class="row justify-content-center mt-5 bg-ahuyama">
-          <div style=""> 
-          
-              <div id="ahuyama" class=""> 
-                  <div id="deepdeck"> 
-              
-                    <div class="col-md-12" style="display: flex;" >
-                      <div class="text-center">
-                        <span style="margin-left: 5px; color: #fff; font-size: 13px;">VOLUMEN</span>
-                        <div class="knob-surround">
-                            <div id="knob" class="knob"></div>
-                            <div id="tickContainer" class="ticks"></div>
-                        </div>
-                      </div>
-                        <div style="height: 60px; width: 100px; margin-left: 40px; /*background-color: #000;*/">
-                
-                        </div>
-                        <div class="text-center">
-                          <span style="margin-left: 35px; color: #fff; font-size: 13px;">SCROLL UP</span>
-                          <div class="knob-surround" style="margin-left: 40px;">
-                              <div id="knob" class="knob"></div>
-                              <div id="tickContainer" class="ticks"></div>
-                          </div>
-                        </div>
+          <div id="ahuyama" class=""> 
+              <div id="deepdeck"> 
+                <div class="col-md-12" style="display: flex;" >
+                  <div class="text-center">
+                    <!-- <span style="margin-left: 5px; color: #fff; font-size: 13px;">VOLUMEN</span> -->
+                    <div class="knob-surround">
+                        <div id="knob" class="knob"></div>
+                        <div id="tickContainer" class="ticks"></div>
                     </div>
-                
-                    <div class="col-md-12">
-                        <ul id="keydeck" *ngFor="let item of layer.row0; let i = index">
-                          <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)">
-                              <span class="regular-name" contenteditable="true">{{item.name}}</span>
-                              <span class="fixed-name" contenteditable="false">{{item.key_code_name}}</span>
-                          </li>
-                        </ul>
-                        <ul id="keydeck" *ngFor="let item of layer.row1; let i = index">
-                          <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row1, item, i)">
-                            <span class="regular-name" contenteditable="true">{{item.name}}</span>
-                            <span class="fixed-name" contenteditable="false">{{item.key_code_name}}</span>
-                          </li> 
-                        </ul>
-                        <ul id="keydeck" *ngFor="let item of layer.row2; let i = index">
-                          <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row2, item, i)">
-                            <span class="regular-name" contenteditable="true">{{item.name}}</span>
-                            <span class="fixed-name" contenteditable="false">{{item.key_code_name}}</span>
-                          </li>                    </ul>
-                        <ul id="keydeck" *ngFor="let item of layer.row3; let i = index">
-                          <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row3, item, i)">
-                            <span class="regular-name" contenteditable="true">{{item.name}}</span>
-                            <span class="fixed-name" contenteditable="false">{{item.key_code_name}}</span>
-                          </li>
-                        </ul>
-                    </div> 
-    
+                  </div>
+
+                  <div class="text-center">
+                    <span style="margin-left: 5px; color: #fff; font-size: 13px;">asd</span>
+                  </div>
+
+                  <div class="col col-xl-4" >
+                    <label for="macro-name">Name:</label>
+                    <input type="text" maxlength="9" id="macro-name" class="form-control">
+                  </div>
+                  <div class="col col-xl-4 text-right">
+                      <button class="btn layer_buttons" >Save</button>
+                  </div>
+
+                    <!-- <div style="height: 60px; width: 100px; margin-left: 40px; /*background-color: #000;*/">
+            
+                    </div> -->
+                    <div class="text-center">
+                      <!-- <span style="margin-left: 35px; color: #fff; font-size: 13px;">SCROLL UP</span> -->
+                      <div class="knob-surround" style="margin-left: 220px;">
+                          <div id="knob" class="knob"></div>
+                          <div id="tickContainer" class="ticks"></div>
+                      </div>
+                    </div>
                 </div>
-              
-              </div>
+            
+                <div class="col-md-12">
+                    <ul id="keydeck" *ngFor="let item of layer.row0; let i = index">
+                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)">
+                          <span class="regular-name">{{item.name}}</span>
+                          <span class="fixed-name">{{item.key_code_name}}</span>
+                      </li>
+                    </ul>
+                    <ul id="keydeck" *ngFor="let item of layer.row1; let i = index">
+                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row1, item, i)">
+                        <span class="regular-name"  style="user-select: none;">{{item.name}}</span>
+                        <span class="fixed-name">{{item.key_code_name}}</span>
+                      </li> 
+                    </ul>
+                    <ul id="keydeck" *ngFor="let item of layer.row2; let i = index">
+                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row2, item, i)">
+                        <span class="regular-name" >{{item.name}}</span>
+                        <span class="fixed-name">{{item.key_code_name}}</span>
+                      </li>                    </ul>
+                    <ul id="keydeck" *ngFor="let item of layer.row3; let i = index">
+                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row3, item, i)">
+                        <span class="regular-name">{{item.name}}</span>
+                        <span class="fixed-name">{{item.key_code_name}}</span>
+                      </li>
+                    </ul>
+                </div> 
+
             </div>
+          
+          </div>
         </div>
         <div class="row gestures-knobs-center mb-3">  
             <div class="col-md-5 mt-3">
