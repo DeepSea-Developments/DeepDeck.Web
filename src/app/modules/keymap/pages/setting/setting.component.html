@@ -21,40 +21,20 @@
         <div class="row justify-content-center mt-5 bg-ahuyama">
           <div id="ahuyama" class=""> 
               <div id="deepdeck"> 
-                <div class="col-md-12" style="display: flex;" >
-                  <div class="text-center">
-                    <!-- <span style="margin-left: 5px; color: #fff; font-size: 13px;">VOLUMEN</span> -->
-                    <div class="knob-surround">
-                        <div id="knob" class="knob"></div>
-                        <div id="tickContainer" class="ticks"></div>
-                    </div>
-                  </div>
+                <!-- <div class="col-md-12" style="display: flex;" > -->
+                <div class="row-5 text-center">
+                  <!-- <div class="col col-xl-4" > -->
+                    <label for="macro-name" class="key_label">Key Name:</label>
+                    <input type="text" maxlength="9" id="macro-name" class=" key_name_field " [(ngModel)]="KeyName">
+                  <!-- </div> -->
+                  <!-- <div class="col col-xl-4 text-right"> -->
+                      <button class="key_name_update_button" (click)="updateKeyName()" >>Update key name </button>
+                  <!-- </div> -->
 
-                  <div class="text-center">
-                    <span style="margin-left: 5px; color: #fff; font-size: 13px;">asd</span>
-                  </div>
-
-                  <div class="col col-xl-4" >
-                    <label for="macro-name">Name:</label>
-                    <input type="text" maxlength="9" id="macro-name" class="form-control">
-                  </div>
-                  <div class="col col-xl-4 text-right">
-                      <button class="btn layer_buttons" >Save</button>
-                  </div>
-
-                    <!-- <div style="height: 60px; width: 100px; margin-left: 40px; /*background-color: #000;*/">
-            
-                    </div> -->
-                    <div class="text-center">
-                      <!-- <span style="margin-left: 35px; color: #fff; font-size: 13px;">SCROLL UP</span> -->
-                      <div class="knob-surround" style="margin-left: 220px;">
-                          <div id="knob" class="knob"></div>
-                          <div id="tickContainer" class="ticks"></div>
-                      </div>
-                    </div>
                 </div>
             
-                <div class="col-md-12">
+                <!-- <div class="col-md-12"> -->
+                <div class="row text-center" style="padding-left:30px; padding-top:30px; ">
                     <ul id="keydeck" *ngFor="let item of layer.row0; let i = index">
                       <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)">
                           <span class="regular-name">{{item.name}}</span>

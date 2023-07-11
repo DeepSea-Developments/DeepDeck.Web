@@ -16,6 +16,7 @@ export interface DialogData {
 
 export class NetworkComponent implements OnInit {
 
+  currentURL: string = '';
   network: any = {
     "ssid": "",
     "pass": "",
@@ -25,6 +26,8 @@ export class NetworkComponent implements OnInit {
     public dialog: MatDialog,
     public apiService: ApiService,
     ) {
+
+      this.currentURL = window.location.href;
 
   }
     ngOnInit(): void {
