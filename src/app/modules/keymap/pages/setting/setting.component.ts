@@ -132,6 +132,7 @@ export class SettingComponent implements OnInit {
     return this.keyboardService.getTextFontSize(text);
   }
 
+  KeyName: String;
   seletedDeepKey: any;
   seletedDeepFunctionKey: any;
   indexDeepKey: any;
@@ -213,7 +214,8 @@ export class SettingComponent implements OnInit {
   }
 
   pressKey(name, key_code, key_code_name){    
-    this.seletedBoard = name;    
+    this.seletedBoard = name;   
+    this.KeyName = name; 
     if(this.seletedDeepKey) {    
       console.log(this.seletedDeepKey); 
       Object.assign(this.deepKeys[this.indexDeepKey], {name, key_code, key_code_name});      
@@ -235,6 +237,11 @@ export class SettingComponent implements OnInit {
     this.seletedDeepKey = item;
     this.indexDeepKey = index;
     this.deepKeys = deepKeys;
+    this.KeyName = item.name;
+  }
+
+  updateKeyName(){
+    this.deepKeys[this.indexDeepKey].name = this.KeyName;
   }
 
   pressDeepFunctionKey(item){   

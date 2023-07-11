@@ -16,6 +16,7 @@ export interface DialogData {
 
 export class NetworkComponent implements OnInit {
 
+  currentURL: string = '';
   network: any = {
     "ssid": "",
     "pass": "",
@@ -36,7 +37,8 @@ export class NetworkComponent implements OnInit {
     public apiService: ApiService,
     ) {
 
-      
+      this.currentURL = window.location.href;
+
   }
     ngOnInit(): void {
       this.opcionSeleccionadaLed = this.opcionesLeds[0];
