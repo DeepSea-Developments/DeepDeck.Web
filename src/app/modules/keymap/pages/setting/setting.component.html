@@ -235,6 +235,20 @@
                       </li>
                     </ul>
                   </mat-tab>
+                  <mat-tab label="Numpad">
+                    <ul id="keyboard" *ngFor="let key of objectKeys(keylist_numpad)">
+                      <li
+                        (click)="pressKey(keylist_numpad[key][1], keylist_numpad[key][2],keylist_numpad[key][0])"
+                      >
+                        <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(keylist_numpad[key][1])}">
+                          {{keylist_numpad[key][1]}}
+                        </span>
+                        <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keylist_numpad[key][0])}">
+                          {{keylist_numpad[key][0]}}
+                        </span>
+                      </li>
+                    </ul>
+                  </mat-tab>
                   <mat-tab label="Functions">
                     <ul id="keyboard" *ngFor="let key of objectKeys(keylist_functions)">
                       <li

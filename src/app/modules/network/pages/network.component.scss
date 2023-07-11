@@ -6,3 +6,43 @@ table {
 .action_icon:hover {
     color: #3F51B4 !important;
 }
+
+.opciones-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.opcion-card {
+    background-color: #363434;
+    color: #a1988b;
+    width: 200px;
+    height: 150px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.opcion-card.selected {
+    background-color: #916d17;
+    color: #a6a6a6;
+}
+
+.opcion-card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.opcion-card p {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+@media (max-width: 468px) {
+    .opciones-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }

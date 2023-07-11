@@ -280,6 +280,13 @@ export class ApiService {
     );
   }
 
+  saveLed(led): Observable<any> {    
+    return this.http.post<any>(`http://${this.ipAddress}/api/led?mode=${led.id}`,JSON.stringify({'mode':led.id})).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
   deleteElement(uuid: string): Observable<any> {
     const url = `http://${this.ipAddress}/api/layers?uuid=${uuid}`;
   
