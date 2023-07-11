@@ -213,7 +213,8 @@ export class SettingComponent implements OnInit {
   }
 
   pressKey(name, key_code, key_code_name){    
-    this.seletedBoard = name;    
+    this.seletedBoard = name;   
+    this.KeyName = name; 
     if(this.seletedDeepKey) {    
       console.log(this.seletedDeepKey); 
       Object.assign(this.deepKeys[this.indexDeepKey], {name, key_code, key_code_name});      

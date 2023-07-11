@@ -95,6 +95,12 @@ table {
     outline: none;
     width: 120px;
     margin-left: 160px;
+    text-align: center;
+  }
+
+  .key_name_field:hover {
+    color: #e30505; 
+    
   }
 
   .key_name_update_button {
@@ -106,7 +112,6 @@ table {
 
   .key_name_update_button:hover {
     color: red;
-
   }
 
     
