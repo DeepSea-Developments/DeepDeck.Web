@@ -27,7 +27,7 @@ export class SettingComponent implements OnInit {
   
   layer: any = {
     "uuid": uuidv4().slice(0,6), //use short ID generation
-    "name":	"Name",
+    "name":	"layer",
     "active":	true,
     "row0":	[{
         "name":	"No",
@@ -43,7 +43,8 @@ export class SettingComponent implements OnInit {
         "key_code_name": "KC_NO"
       }, {
         "name":	"layer",
-        "key_code":	258
+        "key_code":	402,
+        "key_code_name": "LY_RISE"
       }],
     "row1":	[{
         "name":	"No",
@@ -186,6 +187,7 @@ export class SettingComponent implements OnInit {
       .subscribe(
         value => {
           this.keylist_macro_aux = value.macros;
+          console.log(value.macros);
           this.keylist_macros = this.keylist_macro_aux.map(obj => [obj.name, obj.name, obj.keycode]);
         }
       );

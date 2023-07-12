@@ -9,8 +9,8 @@ type KeyArray = KeyTuple[];
 })
 export class KeyboardService {
   private keyListBasic: KeyArray = [
-    ['LY_RISE','Next Layer',401],
-    ['LY_LOWER','Prev Layer',402],
+    ['LY_RISE','layer',402],
+    ['LY_LOWER','prev layer',401],
     ['KC_NO','NO',0],
     // ['KC_ROLL_OVER','KC_ROLL_OVER',1],
     // ['KC_POST_FAIL','KC_POST_FAIL',2],
