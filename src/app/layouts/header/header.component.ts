@@ -19,9 +19,7 @@ export class HeaderComponent implements OnInit {
   topGap = 56;
   username: any = "admin";
 
-  ipAddress: string = "192.168.4.1";
-  isConnected: boolean;
-  loading: boolean = false;
+  
   
   
   constructor(
@@ -61,30 +59,7 @@ export class HeaderComponent implements OnInit {
 
   get isLoggedIn(): any {
     return this.authService.isLoggedIn();
-  }
-
-  testConnection() {
-
-    // Store the IP address in the localStorage
-    localStorage.setItem('ipAddress', this.ipAddress);
-
-    this.apiService.updateIP(this.ipAddress);
-
-    this.loading = true; // Set loading state to true
-
-    this.apiService.getCurrentConfigData(true).subscribe(
-      () => {
-        // Connection successful
-        this.isConnected = true;
-        this.loading = false; // Set loading state to false
-      },
-      (error) => {
-        // Connection failed
-        this.isConnected = false;
-        console.error(error); // Log the error for debugging purposes
-        this.loading = false; // Set loading state to false
-      }
-    );
-  }
+  } 
+  
 
 }

@@ -13,12 +13,12 @@
     <div class="row"> 
       <div class="col-md-6 bg-deepDeck">
         <div class="col-md-12">
-          <button (click)="saveLayer()"       class="btn-p">Keyboard</button>
+          <button (click)="cambiarVisibilidad('deppDeck')"       class="btn-p">Keyboard</button>
           <button (click)="cambiarVisibilidad('knobs')"  class="btn-p">Knobs</button>
           <button (click)="cambiarVisibilidad('gestures')"  class="btn-p">Gestures</button>
         </div> 
   
-        <div class="row justify-content-center mt-5 bg-ahuyama">
+        <div class="row justify-content-center mt-5 bg-ahuyama" [hidden]="!mostrarDeppDeck">
           <div id="ahuyama" class=""> 
               <div id="deepdeck"> 
                 <!-- <div class="col-md-12" style="display: flex;" > -->
@@ -34,7 +34,7 @@
                 </div>
             
                 <!-- <div class="col-md-12"> -->
-                <div class="row text-center" style="padding-left:30px; padding-top:30px; ">
+                <div class="row text-center" style="padding-left:30px; padding-top:30px; margin-top: 35px; ">
                     <ul id="keydeck" *ngFor="let item of layer.row0; let i = index">
                       <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)">
                           <span class="regular-name">{{item.name}}</span>
@@ -64,6 +64,7 @@
           
           </div>
         </div>
+        
         <div class="row gestures-knobs-center mb-3">  
             <div class="col-md-5 mt-3" [hidden]="!mostrarKnobs">
               <div id="knob-container">
@@ -295,7 +296,7 @@
           </div>
           <div class="col-md-12 mt-3">
               <div>
-                  <h2 class="title">.</h2>
+                  <h2 class="title" style="color: #222222 !important;">.</h2>
               </div>
               <!-- <div style="height: 200px; overflow-y: auto;">
                   <ul id="keyboard" *ngFor="let macro of  deepMacros">

@@ -5,14 +5,7 @@
     <mat-icon style="color: #fff !important;">menu</mat-icon>
   </button>
     <span class="example-spacer"></span>
-
-    <mat-form-field>
-      <input matInput placeholder="DeepDeck IP" [(ngModel)]="ipAddress">
-    </mat-form-field>
-    <button mat-raised-button color="primary" (click)="testConnection()">Test Connection</button>
-
-    <mat-icon [ngClass]="{'loading': loading, 'green': isConnected && !loading, 'red': !isConnected && !loading}">circle</mat-icon>
-
+ 
   
     <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>notification_important</mat-icon>

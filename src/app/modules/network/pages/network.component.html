@@ -38,9 +38,39 @@
                             <button type="submit" class="btn btn-primary" (click)="saveNetwork()">Save </button>
                         </div>
                     </div>
+
+                    <div class="col-md-12">
+                        <hr style="border-top: 1px solid #b0a697;">
+                    </div>
+                    <div class="col-md-12 mt-3">
+
+                        <div class="row mb-3">
+                            <h3 class="col-md-12 mt-5 left-align">Test Connection</h3>
+                            <div class="col-md-12"> 
+                                <span class="float-right" style="font-size: 12px;">Current URL: <span>{{ currentURL }}</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="row">  
+                            <hr class="mt-5">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">DeepDeck IPk:</label>
+                                    <input type="text" class="form-control" placeholder="DeepDeck IP" [(ngModel)]="ipAddress">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6"> 
+                                <div style="margin-top: 32px;">
+                                    <button class="btn btn-primary" (click)="testConnection()">Test Connection</button>
+                                    <mat-icon [ngClass]="{'loading': loading, 'green': isConnected && !loading, 'red': !isConnected && !loading}" style="margin-left: 10px;">circle</mat-icon>
+                                </div>
+                            </div>
+                        
+                        </div>
+                         
                     
-                    <div class="col-md-12 mt-5">
-                        <p>Current URL: <span>{{ currentURL }}</span></p>
+                        
                     </div>
                          
                 </div>
