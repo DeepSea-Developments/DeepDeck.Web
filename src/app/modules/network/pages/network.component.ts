@@ -32,17 +32,18 @@ export class NetworkComponent implements OnInit {
   
   opcionSeleccionadaLed: any;
    
+  passwordVisible: boolean = false;
+
   constructor(
     public dialog: MatDialog,
     public apiService: ApiService,
-    ) {
-
-      this.currentURL = window.location.href;
+    ) { 
 
   }
     ngOnInit(): void {
       this.opcionSeleccionadaLed = this.opcionesLeds[0];
       this.loadConfig();
+      this.getLocalIPAddress();
     }
     
     loadConfig() {
@@ -87,6 +88,33 @@ export class NetworkComponent implements OnInit {
 
     onTabHeaderFocusChanged(event: FocusEvent): void {
       event.preventDefault();
+    }
+
+    togglePasswordVisibility() {
+      this.passwordVisible = !this.passwordVisible;
+    }
+
+    getLocalIPAddress() { 
+      //const url = new URL(window.location.href);
+      //this.currentURL = url.hostname;
+      //console.log('getLocalIPAddress ',url)
+      
+      let urlTest = 'http://192.168.0.1/';
+
+      let url = window.location.href;
+      let regex = /(?:http|https):\/\/([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/;
+      let match = url.match(regex);
+
+      if (match && match.length > 1) {
+        this.currentURL = match[1];
+        console.log('getLocalIPAddress match',url)
+      }else{
+        let url = new URL(window.location.href);
+        this.currentURL = url.hostname;
+        console.log('getLocalIPAddress  url',url)
+      }
+
+
     }
   
 }

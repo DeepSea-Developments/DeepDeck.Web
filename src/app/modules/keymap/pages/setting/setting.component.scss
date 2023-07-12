@@ -574,3 +574,9 @@ table {
         margin: 0px !important;
       }
     }
+
+    ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+      min-width: 100px!important;
+      padding: 3px!important;
+      margin: 3px!important;
+     }

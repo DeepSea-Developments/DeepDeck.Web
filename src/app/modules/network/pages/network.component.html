@@ -10,25 +10,39 @@
                         <span class="float-right" style="font-size: 12px;">UI version: V0.5.4</span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="col-md-12 left-align">Wifi</h5>
-                        <hr>
+                <div class="row"> 
+                    <h5 class="col-md-12 left-align">Wifi</h5>
+                    <hr class="mt-5">
+                    <div class="col-md-6">
                         <div class="form-group mb-3">
                             <label class="form-label">Wifi Network:</label>
                             <input type="text" class="form-control" [(ngModel)]="network.ssid" pattern=".{32}" title="The field requires Chanel " maxlength="32" required="">
                         </div>
+                    </div>
+                    
+                    <div class="col-md-6">
                         <div class="form-group mb-3">
                             <label class="form-label">Password</label>
-                            <input type="password" class="form-control" [(ngModel)]="network.pass" pattern=".{64}" title="The field requires Chanel " maxlength="64" required="">
-                        </div>            
+                            <div class="password-input">
+                                <input type="{{ passwordVisible ? 'text' : 'password' }}" class="form-control" [(ngModel)]="network.pass" pattern=".{64}" title="The field requires Channel" maxlength="64" required>
+                                <div class="toggle-password" (click)="togglePasswordVisibility()">
+                                  <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+                                </div>
+                            </div> 
+                              
+                        </div>  
+                    </div>    
+                    
+                    <div class="col-md-12 mt-3">
                         <div class="form-group mb-5">
                             <button type="submit" class="btn btn-primary" (click)="saveNetwork()">Save </button>
                         </div>
-
-                        <p>Current URL: <span>{{ currentURL }}</span></p>
-                        
                     </div>
+                    
+                    <div class="col-md-12 mt-5">
+                        <p>Current URL: <span>{{ currentURL }}</span></p>
+                    </div>
+                         
                 </div>
             </div>
         </mat-tab> 

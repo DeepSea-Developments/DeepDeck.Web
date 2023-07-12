@@ -5,7 +5,11 @@ import { ApiService } from 'src/app/core/services/api/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { KeyboardService } from 'src/app/core/services/keyboard/keyboard.service';
- 
+
+//técnica de "debounce"
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 //FORZAR VISTA ESCRITORIO MOVIL
 import { ViewportScroller } from '@angular/common';
 import { DOCUMENT } from '@angular/common';
@@ -139,6 +143,10 @@ export class SettingComponent implements OnInit {
   seletedBoard: any;
   uuid: any;
   pos: any;
+  
+  inputChanged: Subject<string> = new Subject<string>();
+  mostrarKnobs: boolean = false;
+  mostrarGestures: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -180,6 +188,38 @@ export class SettingComponent implements OnInit {
           this.keylist_macros = this.keylist_macro_aux.map(obj => [obj.name, obj.name, obj.keycode]);
         }
       );
+
+
+      this.inputChanged
+      .pipe(
+        debounceTime(250), // Espera 250 ms después de la última emisión
+        distinctUntilChanged() // Evita emitir si el valor es igual al anterior
+      )
+      .subscribe((inputValue: string) => {
+        // Invocar al servicio aquí con el valor del input completo
+        this.updateKeyName();
+      });
+
+      this.indexDeepKey='';
+  }
+
+  onInputChange(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.inputChanged.next(inputValue);
+  }
+
+  cambiarVisibilidad(div: string) {
+    if (div === 'knobs') {
+      this.mostrarKnobs = !this.mostrarKnobs;
+      if (this.mostrarKnobs) {
+        this.mostrarGestures = false;
+      }
+    } else if (div === 'gestures') {
+      this.mostrarGestures = !this.mostrarGestures;
+      if (this.mostrarGestures) {
+        this.mostrarKnobs = false;
+      }
+    }
   }
 
   private isMobileDevice(): boolean {

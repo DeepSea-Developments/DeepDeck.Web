@@ -45,4 +45,27 @@ table {
       flex-direction: column;
       align-items: center;
     }
-  }
+}
+
+
+.password-input {
+    position: relative;
+}
+
+.password-input .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.password-input .toggle-password mat-icon {
+    font-size: 18px;
+    margin-top: 5px;
+}
