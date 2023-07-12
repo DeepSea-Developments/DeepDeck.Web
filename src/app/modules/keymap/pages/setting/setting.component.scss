@@ -9,9 +9,8 @@ table {
   .input-layer {
     color: #dc9f10;
     background-color: #222222;
-  }
-  
-  
+  } 
+
   .modal {
     max-width: 620px !important;
     border-radius: 10px !important;
@@ -63,9 +62,8 @@ table {
     border: 1px solid #b0a697;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-  }
-  
-  
+  } 
+
   .uppercase {
     text-transform: uppercase;
   }
@@ -110,8 +108,7 @@ table {
 
   .key_name_update_button:hover {
     color: red;
-  }
-
+  } 
     
   .min,
   .max {
@@ -385,11 +382,7 @@ table {
     align-items: center;
     margin: 0px;
   }
-  
-  /* MIGUEL*/
-  /*------------------------------------------------------------------
-      + Responsive
-    -------------------------------------------------------------------*/
+   
     .btn-p{
       background: #dc9f10; 
       border-radius: 5px; 
@@ -402,9 +395,7 @@ table {
       height:         100vh;
       width:          1px;
       -webkit-box-shadow: -1px -1px 22px 5px rgba(0,0,0,.19);
-    }
-
-   
+    } 
 
     .margin-top-20 {
       margin-top: 10% !important;
@@ -413,11 +404,7 @@ table {
     .gestures-knobs-center{
       justify-content: center;
       margin-bottom: 160px !important;
-    }
-
-    /*.bg-deepDeck{
-      background-color: #4a4a4a;
-    }*/
+    } 
 
     /* - min-width: 1200 */
     @media (min-width: 1200px) {
@@ -425,13 +412,7 @@ table {
         width:15%;
       }
     }
-    
-    /* - min-width: 992 */
-    @media (min-width: 992px) {
-      .btn-p{
-        width:16%;
-      }
-    }
+     
     /* - max-width: 1366 */
     @media (max-width: 1366px) {	
       .btn-p{
@@ -444,12 +425,7 @@ table {
       .btn-p{
         width:16%;
       }
-    }
-    
-    /* - max-width: 991 */
-    @media (max-width: 991px) {	
-      
-    }
+    } 
     
     /* - min-width: 768 to max-width: 991 */
     @media only screen and (min-width: 768px) and (max-width: 991px) {
