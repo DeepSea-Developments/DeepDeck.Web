@@ -2,7 +2,7 @@
 <div class='container' style="margin-left: 3rem !important; margin-bottom: 3rem !important;">
     <div class="row d-flex justify-content-between mb-3"> 
         <div class="col-md-4">
-            <input type="text" class="form-control input-layer" [(ngModel)]="layer.name">
+            <input type="text" maxlength="8" class="form-control input-layer" [(ngModel)]="layer.name">
         </div>
         <div class="col-md-8 text-right">
           <button (click)="saveLayer()"       class="btn-p">Save</button>
@@ -25,7 +25,7 @@
                 <div class="row-5 text-center">
                   <!-- <div class="col col-xl-4" > -->
                     <label for="macro-name" class="key_label">Key Name:</label>
-                    <input type="text" maxlength="9" id="macro-name" class=" key_name_field " [(ngModel)]="KeyName" (input)="onInputChange($event)" placeholder="name" [disabled]="indexDeepKey === ''">
+                    <input type="text" maxlength="6" id="macro-name" class=" key_name_field " [(ngModel)]="KeyName" (input)="onInputChange($event)" placeholder="" [disabled]="indexDeepKey === ''">
                   <!-- </div> -->
                   <!-- <div class="col col-xl-4 text-right"> -->
                    <!--   <button class="key_name_update_button" (click)="updateKeyName()" >>Update key name </button>-->

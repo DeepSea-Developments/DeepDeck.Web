@@ -15,8 +15,6 @@ import { ViewportScroller } from '@angular/common';
 import { DOCUMENT } from '@angular/common';
 import { Inject } from '@angular/core';
 
-console.log('aqui miguel');
-
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -176,8 +174,8 @@ export class SettingComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(params => {
       this.uuid = params.id;
-      console.log(this.uuid);
-      console.log(this.pos);
+      // console.log(this.uuid);
+      // console.log(this.pos);
       if(this.uuid) {
         this.getLayersLayout(this.uuid);
       }     
@@ -187,7 +185,7 @@ export class SettingComponent implements OnInit {
       .subscribe(
         value => {
           this.keylist_macro_aux = value.macros;
-          console.log(value.macros);
+          // console.log(value.macros);
           this.keylist_macros = this.keylist_macro_aux.map(obj => [obj.name, obj.name, obj.keycode]);
         }
       );

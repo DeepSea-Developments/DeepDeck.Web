@@ -98,13 +98,7 @@ export class NetworkComponent implements OnInit {
       this.passwordVisible = !this.passwordVisible;
     }
 
-    getLocalIPAddress() { 
-      //const url = new URL(window.location.href);
-      //this.currentURL = url.hostname;
-      //console.log('getLocalIPAddress ',url)
-      
-      let urlTest = 'http://192.168.0.1/';
-
+    getLocalIPAddress() {       
       let url = window.location.href;
       let regex = /(?:http|https):\/\/([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/;
       let match = url.match(regex);
@@ -119,6 +113,8 @@ export class NetworkComponent implements OnInit {
       }
 
       this.ipAddress =  this.currentURL;
+      // Store the IP address in the localStorage
+      localStorage.setItem('ipAddress', this.ipAddress);
 
     }
 
