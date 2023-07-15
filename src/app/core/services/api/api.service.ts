@@ -261,7 +261,7 @@ export class ApiService {
   ) {
     this.currentConfig = JSON.parse(localStorage.getItem('current_config'));
     this.ipAddress =  localStorage.getItem('ipAddress');
-    // this.ipAddress =  '192.168.4.1';
+    // this.ipAddress =  '100.64.66.218'//'192.168.4.1';
     console.log(this.ipAddress);
   }
 
@@ -275,6 +275,13 @@ export class ApiService {
  
   saveNetwork(data): Observable<any> {    
     return this.http.post<any>(`http://${this.ipAddress}/api/connect`, JSON.stringify(data),).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
+  saveLed(led): Observable<any> {    
+    return this.http.post<any>(`http://${this.ipAddress}/api/led?mode=${led.id}`,JSON.stringify({'mode':led.id})).pipe(
       retry(1),
       catchError(this.errorHandl)
     );

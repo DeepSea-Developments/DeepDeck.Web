@@ -6,3 +6,86 @@ table {
 .action_icon:hover {
     color: #3F51B4 !important;
 }
+
+.opciones-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.opcion-card {
+    background-color: #363434;
+    color: #a1988b;
+    width: 200px;
+    height: 150px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.opcion-card.selected {
+    background-color: #916d17;
+    color: #a6a6a6;
+}
+
+.opcion-card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.opcion-card p {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+@media (max-width: 468px) {
+    .opciones-container {
+      flex-direction: column;
+      align-items: center;
+    }
+}
+
+
+.password-input {
+    position: relative;
+}
+
+.password-input .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.password-input .toggle-password mat-icon {
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.green {
+    color: green !important;
+    }
+    
+.red {
+    color: red !important;
+    }
+
+button.connected-icon.loading {
+    color: gray !important; /* Change the color to gray or any other desired color */
+    }
+    
+    button.connected-icon.green {
+    color: green !important; /* Change the color to green or any other desired color */
+    }
+    
+    button.connected-icon.red {
+    color: red !important; /* Change the color to red or any other desired color */
+    }

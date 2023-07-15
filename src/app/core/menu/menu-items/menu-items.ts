@@ -33,7 +33,7 @@ const MENUITEMS = [
         state: 'network',
         name: 'SETTINGS',
         type: 'link',
-        icon: 'wifi',
+        icon: 'settings',
     },      
     // {
     //     state: 'firmware',

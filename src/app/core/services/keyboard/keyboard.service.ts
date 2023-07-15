@@ -9,8 +9,8 @@ type KeyArray = KeyTuple[];
 })
 export class KeyboardService {
   private keyListBasic: KeyArray = [
-    ['LY_RISE','Next Layer',401],
-    ['LY_LOWER','Prev Layer',402],
+    ['LY_RISE','layer',402],
+    ['LY_LOWER','prev layer',401],
     ['KC_NO','NO',0],
     // ['KC_ROLL_OVER','KC_ROLL_OVER',1],
     // ['KC_POST_FAIL','KC_POST_FAIL',2],
@@ -84,6 +84,19 @@ export class KeyboardService {
     ['KC_DOT', 'DOT', 55],
     ['KC_SLASH', 'SLASH', 56],
     ['KC_CAPSLOCK', 'CAPSLOCK', 57],
+  ];
+
+  private keyListNumpad: KeyArray = [ 
+    ['KC_KP_1', '1', 89],
+    ['KC_KP_2', '2', 90],
+    ['KC_KP_3', '3', 91],
+    ['KC_KP_4', '4', 92],
+    ['KC_KP_5', '5', 93],
+    ['KC_KP_6', '6', 94],
+    ['KC_KP_7', '7', 95],
+    ['KC_KP_8', '8', 96],
+    ['KC_KP_9', '9', 97],
+    ['KC_KP_0', '0', 98], 
   ];
 
   private keyListFunctions: KeyArray = [
@@ -172,6 +185,7 @@ export class KeyboardService {
 
     this.keyListAll =  [
       ...this.keyListBasic, 
+      ...this.keyListNumpad, 
       ...this.keyListFunctions, 
       ...this.keyListMedia, 
       ...this.keyListMouse, 
@@ -217,6 +231,10 @@ export class KeyboardService {
 
   getKeyListBasic(): KeyArray {
     return this.keyListBasic;
+  }
+
+  getKeyListNumpad(): KeyArray {
+    return this.keyListNumpad;
   }
 
   getKeyListFunctions(): KeyArray {

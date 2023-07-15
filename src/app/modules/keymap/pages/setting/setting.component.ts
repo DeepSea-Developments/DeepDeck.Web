@@ -6,6 +6,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { KeyboardService } from 'src/app/core/services/keyboard/keyboard.service';
 
+//técnica de "debounce"
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+//FORZAR VISTA ESCRITORIO MOVIL
+import { ViewportScroller } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
+import { Inject } from '@angular/core';
+
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -16,7 +25,7 @@ export class SettingComponent implements OnInit {
   
   layer: any = {
     "uuid": uuidv4().slice(0,6), //use short ID generation
-    "name":	"Name",
+    "name":	"layer",
     "active":	true,
     "row0":	[{
         "name":	"No",
@@ -32,7 +41,8 @@ export class SettingComponent implements OnInit {
         "key_code_name": "KC_NO"
       }, {
         "name":	"layer",
-        "key_code":	258
+        "key_code":	402,
+        "key_code_name": "LY_RISE"
       }],
     "row1":	[{
         "name":	"No",
@@ -111,6 +121,7 @@ export class SettingComponent implements OnInit {
 
   objectKeys = Object.keys;
   keyList_basic = this.keyboardService.getKeyListBasic();
+  keylist_numpad = this.keyboardService.getKeyListNumpad();
   keylist_functions = this.keyboardService.getKeyListFunctions();
   keylist_media = this.keyboardService.getKeyListMedia();
   keylist_mouse = this.keyboardService.getKeyListMouse();
@@ -124,12 +135,18 @@ export class SettingComponent implements OnInit {
     return this.keyboardService.getTextFontSize(text);
   }
 
+  KeyName: String;
   seletedDeepKey: any;
   seletedDeepFunctionKey: any;
   indexDeepKey: any;
   seletedBoard: any;
   uuid: any;
   pos: any;
+  
+  inputChanged: Subject<string> = new Subject<string>();
+  mostrarKnobs: boolean = false;
+  mostrarGestures: boolean = false;
+  mostrarDeppDeck: boolean = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -137,17 +154,28 @@ export class SettingComponent implements OnInit {
     public apiService: ApiService,
     private router : Router,
     private keyboardService: KeyboardService, 
+    private viewportScroller: ViewportScroller,
+    @Inject(DOCUMENT) private document: Document
   ) { }
 
   GetKeyNameByKeyCode(keyNumber: number): string | undefined {
     return this.keyboardService.GetKeyNameByKeyCode(keyNumber); // Return undefined if no match is found
   }
 
-  ngOnInit(): void {  
+  ngOnInit(): void { 
+    
+    const isMobile = this.isMobileDevice();
+  
+    if (isMobile) {
+      console.log('forceDesktopView')
+      //this.forceDesktopView();
+      
+    }
+
     this.activatedRoute.params.subscribe(params => {
       this.uuid = params.id;
-      console.log(this.uuid);
-      console.log(this.pos);
+      // console.log(this.uuid);
+      // console.log(this.pos);
       if(this.uuid) {
         this.getLayersLayout(this.uuid);
       }     
@@ -157,9 +185,55 @@ export class SettingComponent implements OnInit {
       .subscribe(
         value => {
           this.keylist_macro_aux = value.macros;
+          // console.log(value.macros);
           this.keylist_macros = this.keylist_macro_aux.map(obj => [obj.name, obj.name, obj.keycode]);
         }
       );
+
+
+      this.inputChanged
+      .pipe(
+        debounceTime(250), // Espera 250 ms después de la última emisión
+        distinctUntilChanged() // Evita emitir si el valor es igual al anterior
+      )
+      .subscribe((inputValue: string) => {
+        // Invocar al servicio aquí con el valor del input completo
+        this.updateKeyName();
+      });
+
+      this.indexDeepKey='';
+  }
+
+  onInputChange(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.inputChanged.next(inputValue);
+  }
+
+  cambiarVisibilidad(div: string) {
+    if (div === 'knobs') {
+      this.mostrarKnobs = true;
+      this.mostrarGestures = false;
+      this.mostrarDeppDeck=false;
+    } else if (div === 'gestures') {
+      this.mostrarKnobs = false;
+      this.mostrarGestures = true;
+      this.mostrarDeppDeck=false;
+    }else if (div === 'deppDeck') {
+      this.mostrarKnobs = false;
+      this.mostrarGestures = false;
+      this.mostrarDeppDeck=true;
+    }
+  }
+
+  private isMobileDevice(): boolean {
+    const userAgent = navigator.userAgent.toLowerCase();
+    return userAgent.includes('android') || userAgent.includes('iphone');
+  }
+  
+  private forceDesktopView() {
+    const viewportMetaTag = this.document.querySelector('meta[name="viewport"]');
+    viewportMetaTag.setAttribute('content', 'width=1280, user-scalable=no');
+    this.viewportScroller.scrollToPosition([0, 0]);
   }
 
   getLayersLayout(uuid){
@@ -183,7 +257,8 @@ export class SettingComponent implements OnInit {
   }
 
   pressKey(name, key_code, key_code_name){    
-    this.seletedBoard = name;    
+    this.seletedBoard = name;   
+    this.KeyName = name; 
     if(this.seletedDeepKey) {    
       console.log(this.seletedDeepKey); 
       Object.assign(this.deepKeys[this.indexDeepKey], {name, key_code, key_code_name});      
@@ -205,6 +280,11 @@ export class SettingComponent implements OnInit {
     this.seletedDeepKey = item;
     this.indexDeepKey = index;
     this.deepKeys = deepKeys;
+    this.KeyName = item.name;
+  }
+
+  updateKeyName(){
+    this.deepKeys[this.indexDeepKey].name = this.KeyName;
   }
 
   pressDeepFunctionKey(item){   
