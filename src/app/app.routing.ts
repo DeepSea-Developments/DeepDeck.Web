@@ -9,10 +9,10 @@ export const SITE_ROUTES: Routes = [
     redirectTo: 'network',
     pathMatch: 'full',
   },
-  {
-     path: 'session', loadChildren: () =>
-       import('./modules/auth/auth.module').then(m => m.AuthModule)
-  },  
+  // {
+  //    path: 'session', loadChildren: () =>
+  //      import('./modules/auth/auth.module').then(m => m.AuthModule)
+  // },  
   {
     path: '',
     component: SimpleComponent,
@@ -24,17 +24,21 @@ export const SITE_ROUTES: Routes = [
           import('./modules/keymap/keymap.module').then(m => m.KeymapModule)
       },
       {
+        path: 'macros', loadChildren: () =>
+          import('./modules/macros/macros.module').then(m => m.MacrosModule)
+      },
+      {
         path: 'network', loadChildren: () =>
           import('./modules/network/network.module').then(m => m.NetworkModule)
       },      
-      {
-        path: 'firmware', loadChildren: () =>
-          import('./modules/firmware/firmware.module').then(m => m.FirmwareModule)
-      }
+      // {
+      //   path: 'firmware', loadChildren: () =>
+      //     import('./modules/firmware/firmware.module').then(m => m.FirmwareModule)
+      // }
     ],   
   },{
     path: '**',
-    redirectTo: 'session'
+    redirectTo: 'keymap'
   }
 ];
 

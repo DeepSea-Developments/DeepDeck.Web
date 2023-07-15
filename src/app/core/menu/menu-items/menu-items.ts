@@ -18,23 +18,29 @@ export interface Menu {
 
 const MENUITEMS = [
     {
-        state: 'network',
-        name: 'NETWORK',
-        type: 'link',
-        icon: 'wifi',
-    },  
-    {
         state: 'keymap',
         name: 'KEYMAP',
         type: 'link',
         icon: 'keyboard',
-    },          
+    },    
     {
-        state: 'firmware',
-        name: 'FIRMWARE',
+        state: 'macros',
+        name: 'MACROS',
         type: 'link',
-        icon: 'wysiwyg',      
-    },
+        icon: 'add_to_photos',
+    },      
+    {
+        state: 'network',
+        name: 'SETTINGS',
+        type: 'link',
+        icon: 'settings',
+    },      
+    // {
+    //     state: 'firmware',
+    //     name: 'FIRMWARE',
+    //     type: 'link',
+    //     icon: 'wysiwyg',      
+    // },
 
     
 ];

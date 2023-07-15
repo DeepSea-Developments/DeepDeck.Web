@@ -261,6 +261,7 @@ export class ApiService {
   ) {
     this.currentConfig = JSON.parse(localStorage.getItem('current_config'));
     this.ipAddress =  localStorage.getItem('ipAddress');
+    // this.ipAddress =  '100.64.66.218'//'192.168.4.1';
     console.log(this.ipAddress);
   }
 
@@ -274,6 +275,13 @@ export class ApiService {
  
   saveNetwork(data): Observable<any> {    
     return this.http.post<any>(`http://${this.ipAddress}/api/connect`, JSON.stringify(data),).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
+  saveLed(led): Observable<any> {    
+    return this.http.post<any>(`http://${this.ipAddress}/api/led?mode=${led.id}`,JSON.stringify({'mode':led.id})).pipe(
       retry(1),
       catchError(this.errorHandl)
     );
@@ -295,33 +303,33 @@ export class ApiService {
     );
   }
 
-  saveCloud(data): Observable<any> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('Accept-Language', 'es');
-    return this.http.post<any>(
-      '/save-cloud/',
-      JSON.stringify(data),
-      { headers }
-    ).pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    );
-  }
+  // saveCloud(data): Observable<any> {
+  //   let headers = new HttpHeaders();
+  //   headers = headers.set('Content-Type', 'application/json');
+  //   headers = headers.set('Accept-Language', 'es');
+  //   return this.http.post<any>(
+  //     '/save-cloud/',
+  //     JSON.stringify(data),
+  //     { headers }
+  //   ).pipe(
+  //     retry(1),
+  //     catchError(this.errorHandl)
+  //   );
+  // }
 
-  saveDevice(data): Observable<any> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    headers = headers.set('Accept-Language', 'es');
-    return this.http.post<any>(
-      '/save-device/',
-      JSON.stringify(data),
-      { headers }
-    ).pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    );
-  }
+  // saveDevice(data): Observable<any> {
+  //   let headers = new HttpHeaders();
+  //   headers = headers.set('Content-Type', 'application/json');
+  //   headers = headers.set('Accept-Language', 'es');
+  //   return this.http.post<any>(
+  //     '/save-device/',
+  //     JSON.stringify(data),
+  //     { headers }
+  //   ).pipe(
+  //     retry(1),
+  //     catchError(this.errorHandl)
+  //   );
+  // }
 
   resetDevice(data): Observable<any> {
     let headers = new HttpHeaders();
@@ -420,14 +428,30 @@ export class ApiService {
     this.currentConfig = null;
   }
 
+  getMacros(): Observable<any> {
+    return this.http.get<any>(`http://${this.ipAddress}/api/macros`).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    ); 
+  }
+
+  updateMacro(data): Observable<any> {
+    return this.http.put<any>(`http://${this.ipAddress}/api/macros`,  JSON.stringify(data)).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    ); 
+  }
+
   errorHandl(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
+      alert(errorMessage);
     } else {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      alert(errorMessage);
     }
     return throwError(errorMessage);
   }

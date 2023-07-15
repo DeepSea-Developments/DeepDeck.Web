@@ -1,26 +1,105 @@
-<div class='container'>
-    <div class="row mb-3">
-        <h3 class="col-md-12 left-align">Network</h3>
-        <div class="col-md-12">
-            <span class="float-right" style="font-size: 12px;">Firmware: {{network.FWVersion}}</span> <br/>
-            <span class="float-right" style="font-size: 12px;">UI version: V0.5.3</span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <h5 class="col-md-12 left-align">Wifi</h5>
-            <hr>
-            <div class="form-group mb-3">
-                <label class="form-label">Wifi Network:</label>
-                <input type="text" class="form-control" [(ngModel)]="network.ssid" pattern=".{32}" title="The field requires Chanel " maxlength="32" required="">
+<div style="padding: 1rem !important;">
+    <mat-tab-group class="custom-tabs" (matTabHeaderFocusChanged)="onTabHeaderFocusChanged($event)">
+
+        <mat-tab label="Network">
+            <div class='container'>
+                <div class="row mb-3">
+                    <h3 class="col-md-12 mt-5 left-align">Network</h3>
+                    <div class="col-md-12">
+                        <span class="float-right" style="font-size: 12px;">Firmware: {{network.FWVersion}}</span> <br/>
+                        <span class="float-right" style="font-size: 12px;">UI version: V0.5.5</span>
+                    </div>
+                </div>
+                <div class="row"> 
+                    <h5 class="col-md-12 left-align">Wifi</h5>
+                    <hr class="mt-5">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label class="form-label">Wifi Network:</label>
+                            <input type="text" class="form-control" [(ngModel)]="network.ssid" pattern=".{32}" title="The field requires Chanel " maxlength="32" required="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label class="form-label">Password</label>
+                            <div class="password-input">
+                                <input type="{{ passwordVisible ? 'text' : 'password' }}" class="form-control" [(ngModel)]="network.pass" pattern=".{64}" title="The field requires Channel" maxlength="64" required>
+                                <div class="toggle-password" (click)="togglePasswordVisibility()">
+                                  <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+                                </div>
+                            </div> 
+                              
+                        </div>  
+                    </div>    
+                    
+                    <div class="col-md-12 mt-3">
+                        <div class="form-group mb-5">
+                            <button type="submit" class="btn btn-primary" (click)="saveNetwork()">Save </button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <hr style="border-top: 1px solid #b0a697;">
+                    </div>
+                    <div class="col-md-12 mt-3">
+
+                        <div class="row mb-3">
+                            <h3 class="col-md-12 mt-5 left-align">Test Connection</h3>
+                            <div class="col-md-12"> 
+                                <span class="float-right" style="font-size: 12px;">Current URL: <span>{{ currentURL }}</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="row">  
+                            <hr class="mt-5">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">DeepDeck IP:</label>
+                                    <input type="text" class="form-control" placeholder="DeepDeck IP" [(ngModel)]="ipAddress">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6"> 
+                                <div style="margin-top: 32px;">
+                                    <button class="btn btn-primary" (click)="testConnection()">Test Connection</button>
+                                    <mat-icon [ngClass]="{'loading': loading, 'green': isConnected && !loading, 'red': !isConnected && !loading}" style="margin-left: 10px;">circle</mat-icon>
+                                </div>
+                            </div>
+                        
+                        </div>
+                         
+                    
+                        
+                    </div>
+                         
+                </div>
             </div>
-            <div class="form-group mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" [(ngModel)]="network.pass" pattern=".{64}" title="The field requires Chanel " maxlength="64" required="">
-            </div>            
-            <div class="form-group mb-5">
-                <button type="submit" class="btn btn-primary" (click)="saveNetwork()">Save </button>
+        </mat-tab> 
+
+        <mat-tab label="LEDs">
+            <div class='container'>
+                <div class="row mb-3">
+                    <h3 class="col-md-12 mt-5 left-align">LEDs</h3> 
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        
+                        <div class="opciones-container">
+                            <div *ngFor="let opcion of opcionesLeds" class="opcion-card" [class.selected]="opcionSeleccionadaLed === opcion" (click)="opcionSeleccionadaLed = opcion">
+                              <h3>{{ opcion.nombre }}</h3>
+                              <p>{{ opcion.descripcion }}</p>
+                            </div>
+                        </div>
+ 
+                        <div class="form-group mb-5 mt-5">
+                            <button type="submit" class="btn btn-primary" (click)="saveLed()">Save </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </mat-tab> 
+
+    </mat-tab-group> 
+
 </div>
