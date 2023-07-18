@@ -1,7 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,ViewEncapsulation  } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import * as moment from 'moment';
+ 
 
 export interface DialogData {
   id: string;
@@ -11,7 +12,8 @@ export interface DialogData {
 @Component({
   selector: 'app-network',
   templateUrl: './network.component.html',
-  styleUrls: ['./network.component.scss']
+  styleUrls: ['./network.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class NetworkComponent implements OnInit {
@@ -21,7 +23,7 @@ export class NetworkComponent implements OnInit {
     "ssid": "",
     "pass": "",
   }
-
+  
   opcionesLeds = [
     { id: 0, nombre: 'LEDs Off', descripcion: 'Turn off all LEDs.' },
     { id: 1, nombre: 'Pulsating LEDs', descripcion: 'The LEDs blink gently in a pulsing pattern.' },
@@ -31,12 +33,16 @@ export class NetworkComponent implements OnInit {
   ];
   
   opcionSeleccionadaLed: any;
-
+  
   passwordVisible: boolean = false;
-
+  
   ipAddress: string = "192.168.4.1";
   isConnected: boolean;
   loading: boolean = false;
+  
+  valorIntensity: number = 50; // Valor inicial del slider  
+  
+  selectedColor: string = '#FF0000';
 
   constructor(
     public dialog: MatDialog,
@@ -81,14 +87,55 @@ export class NetworkComponent implements OnInit {
       )
     }
 
-    saveLed(){
-      console.log(this.opcionSeleccionadaLed);
-      this.apiService.saveLed(this.opcionSeleccionadaLed).subscribe(
+    saveLed(){ 
+
+      let hexToRgb = null;
+
+      if(this.opcionSeleccionadaLed.id === 4 ){
+        hexToRgb = this.hexToRgb(this.selectedColor)
+      }
+
+      let itemLed = {
+          mode: this.opcionSeleccionadaLed.id,
+          brightness: this.valorIntensity, 
+          rgb: hexToRgb
+      } 
+
+      this.apiService.saveLed(itemLed).subscribe(
         data => {
           alert("Changes saved.!") 
         }
       )
     }
+
+    formatoSlider(value: number | null): string {
+      if (!value) {
+        return '0';
+      }
+    
+      return `${value}`;
+    }
+  
+    hexToRgb(hex: string): number[] {
+      // Eliminar el símbolo "#" si está presente en el color hexadecimal
+      hex = hex.replace("#", "");
+    
+      // Verificar si el string es un color hexadecimal válido
+      const hexRegex = /^[0-9A-Fa-f]{6}$/;
+      if (!hexRegex.test(hex)) {
+        // Si no es un color hexadecimal válido, devolver un color fijo
+        return [255, 0, 0]; // Por ejemplo, rojo
+      }
+    
+      // Extraer los valores de los componentes de color (r, g, b)
+      const r = parseInt(hex.substr(0, 2), 16);
+      const g = parseInt(hex.substr(2, 2), 16);
+      const b = parseInt(hex.substr(4, 2), 16);
+    
+      // Devolver los valores de los componentes de color en un array
+      return [r, g, b];
+    }
+
 
     onTabHeaderFocusChanged(event: FocusEvent): void {
       event.preventDefault();

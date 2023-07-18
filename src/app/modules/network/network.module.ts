@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NetworkRoutingModule } from './network.routing';
 import { NetworkComponent } from './pages/network.component'; 
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module'; 
+
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   imports: [
     CommonModule,
     NetworkRoutingModule,
-    SharedModule
+    SharedModule,
+    ColorPickerModule
   ],
   declarations: [
     NetworkComponent,
