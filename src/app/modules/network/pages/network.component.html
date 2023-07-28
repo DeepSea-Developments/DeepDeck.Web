@@ -91,7 +91,9 @@
                             </div>
                         </div>  
                     </div>
+                </div>
 
+                <div class="row" *ngIf="opcionSeleccionadaLed.id !== 4 && opcionSeleccionadaLed.id !== 5  && opcionSeleccionadaLed.id !== 0" >
                     <div class="col-md-3 mt-5">
                         <div class="form-group mb-3">
                             <label class="form-label">H</label>
@@ -139,23 +141,28 @@
                         </div>
                         <p>Speed: {{ valorSpeed }}</p>
                     </div>
- 
-                    
+                </div> 
+                
+                <div class="row" >
+
                     <div class="col-md-6 mt-5" *ngIf="opcionSeleccionadaLed.id === 4 || opcionSeleccionadaLed.id === 5">
                         <div class="form-group mb-3">
                             <label class="form-label">Solid color</label>
                             <input [(colorPicker)]="selectedColor"  class="form-control" [style.background]="selectedColor"  cpOutputFormat="hex" readonly/>
                         </div>  
                     </div>   
+                    
+                </div>
+                
 
-
+                <div  class="row" >
                     <div class="col-md-12">
                         <div class="form-group mb-5 mt-5">
                             <button type="submit" class="btn btn-primary" (click)="saveLed()">Save </button>
                         </div>
                     </div>
-
-                </div>
+                </div> 
+                
             </div>
         </mat-tab> 
 

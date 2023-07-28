@@ -30,7 +30,7 @@ export class NetworkComponent implements OnInit {
     { id: 2, nombre: 'Progresive', descripcion: 'The LEDs light up sequentially, creating a progressive effect.' },
     { id: 3, nombre: 'Rainbow', descripcion: 'The LEDs display a variety of colors in a rainbow-shaped pattern.' },
     { id: 4, nombre: 'Solid color', descripcion: 'The LEDs display a constant solid color.' },
-    { id: 5, nombre: 'modo 5', descripcion: 'preguntar preguntar' },
+    { id: 5, nombre: 'Solid color active', descripcion: 'The LEDs show a constant solid color to whichever keys are configured.' },
   ];
   
   opcionSeleccionadaLed: any;
@@ -94,23 +94,33 @@ export class NetworkComponent implements OnInit {
     saveLed(){ 
 
       let hexToRgb = null;
+      let valorH= null;
+      let valorS= null;
+      let valorV= null;
+      let valorSpeed= null;
 
       if(this.opcionSeleccionadaLed.id === 4 || this.opcionSeleccionadaLed.id === 5 ){
         hexToRgb = this.hexToRgb(this.selectedColor)
+      }else  if(this.opcionSeleccionadaLed.id === 3 || this.opcionSeleccionadaLed.id === 2 || this.opcionSeleccionadaLed.id === 1 ){
+        valorH = this.valorH;
+        valorS = this.valorS;
+        valorV = this.valorV;
+        valorSpeed = this.valorSpeed;
       }
+      
 
       let itemLed = {
           mode: this.opcionSeleccionadaLed.id,
-          H: this.valorH, 
-          S: this.valorS, 
-          V: this.valorV, 
-          speed: this.valorSpeed, 
+          H: valorH, 
+          S: valorS, 
+          V: valorV, 
+          speed: valorSpeed, 
           rgb: hexToRgb
       } 
 
       this.apiService.saveLed(itemLed).subscribe(
         data => {
-          alert("Changes saved.!") 
+          // alert("Changes saved.!") 
         }
       )
     }
