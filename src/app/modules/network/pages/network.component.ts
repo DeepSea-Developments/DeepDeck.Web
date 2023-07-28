@@ -29,7 +29,8 @@ export class NetworkComponent implements OnInit {
     { id: 1, nombre: 'Pulsating LEDs', descripcion: 'The LEDs blink gently in a pulsing pattern.' },
     { id: 2, nombre: 'Progresive', descripcion: 'The LEDs light up sequentially, creating a progressive effect.' },
     { id: 3, nombre: 'Rainbow', descripcion: 'The LEDs display a variety of colors in a rainbow-shaped pattern.' },
-    { id: 4, nombre: 'Solid color', descripcion: 'The LEDs display a constant solid color.' }
+    { id: 4, nombre: 'Solid color', descripcion: 'The LEDs display a constant solid color.' },
+    { id: 5, nombre: 'modo 5', descripcion: 'preguntar preguntar' },
   ];
   
   opcionSeleccionadaLed: any;
@@ -40,7 +41,10 @@ export class NetworkComponent implements OnInit {
   isConnected: boolean;
   loading: boolean = false;
   
-  valorIntensity: number = 50; // Valor inicial del slider  
+  valorH: number = 50; // Valor inicial del slider  
+  valorS: number = 50; // Valor inicial del slider  
+  valorV: number = 50; // Valor inicial del slider  
+  valorSpeed: number = 50; // Valor inicial del slider  
   
   selectedColor: string = '#FF0000';
 
@@ -91,13 +95,16 @@ export class NetworkComponent implements OnInit {
 
       let hexToRgb = null;
 
-      if(this.opcionSeleccionadaLed.id === 4 ){
+      if(this.opcionSeleccionadaLed.id === 4 || this.opcionSeleccionadaLed.id === 5 ){
         hexToRgb = this.hexToRgb(this.selectedColor)
       }
 
       let itemLed = {
           mode: this.opcionSeleccionadaLed.id,
-          brightness: this.valorIntensity, 
+          H: this.valorH, 
+          S: this.valorS, 
+          V: this.valorV, 
+          speed: this.valorSpeed, 
           rgb: hexToRgb
       } 
 

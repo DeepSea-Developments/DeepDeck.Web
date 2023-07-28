@@ -92,20 +92,56 @@
                         </div>  
                     </div>
 
-                    <div class="col-md-6 mt-5">
+                    <div class="col-md-3 mt-5">
                         <div class="form-group mb-3">
-                            <label class="form-label">Intensity</label>
+                            <label class="form-label">H</label>
                             <div class="slider-container">
                                 <span class="slider-label">0</span>
-                                <mat-slider [(ngModel)]="valorIntensity" min="0"  max="100" step="1" thumbLabel [displayWith]="formatoSlider" style="width:100%;"></mat-slider>
+                                <mat-slider [(ngModel)]="valorH" min="0"  max="100" step="1" thumbLabel [displayWith]="formatoSlider" style="width:100%;"></mat-slider>
                                 <span class="slider-label">100</span>
                             </div>
                         </div>
-                        <p>Intensity: {{ valorIntensity }}</p>
+                        <p>H: {{ valorH }}</p>
                     </div>
-                       
+
+                    <div class="col-md-3 mt-5">
+                        <div class="form-group mb-3">
+                            <label class="form-label">S</label>
+                            <div class="slider-container">
+                                <span class="slider-label">0</span>
+                                <mat-slider [(ngModel)]="valorS" min="0"  max="100" step="1" thumbLabel [displayWith]="formatoSlider" style="width:100%;"></mat-slider>
+                                <span class="slider-label">100</span>
+                            </div>
+                        </div>
+                        <p>S: {{ valorS }}</p>
+                    </div>
+
+                    <div class="col-md-3 mt-5">
+                        <div class="form-group mb-3">
+                            <label class="form-label">V</label>
+                            <div class="slider-container">
+                                <span class="slider-label">0</span>
+                                <mat-slider [(ngModel)]="valorV" min="0"  max="100" step="1" thumbLabel [displayWith]="formatoSlider" style="width:100%;"></mat-slider>
+                                <span class="slider-label">100</span>
+                            </div>
+                        </div>
+                        <p>V: {{ valorV }}</p>
+                    </div>
+
+                    <div class="col-md-3 mt-5">
+                        <div class="form-group mb-3">
+                            <label class="form-label">Speed</label>
+                            <div class="slider-container">
+                                <span class="slider-label">0</span>
+                                <mat-slider [(ngModel)]="valorSpeed" min="0"  max="100" step="1" thumbLabel [displayWith]="formatoSlider" style="width:100%;"></mat-slider>
+                                <span class="slider-label">100</span>
+                            </div>
+                        </div>
+                        <p>Speed: {{ valorSpeed }}</p>
+                    </div>
+ 
                     
-                    <div class="col-md-6 mt-5" *ngIf="opcionSeleccionadaLed.id === 4">
+                    <div class="col-md-6 mt-5" *ngIf="opcionSeleccionadaLed.id === 4 || opcionSeleccionadaLed.id === 5">
                         <div class="form-group mb-3">
                             <label class="form-label">Solid color</label>
                             <input [(colorPicker)]="selectedColor"  class="form-control" [style.background]="selectedColor"  cpOutputFormat="hex" readonly/>
