@@ -6,7 +6,7 @@ To start testing in local, install all the dependencies.
 - in the terminal run npm install to install all the dependencies
 - Run `ng serve` to run the server locally
 - Navigate to `http://localhost:4200/` to acces the content.
-- If the content is white, try exploring the dev tools (F12 in chrome). Make sure that the index.html has this line <base href="http://localhost:4200/">
+- If the content is white, try exploring the dev tools (F12 in chrome). Make sure that the index.html has this line `<base href="http://localhost:4200/">`
 
 ## Upload to DeepDeck
 
