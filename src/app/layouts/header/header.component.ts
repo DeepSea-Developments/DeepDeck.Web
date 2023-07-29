@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   responsiveWatcher: Subscription;
   topGap = 56;
   username: any = "admin";
-
+  ipAddress: string = ""
   
   
   
