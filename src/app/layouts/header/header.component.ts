@@ -18,9 +18,6 @@ export class HeaderComponent implements OnInit {
   responsiveWatcher: Subscription;
   topGap = 56;
   username: any = "admin";
-
-  
-  
   
   constructor(
     private route: Router,
@@ -31,7 +28,7 @@ export class HeaderComponent implements OnInit {
     this.route.events.subscribe((val) => {
       this.path = this.route.url.split('?')[0];
     });
-    this.ipAddress =  localStorage.getItem('ipAddress');
+    // this.ipAddress =  localStorage.getItem('ipAddress');
   }
 
 
