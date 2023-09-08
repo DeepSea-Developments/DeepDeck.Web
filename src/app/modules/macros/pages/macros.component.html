@@ -15,8 +15,8 @@
     <div class = "row">
         <div class = "col">
             <div *ngIf="showDeepDeckMacros">
-                <ul  id="keydeck" *ngFor="let macro of deepdeckMacros; let i = index">
-                    <li [ngClass]="{'active': selectedMacroIndex == i}" (click)="pressMacroKey(i)">
+               <!-- <ul  id="keydeck" *ngFor="let macro of deepdeckMacros; let i = index">
+                     <li [ngClass]="{'active': selectedMacroIndex == i}" (click)="pressMacroKey(i)">
                         <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(macro.name)}">
                             {{macro.name}}
                         </span>
@@ -24,6 +24,36 @@
                             {{keylist_macros[i][0]}}
                         </span>
                     </li> 
+                </ul> --> 
+                <ul id="keydeck">
+                    <ng-container *ngFor="let macro of deepdeckMacros; let i = index">
+                        <ng-container *ngIf="macro.keycode === 'new_add_macro'; else normalMacro">
+                            <!-- Código para 'new_add_macro' --> 
+                            <li (click)="handleNewAddMacro()">
+                                <!-- Contenido para 'new_add_macro' -->
+                                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                                    <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize('new_macro')}">
+                                        {{'new_macro'}}
+                                    </span>
+                                    <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize('+')}">
+                                        +
+                                    </span>
+                                </div>
+                            </li>
+                        </ng-container>
+                        <ng-template #normalMacro>
+                            <!-- Código para otros keycodes -->
+                            <!-- Esto se mostrará para cualquier valor de keycode que no sea 'new_add_macro' -->
+                            <li [ngClass]="{'active': selectedMacroIndex == i}" (click)="pressMacroKey(i)">
+                                <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(macro.name)}">
+                                    {{macro.name}}
+                                </span>
+                                <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(keylist_macros[i][0])}">
+                                    {{keylist_macros[i][0]}}
+                                </span>
+                            </li>
+                        </ng-template>
+                    </ng-container>
                 </ul>
             </div>
         </div>
@@ -52,7 +82,7 @@
     </div> -->
 
 
-    <h3 *ngIf="showMacroSection">Selected Macro {{macroShortName}}</h3>
+    <h3 *ngIf="showMacroSection" style="margin-top: 20px;">Selected Macro {{macroShortName}}</h3>
     <div *ngIf="showMacroSection" class="macro-section rounded">
         <div class="row">
         <div class="col col-xl-4" >
@@ -61,8 +91,8 @@
         </div>
         <div class="col col-xl-4 text-right">
             <!-- <button class="btn btn-primary" (click)="editMacro()">Edit</button> -->
+            <button class="btn btn-danger" (click)="handleDeleteMacro()" style="margin-right: 15px;">Delete</button>
             <button class="btn layer_buttons" (click)="saveMacro()">Save</button>
-            <!-- <button class="btn btn-danger" (click)="addMacro(keyList_basic[0])">Delete</button> -->
         </div>
         </div>
         <div class="row">
@@ -82,7 +112,7 @@
         </div>
     </div>
 
-    <div *ngIf="showMacroSection" class="row">
+    <div *ngIf="showMacroSection" class="row"  style="margin-top: 20px;">
         <div class="col">
             <mat-tab-group class="custom-tabs" (matTabHeaderFocusChanged)="onTabHeaderFocusChanged($event)">
                 <mat-tab label="Basic">
@@ -116,5 +146,5 @@
             </mat-tab-group>
         </div>
     </div>
-    <h1>.</h1>
+    <h1 style="color: #222222;">.</h1>
 </div>

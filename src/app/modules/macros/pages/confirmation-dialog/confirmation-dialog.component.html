@@ -1,0 +1,10 @@
+<div class="confirmation-dialog">
+    <h1 class="mat-dialog-title">Confirm Delete <strong>{{element.name}}</strong></h1>
+    <div class="mat-dialog-content">
+      <p>Are you sure you want to delete the macro <strong>{{element.name}}</strong>?</p>
+    </div>
+    <div class="mat-dialog-actions">
+        <button class="mat-button" [disabled]="isLoading" (click)="onCancelClick()">Cancel</button>
+        <button class="mat-button" [disabled]="isLoading" (click)="onConfirmClick()">Delete</button>
+      </div>
+  </div>

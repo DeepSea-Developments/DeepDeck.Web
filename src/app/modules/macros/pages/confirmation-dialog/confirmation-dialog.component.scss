@@ -1,0 +1,52 @@
+.mat-dialog-title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.mat-dialog-content {
+color: #c9c9c9;
+font-size: 1rem;
+line-height: 1.5em;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+
+  /* Estilo específico para el mensaje "Delete" */
+  span:not(.mat-spinner) { /* Excluir el estilo para el mat-spinner */
+    color: #fff; /* Color de texto */
+  }
+
+  button {
+    font-weight: 500;
+    margin-right: 8px; /* Agrega un margen a la derecha de cada botón */
+    
+    // Cancel button
+    &:first-child {
+      color: #ffffff;
+      background-color: #8d8d8d;
+      border-radius: 4px;
+      padding: 6px 12px;
+
+      &:hover {
+        background-color: darken(#8d8d8d, 5%);
+      }
+    }
+
+    // Delete button
+    &:last-child {
+      color: #fff;
+      background-color: #f44336;
+      border-radius: 4px;
+      padding: 6px 12px;
+
+      &:hover {
+        background-color: darken(#f44336, 5%);
+      }
+    }
+  }
+}
