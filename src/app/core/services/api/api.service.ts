@@ -262,6 +262,10 @@ export class ApiService {
     this.currentConfig = JSON.parse(localStorage.getItem('current_config'));
     this.ipAddress =  localStorage.getItem('ipAddress');
     // this.ipAddress =  '100.64.66.218'//'192.168.4.1';
+
+      //Borrar
+    //this.ipAddress='192.168.1.102';
+
     console.log(this.ipAddress);
   }
 

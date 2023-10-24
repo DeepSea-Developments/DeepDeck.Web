@@ -98,3 +98,29 @@ padding: 2rem;
     margin-left: 5rem;
     padding-right: 5rem;
 }
+
+
+//Responsive Miguel
+.container-2 {
+    max-width: 95%;
+    margin-left: 4rem;
+    padding-right: 2rem;
+}
+
+.paddingBottom{
+    padding-bottom: 150px;
+    margin-top: 20px;
+}
+
+.mat-tab-body-content { overflow: hidden!important}
+
+/* UserDetail.css */
+
+@media (max-width: 768px) { 
+  
+    .container-2 { 
+        margin-left: 2.5rem !important; 
+    }
+
+    /* Otros ajustes de estilos para dispositivos móviles */
+  }

@@ -1,17 +1,15 @@
-
-<div class='container'>
+<div class="container-2 paddingBottom">
     <div class="row">
-        <div class = "col-3">
+        <div class = "col-md-6 mt-3">
             <h2>Macros</h2>
         </div>
-        <div class = "col-3">
+        <div class = "col-md-6 mt-3">
             <button class="layer_buttons" (click)="toggleDDMacros()" >Show/Hide DeepDeck Macros</button>
         </div>
     </div>
 
+    <h4 *ngIf="showDeepDeckMacros" class="mt-5 mb-3">DeepDeck Macros</h4>
 
-    <h4 *ngIf="showDeepDeckMacros">DeepDeck Macros</h4>
-    
     <div class = "row">
         <div class = "col">
             <div *ngIf="showDeepDeckMacros">
@@ -28,7 +26,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- <div class = "row">
         <mat-expansion-panel class="custom-panel">
@@ -52,37 +49,37 @@
     </div> -->
 
 
-    <h3 *ngIf="showMacroSection">Selected Macro {{macroShortName}}</h3>
+    <h3 *ngIf="showMacroSection" class="mt-5 mb-3">Selected Macro {{macroShortName}}</h3>
     <div *ngIf="showMacroSection" class="macro-section rounded">
         <div class="row">
-        <div class="col col-xl-4" >
-            <label for="macro-name">Name:</label>
-            <input type="text" maxlength="6" id="macro-name" class="form-control" [(ngModel)]="macroName">
-        </div>
-        <div class="col col-xl-4 text-right">
-            <!-- <button class="btn btn-primary" (click)="editMacro()">Edit</button> -->
-            <button class="btn layer_buttons" (click)="saveMacro()">Save</button>
-            <!-- <button class="btn btn-danger" (click)="addMacro(keyList_basic[0])">Delete</button> -->
-        </div>
+            <div class="col col-md-6 mt-2" >
+                <label for="macro-name">Name:</label>
+                <input type="text" maxlength="6" id="macro-name" class="form-control" [(ngModel)]="macroName">
+            </div>
+            <div class="col col-md-6 mt-3">
+                <!-- <button class="btn btn-primary" (click)="editMacro()">Edit</button> -->
+                <button class="btn layer_buttons" (click)="saveMacro()">Save</button>
+                <!-- <button class="btn btn-danger" (click)="addMacro(keyList_basic[0])">Delete</button> -->
+            </div>
         </div>
         <div class="row">
-        <div class="col">
-            <label>Keys:</label>
-            <ul id="keyboard">
-                <li *ngFor="let macro of macroKeysAux; let i = index; last as isLast" [class.last-item]="isLast" (click)="removeMacro(i)">
-                    <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(macro[1])}">
-                    {{macro[1]}}
-                    </span>
-                    <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(macro[0])}">
-                    {{macro[0]}}
-                    </span>
-                </li>
-            </ul>
-        </div>
+            <div class="col">
+                <label>Keys:</label>
+                <ul id="keyboard">
+                    <li *ngFor="let macro of macroKeysAux; let i = index; last as isLast" [class.last-item]="isLast" (click)="removeMacro(i)">
+                        <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(macro[1])}">
+                        {{macro[1]}}
+                        </span>
+                        <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(macro[0])}">
+                        {{macro[0]}}
+                        </span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <div *ngIf="showMacroSection" class="row">
+    <div *ngIf="showMacroSection" class="row mt-5">
         <div class="col">
             <mat-tab-group class="custom-tabs" (matTabHeaderFocusChanged)="onTabHeaderFocusChanged($event)">
                 <mat-tab label="Basic">
@@ -116,5 +113,6 @@
             </mat-tab-group>
         </div>
     </div>
-    <h1>.</h1>
+
+
 </div>

@@ -453,6 +453,10 @@ table {
         margin: 0px !important;
       }
 
+      #keyboard li { 
+        width: 35% !important; 
+      } 
+
     }
     
     /* - max-width: 639 */
@@ -477,6 +481,10 @@ table {
       #keyboard{
         margin: 0px !important;
       }
+
+      #keyboard li { 
+        width: 35% !important; 
+      } 
 
     }
     
@@ -503,6 +511,10 @@ table {
         margin: 0px !important;
       }
 
+      #keyboard li { 
+        width: 35% !important; 
+      } 
+
     }
     @media only screen and (min-width: 240px) and (max-width: 479px) {
       .btn-p{
@@ -525,6 +537,10 @@ table {
       #keyboard{
         margin: 0px !important;
       }
+
+      #keyboard li { 
+        width: 27% !important; 
+      } 
 
     }
     
@@ -549,6 +565,11 @@ table {
       #keyboard{
         margin: 0px !important;
       }
+
+      #keyboard li { 
+        width: 27% !important; 
+      } 
+
     }
 
     ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{

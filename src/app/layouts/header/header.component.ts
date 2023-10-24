@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit {
   topGap = 56;
   username: any = "admin";
   
+  resolution;
+
   constructor(
     private route: Router,
     public authService: AuthService,
@@ -37,6 +39,13 @@ export class HeaderComponent implements OnInit {
     .subscribe(
       value => this.username = value.username
     );*/
+
+    this.resolution = window.screen.width;
+
+    console.log('resolution ',this.resolution);
+    if(this.resolution < 900){
+      this.sidebarService.changeSidebar('close');
+    }
     
   }
 
