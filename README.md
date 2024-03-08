@@ -3,7 +3,9 @@
 ## Quick start guide
 To start testing in local, install all the dependencies.
 - Install latest angular. Current version uses Angular 15 and Material 14 https://angular.io/guide/setup-local
-- in the terminal run npm install to install all the dependencies
+- Clone this repo
+- Navigate to the repo folder
+- In the terminal run `npm install` to install all the dependencies
 - Run `ng serve` to run the server locally
 - Navigate to [`http://localhost:4200/`](http://localhost:4200/) to acces the content.
 - If the content is white, try exploring the dev tools (F12 in chrome). Make sure that the index.html has this line <base href="http://localhost:4200/">
