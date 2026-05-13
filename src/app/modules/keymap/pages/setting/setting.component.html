@@ -36,24 +36,28 @@
                 <!-- <div class="col-md-12"> -->
                 <div class="row text-center" style="padding-left:30px; padding-top:30px; margin-top: 35px; ">
                     <ul id="keydeck" *ngFor="let item of layer.row0; let i = index">
-                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)">
+                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)"
+                          [style.border-bottom]="item.rgb ? '4px solid rgb(' + item.rgb.join(',') + ')' : ''">
                           <span class="regular-name">{{item.name}}</span>
                           <span class="fixed-name">{{item.key_code_name}}</span>
                       </li>
                     </ul>
                     <ul id="keydeck" *ngFor="let item of layer.row1; let i = index">
-                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row1, item, i)">
+                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row1, item, i)"
+                      [style.border-bottom]="item.rgb ? '4px solid rgb(' + item.rgb.join(',') + ')' : ''">
                         <span class="regular-name"  style="user-select: none;">{{item.name}}</span>
                         <span class="fixed-name">{{item.key_code_name}}</span>
                       </li> 
                     </ul>
                     <ul id="keydeck" *ngFor="let item of layer.row2; let i = index">
-                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row2, item, i)">
+                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row2, item, i)"
+                      [style.border-bottom]="item.rgb ? '4px solid rgb(' + item.rgb.join(',') + ')' : ''">
                         <span class="regular-name" >{{item.name}}</span>
                         <span class="fixed-name">{{item.key_code_name}}</span>
                       </li>                    </ul>
                     <ul id="keydeck" *ngFor="let item of layer.row3; let i = index">
-                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row3, item, i)">
+                      <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row3, item, i)"
+                      [style.border-bottom]="item.rgb ? '4px solid rgb(' + item.rgb.join(',') + ')' : ''">
                         <span class="regular-name">{{item.name}}</span>
                         <span class="fixed-name">{{item.key_code_name}}</span>
                       </li>
@@ -291,7 +295,42 @@
                       </ul>
                     </mat-tab>
                     
-          
+                    <mat-tab label="Color">
+                      <div class="color-tab-container">
+                        <div *ngIf="seletedDeepKey; else noKeySelected" class="color-picker-card">
+                          <h4 class="selected-key-title">
+                            Color for: <span>{{ seletedDeepKey.name }}</span>
+                          </h4>
+                          
+                          <div class="color-swatch-wrapper">
+                            <div 
+                              [(colorPicker)]="selectedColor" 
+                              (colorPickerChange)="onColorChange($event)"
+                              [style.background]="selectedColor"
+                              [cpPosition]="'bottom'"
+                              [cpOutputFormat]="'hex'"
+                              class="color-swatch">
+                              <i class="material-icons color-icon">palette</i>
+                            </div>
+                          </div>
+
+                          <div class="rgb-info">
+                            <div class="rgb-tag">R: {{ seletedDeepKey.rgb?.[0] || 0 }}</div>
+                            <div class="rgb-tag">G: {{ seletedDeepKey.rgb?.[1] || 0 }}</div>
+                            <div class="rgb-tag">B: {{ seletedDeepKey.rgb?.[2] || 0 }}</div>
+                          </div>
+
+                          <p class="help-text">Tap the circle to change color</p>
+                        </div>
+
+                        <ng-template #noKeySelected>
+                          <div class="no-selection">
+                            <i class="material-icons">mouse</i>
+                            <p>Select a key on the keyboard to assign a color</p>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </mat-tab>
               </mat-tab-group> 
           </div>
           <div class="col-md-12 mt-3">

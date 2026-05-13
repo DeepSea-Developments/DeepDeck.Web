@@ -6,16 +6,19 @@ import { SettingComponent } from './pages/setting/setting.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ConfirmationDialogComponent } from './pages/confirmation-dialog/confirmation-dialog.component';
 
+import { ColorPickerModule } from 'ngx-color-picker';
+
 @NgModule({
   imports: [
     CommonModule,
     KeymapRoutingModule,
-    SharedModule
+    SharedModule,
+    ColorPickerModule
   ],
   declarations: [
     KeymapComponent,
     SettingComponent,
-    ConfirmationDialogComponent,
+    ConfirmationDialogComponent
   ],
   providers: [
   ],

@@ -57,7 +57,17 @@ export class NetworkComponent implements OnInit {
     ngOnInit(): void {
       this.opcionSeleccionadaLed = this.opcionesLeds[0];
       this.loadConfig();
-      this.getLocalIPAddress();
+       // 1. Intentar obtener la IP del localStorage
+      const savedIP = localStorage.getItem('ipAddress');
+
+      if (savedIP) {
+        this.ipAddress = savedIP;
+        // Notificar al servicio la IP que recuperamos
+        this.apiService.updateIP(this.ipAddress);
+      } else {
+        // 2. Si no hay nada guardado, detectarla automáticamente
+        this.getLocalIPAddress();
+      } 
     }
     
     loadConfig() {

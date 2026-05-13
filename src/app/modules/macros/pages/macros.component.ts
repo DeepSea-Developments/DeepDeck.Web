@@ -34,6 +34,11 @@ export class MacrosComponent {
   showMacroSection: boolean = false;
   showDeepDeckMacros: boolean = true;
 
+  // Nuevas variables para el estado de la macro seleccionada
+  macroType: number = 0;
+  osType: number = 0; // 0: Windows por defecto
+  appName: string = "";
+
   ngOnInit(): void {  
     
     this.apiService.getMacros()
@@ -86,7 +91,11 @@ export class MacrosComponent {
 
     keyAux.name = this.macroName;
     keyAux.key = this.macroKeys;
-       
+    
+    keyAux.macro_type = Number(this.macroType); // Aseguramos que sea número
+    keyAux.os_type = Number(this.osType);
+    keyAux.app_alias = this.macroType != 0 ? this.appName : ""; // Limpiamos si es normal
+
     this.apiService.updateMacro(keyAux).subscribe(
       response => {
         console.log(response);
@@ -114,6 +123,10 @@ export class MacrosComponent {
     this.macroName = this.deepdeckMacros[index].name;
     this.macroShortName = this.keylist_macros[index][0];
     this.showMacroSection = true;
+
+    this.macroType = this.deepdeckMacros[index].macroType ?? this.macroType;
+    this.osType = this.deepdeckMacros[index].osType ?? this.osType;
+    this.appName = this.deepdeckMacros[index].appName ?? '';
 
     let tmp_key: number[] = this.deepdeckMacros[index].key;
 

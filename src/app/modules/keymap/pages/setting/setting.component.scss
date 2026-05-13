@@ -556,3 +556,88 @@ table {
       padding: 3px!important;
       margin: 3px!important;
      }
+
+  .color-tab-container {
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      min-height: 700px;
+      color: white;
+
+      .color-picker-card {
+        text-align: center; 
+        padding: 2rem;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 400px; 
+
+        .selected-key-title {
+          margin-bottom: 1.5rem;
+          font-weight: 300;
+          span { font-weight: bold; color: #ffb300; }
+        }
+      }
+
+      .color-swatch-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .color-swatch {
+        width: 120px;  
+        height: 120px;
+        border-radius: 50%; 
+        border: 4px solid #444;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.2s;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+
+        &:active { transform: scale(0.9); }  
+
+        .color-icon {
+          font-size: 40px;
+          color: rgba(255,255,255,0.8);
+          text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+      }
+
+      .rgb-info {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 1rem;
+
+        .rgb-tag {
+          background: #333;
+          padding: 5px 12px;
+          border-radius: 20px;
+          font-family: monospace;
+          font-size: 0.9rem;
+        }
+      }
+
+      .help-text {
+        color: #888;
+        font-size: 0.8rem;
+      }
+
+      .no-selection {
+        text-align: center;
+        color: #666;
+        i { font-size: 50px; margin-bottom: 1rem; }
+      }
+  }  
+    @media (max-width: 480px) {
+      .color-tab-container {
+        padding: 1rem;
+        .color-swatch {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }

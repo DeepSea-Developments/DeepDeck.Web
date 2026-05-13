@@ -23,7 +23,7 @@ table {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
+}   
 
 .opcion-card.selected {
     background-color: #916d17;
@@ -115,3 +115,25 @@ button.connected-icon.red {
     background-color: #916d17 !important;
 }
  
+
+.select-dark {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+    &:focus {
+        background-color: #444;
+        color: white;
+        border-color: #ffb300; // El color naranja de tus botones
+        box-shadow: none;
+    }
+}
+
+.macro-section {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}

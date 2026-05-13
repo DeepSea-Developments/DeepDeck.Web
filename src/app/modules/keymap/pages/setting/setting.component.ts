@@ -148,6 +148,8 @@ export class SettingComponent implements OnInit {
   mostrarGestures: boolean = false;
   mostrarDeppDeck: boolean = true;
 
+  selectedColor: string = '#ffffff';  
+
   constructor(
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
@@ -281,8 +283,15 @@ export class SettingComponent implements OnInit {
     this.indexDeepKey = index;
     this.deepKeys = deepKeys;
     this.KeyName = item.name;
-  }
 
+    // Si la tecla ya tiene color en formato [r,g,b], lo convertimos a HEX para el picker
+    if (item.rgb) {
+      this.selectedColor = this.rgbToHex(item.rgb[0], item.rgb[1], item.rgb[2]);
+    } else {
+      this.selectedColor = '#ffffff'; // Color por defecto
+    }
+  }
+  
   updateKeyName(){
     this.deepKeys[this.indexDeepKey].name = this.KeyName;
   }
@@ -296,6 +305,29 @@ export class SettingComponent implements OnInit {
 
   onTabHeaderFocusChanged(event: FocusEvent): void {
     event.preventDefault();
+  }
+
+  onColorChange(hex: string) {
+    if (this.seletedDeepKey) {
+      this.selectedColor = hex; // Mantener sincronizado
+      const rgb = this.hexToRgb(hex);
+      if (rgb) {
+        this.seletedDeepKey.rgb = [rgb.r, rgb.g, rgb.b];
+      }
+    }
+  }
+
+  hexToRgb(hex: string) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+
+  rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
   }
 
   saveLayer(){ 

@@ -9,6 +9,25 @@
         </div>
     </div>
 
+    <div class="row mb-3 mt-2">
+        <div class="col-md-4">
+            <label class="text-white">OS Type:</label>
+            <select class="form-control select-dark" [(ngModel)]="osType">
+                <option [value]="0">Windows</option>
+                <option [value]="1">Mac</option>
+                <option [value]="2">Linux</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="text-white">Macro Type:</label>
+            <select class="form-control select-dark" [(ngModel)]="macroType">
+                <option [value]="0">Normal</option>
+                <option [value]="1">App Launcher</option>
+                <option [value]="2">String Output</option>
+            </select>
+        </div>
+    </div>
+
 
     <h4 *ngIf="showDeepDeckMacros">DeepDeck Macros</h4>
     
@@ -53,32 +72,36 @@
 
 
     <h3 *ngIf="showMacroSection">Selected Macro {{macroShortName}}</h3>
-    <div *ngIf="showMacroSection" class="macro-section rounded">
+    <div *ngIf="showMacroSection" class="macro-section rounded p-3">
         <div class="row">
-        <div class="col col-xl-4" >
-            <label for="macro-name">Name:</label>
-            <input type="text" maxlength="6" id="macro-name" class="form-control" [(ngModel)]="macroName">
-        </div>
-        <div class="col col-xl-4 text-right">
-            <!-- <button class="btn btn-primary" (click)="editMacro()">Edit</button> -->
-            <button class="btn layer_buttons" (click)="saveMacro()">Save</button>
-            <!-- <button class="btn btn-danger" (click)="addMacro(keyList_basic[0])">Delete</button> -->
-        </div>
+            <div class="col col-xl-4">
+                <label for="macro-name">Name:</label>
+                <input type="text" maxlength="6" id="macro-name" class="form-control" [(ngModel)]="macroName" style="width: 100%;">
+            </div>
+            <div class="col col-xl-4" *ngIf="macroType != 0">
+                <label for="app-name">App Name / String:</label>
+                <input type="text" id="app-name" class="form-control" [(ngModel)]="appName" placeholder="e.g. Chrome or Hello World" style="width: 100%;">
+            </div>
+           <div class="col col-xl-4 text-center align-self-end">
+                <!-- <button class="btn btn-primary" (click)="editMacro()">Edit</button> -->
+                <button class="btn layer_buttons" (click)="saveMacro()">Save</button>
+                <!-- <button class="btn btn-danger" (click)="addMacro(keyList_basic[0])">Delete</button> -->
+            </div>
         </div>
         <div class="row">
-        <div class="col">
-            <label>Keys:</label>
-            <ul id="keyboard">
-                <li *ngFor="let macro of macroKeysAux; let i = index; last as isLast" [class.last-item]="isLast" (click)="removeMacro(i)">
-                    <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(macro[1])}">
-                    {{macro[1]}}
-                    </span>
-                    <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(macro[0])}">
-                    {{macro[0]}}
-                    </span>
-                </li>
-            </ul>
-        </div>
+            <div class="col">
+                <label>Keys:</label>
+                <ul id="keyboard">
+                    <li *ngFor="let macro of macroKeysAux; let i = index; last as isLast" [class.last-item]="isLast" (click)="removeMacro(i)">
+                        <span class="regular-name" [ngStyle]="{'font-size': getTextFontSize(macro[1])}">
+                        {{macro[1]}}
+                        </span>
+                        <span class="fixed-name" [ngStyle]="{'font-size': getTextFontSize(macro[0])}">
+                        {{macro[0]}}
+                        </span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -116,5 +139,5 @@
             </mat-tab-group>
         </div>
     </div>
-    <h1>.</h1>
+    <h1 style="color: #222222">.</h1>
 </div>
