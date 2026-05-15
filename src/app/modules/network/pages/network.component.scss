@@ -8,26 +8,32 @@ table {
 }
 
 .opciones-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    /* Crea columnas automáticas de mínimo 160px. Se ajustan solas al ancho disponible */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px; /* Espacio uniforme entre cards */
+    width: 100%;
 }
 
 .opcion-card {
     background-color: #363434;
     color: #a1988b;
-    width: 200px;
+    /* Quitamos el width fijo de 200px para que el grid lo controle */
     height: 150px;
     padding: 20px;
-    margin-bottom: 20px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}   
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}  
 
 .opcion-card.selected {
     background-color: #916d17;
-    color: #a6a6a6;
+    color: #ffffff; /* Un poco más claro para mejor contraste */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .opcion-card h3 {
@@ -40,10 +46,20 @@ table {
     line-height: 18px;
 }
 
-@media (max-width: 468px) {
+@media (max-width: 576px) {
     .opciones-container {
-      flex-direction: column;
-      align-items: center;
+        /* En celulares muy pequeños, 2 columnas exactas */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .opcion-card {
+        height: 120px; /* Reducimos un poco la altura en móvil */
+        padding: 10px;
+    }
+
+    .opcion-card h3 {
+        font-size: 14px;
     }
 }
 
@@ -136,4 +152,15 @@ button.connected-icon.red {
 label {
     font-weight: 500;
     margin-bottom: 5px;
+}
+
+
+.layer_buttons
+{
+  color:black; 
+  background: #dc9f10; 
+  border-radius: 5px; 
+  padding: 5px;
+  margin: 5px;
+  min-width: 100px;
 }

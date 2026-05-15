@@ -297,6 +297,17 @@
                     
                     <mat-tab label="Color">
                       <div class="color-tab-container">
+
+                        <div class="custom-instructions-alert">
+                          <mat-icon>info</mat-icon>
+                          <div class="message-content">
+                            <span><strong>Key custom color mode active:</strong> Select keys on the map to set their unique colors.</span>
+                            <p class="sub-message">
+                              After configuring, go to <strong>Settings > LEDs tab</strong> and select <strong>"Key custom color"</strong> to apply these colors to your device.
+                            </p>
+                          </div>
+                        </div>
+
                         <div *ngIf="seletedDeepKey; else noKeySelected" class="color-picker-card">
                           <h4 class="selected-key-title">
                             Color for: <span>{{ seletedDeepKey.name }}</span>

@@ -28,9 +28,11 @@ export class NetworkComponent implements OnInit {
     { id: 0, nombre: 'LEDs Off', descripcion: 'Turn off all LEDs.' },
     { id: 1, nombre: 'Pulsating LEDs', descripcion: 'The LEDs blink gently in a pulsing pattern.' },
     { id: 2, nombre: 'Progresive', descripcion: 'The LEDs light up sequentially, creating a progressive effect.' },
-    { id: 3, nombre: 'Rainbow', descripcion: 'The LEDs display a variety of colors in a rainbow-shaped pattern.' },
+    { id: 7, nombre: 'Rainbow', descripcion: 'The LEDs display a variety of colors in a rainbow pattern.' },
     { id: 4, nombre: 'Solid color', descripcion: 'The LEDs display a constant solid color.' },
-    { id: 5, nombre: 'Solid color active', descripcion: 'The LEDs show a constant solid color to whichever keys are configured.' },
+    { id: 3, nombre: 'Spark', descripcion: ' Random colors in random keys continuously.' },
+    { id: 6, nombre: 'Fireball', descripcion: 'Red fireball effect trough all keys..' },
+    { id: 8, nombre: 'Key custom color', descripcion: 'Individual key color configured in layer.' },
   ];
   
   opcionSeleccionadaLed: any;
@@ -71,6 +73,7 @@ export class NetworkComponent implements OnInit {
     }
     
     loadConfig() {
+      this.isConnected = false;
       this.apiService.getCurrentConfigData(true)
       .subscribe(
         value => {
@@ -82,6 +85,7 @@ export class NetworkComponent implements OnInit {
           this.network.ApnPassword = value.ApnPassword;
           this.network.FWVersion = value.FWVersion;
           this.network.Mac = value.Mac;
+           this.isConnected = true;
         }
       );
     } 
@@ -109,9 +113,9 @@ export class NetworkComponent implements OnInit {
       let valorV= null;
       let valorSpeed= null;
 
-      if(this.opcionSeleccionadaLed.id === 4 || this.opcionSeleccionadaLed.id === 5 ){
+      if(this.opcionSeleccionadaLed.id === 4){
         hexToRgb = this.hexToRgb(this.selectedColor)
-      }else  if(this.opcionSeleccionadaLed.id === 3 || this.opcionSeleccionadaLed.id === 2 || this.opcionSeleccionadaLed.id === 1 ){
+      }else  if(this.opcionSeleccionadaLed.id === 7 || this.opcionSeleccionadaLed.id === 2 || this.opcionSeleccionadaLed.id === 1 ){
         valorH = this.valorH;
         valorS = this.valorS;
         valorV = this.valorV;
@@ -199,6 +203,10 @@ export class NetworkComponent implements OnInit {
   
       this.apiService.updateIP(this.ipAddress);
   
+      this.testIP();
+    }
+
+    testIP(){
       this.loading = true; // Set loading state to true
   
       this.apiService.getCurrentConfigData(true).subscribe(
@@ -214,7 +222,7 @@ export class NetworkComponent implements OnInit {
           this.loading = false; // Set loading state to false
         }
       );
-    }
+   }
   
 }
 

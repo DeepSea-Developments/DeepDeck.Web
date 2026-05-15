@@ -557,17 +557,15 @@ table {
       margin: 3px!important;
      }
 
-  .color-tab-container {
-      padding: 2rem;
+  .color-tab-container { 
       display: flex;
-      justify-content: center;
-      align-items: start;
+      flex-direction: column; /* Esto pone el aviso arriba y el contenido abajo */
+      align-items: center;    /* Centra el picker */  
       min-height: 700px;
       color: white;
 
       .color-picker-card {
         text-align: center; 
-        padding: 2rem;
         border-radius: 15px;
         width: 100%;
         max-width: 400px; 
@@ -633,11 +631,46 @@ table {
       }
   }  
     @media (max-width: 480px) {
-      .color-tab-container {
-        padding: 1rem;
+      .color-tab-container {  
         .color-swatch {
           width: 100px;
           height: 100px;
         }
       }
+    }
+
+    .custom-instructions-alert {
+        margin-top: 25px;
+        width: 90%;
+        max-width: 650px;
+        background-color: rgba(145, 109, 23, 0.1); /* Fondo dorado suave */
+        border-left: 4px solid #916d17;           /* Borde lateral dorado */
+        padding: 15px;
+        margin-bottom: 25px;                      /* Espacio con el contenido de abajo */
+        border-radius: 4px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .custom-instructions-alert mat-icon {
+        color: #916d17;
+        margin-top: 2px;
+    }
+
+    .message-content {
+        color: #e0e0e0;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .message-content strong {
+        color: #916d17;
+    }
+
+    .sub-message {
+        margin-top: 5px;
+        margin-bottom: 0;
+        color: #a1988b; /* Color de texto secundario */
+        font-size: 13px;
     }
