@@ -66,7 +66,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div style="margin-top: 32px;">
+                                <div style="margin-top: 25px;">
                                     <button class="layer_buttons" (click)="testConnection()">Test Connection</button>
                                     <mat-icon
                                         [ngClass]="{'loading': loading, 'green': isConnected && !loading, 'red': !isConnected && !loading}"
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="row"
-                    *ngIf="opcionSeleccionadaLed.id === 1 || opcionSeleccionadaLed.id === 2  || opcionSeleccionadaLed.id === 7">
+                    *ngIf="opcionSeleccionadaLed.id === 1 || opcionSeleccionadaLed.id === 2 || opcionSeleccionadaLed.id === 3  || opcionSeleccionadaLed.id === 7">
                     <div class="col-6 col-md-3 mt-4">
                         <div class="form-group mb-3 text-center">
                             <label class="form-label">H</label>

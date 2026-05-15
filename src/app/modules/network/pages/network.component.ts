@@ -115,7 +115,7 @@ export class NetworkComponent implements OnInit {
 
       if(this.opcionSeleccionadaLed.id === 4){
         hexToRgb = this.hexToRgb(this.selectedColor)
-      }else  if(this.opcionSeleccionadaLed.id === 7 || this.opcionSeleccionadaLed.id === 2 || this.opcionSeleccionadaLed.id === 1 ){
+      }else  if(this.opcionSeleccionadaLed.id === 7 || this.opcionSeleccionadaLed.id === 3 || this.opcionSeleccionadaLed.id === 2 || this.opcionSeleccionadaLed.id === 1 ){
         valorH = this.valorH;
         valorS = this.valorS;
         valorV = this.valorV;
