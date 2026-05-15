@@ -92,9 +92,10 @@ export class MacrosComponent {
     keyAux.name = this.macroName;
     keyAux.key = this.macroKeys;
     
-    keyAux.macro_type = Number(this.macroType); // Aseguramos que sea número
+    // Aseguramos que se guarden con los nombres que el firmware entiende
+    keyAux.macro_type = Number(this.macroType); 
     keyAux.os_type = Number(this.osType);
-    keyAux.app_alias = this.macroType != 0 ? this.appName : ""; // Limpiamos si es normal
+    keyAux.app_alias = this.macroType != 0 ? this.appName : "";
 
     this.apiService.updateMacro(keyAux).subscribe(
       response => {
@@ -116,35 +117,40 @@ export class MacrosComponent {
 
   pressMacroKey(index: number): void {
 
-    // Remove the zeros at the end (just leave 1)
+    // 1. Guardar el índice seleccionado
     this.selectedMacroIndex = index;
+    const selectedMacro = this.deepdeckMacros[index];
 
-    //store info of the key for showing in the UI
-    this.macroName = this.deepdeckMacros[index].name;
+    // 2. Cargar información básica
+    this.macroName = selectedMacro.name;
     this.macroShortName = this.keylist_macros[index][0];
     this.showMacroSection = true;
 
-    this.macroType = this.deepdeckMacros[index].macroType ?? this.macroType;
-    this.osType = this.deepdeckMacros[index].osType ?? this.osType;
-    this.appName = this.deepdeckMacros[index].appName ?? '';
+    // 3. CORRECCIÓN: Nombres de campos según el JSON del API
+    // Usamos el operador || para asignar un valor por defecto si el campo viene nulo o indefinido
+    this.macroType = selectedMacro.macro_type !== undefined ? selectedMacro.macro_type : 0;
+    this.osType = selectedMacro.os_type !== undefined ? selectedMacro.os_type : 0;
+    this.appName = selectedMacro.app_alias || '';
 
-    let tmp_key: number[] = this.deepdeckMacros[index].key;
+    // 4. Procesar las teclas (Keycodes)
+    let tmp_key: number[] = selectedMacro.key || [];
 
+    // Eliminar ceros al final
     const zeroIndex = tmp_key.findIndex(num => num === 0);
     if (zeroIndex !== -1) {
       tmp_key = tmp_key.slice(0, zeroIndex + 1);
     }
 
-    //Search short and long name of the key, and save an array with it.
+    // 5. Traducir keycodes a nombres para la UI
     this.macroKeysAux = [];
-      for (let key of tmp_key) {
-
-        this.macroKeysAux.push( [this.keyboardService.GetKeyNameByKeyCode(key),
-                              this.keyboardService.GetKeyShortNameByKeyCode(key)] );
+    for (let key of tmp_key) {
+      this.macroKeysAux.push([
+        this.keyboardService.GetKeyNameByKeyCode(key),
+        this.keyboardService.GetKeyShortNameByKeyCode(key)
+      ]);
     }
+
     this.macroKeys = tmp_key;
-    console.log(this.macroKeys);
-    console.log(this.macroKeysAux);
   }
 
   pressKey(keyElement: any):void {
