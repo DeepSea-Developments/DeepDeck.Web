@@ -8,6 +8,20 @@ To start testing in local, install all the dependencies.
 - Navigate to [`http://localhost:4200/`](http://localhost:4200/) to acces the content.
 - If the content is white, try exploring the dev tools (F12 in chrome). Make sure that the index.html has this line <base href="http://localhost:4200/">
 
+## Base href
+
+`index.html` sets `<base href="/">`, which is correct both for `ng serve` on
+localhost and for the copy served off the DeepDeck itself. Only a deploy to a
+subpath needs anything else, and that is a build flag rather than a file edit:
+
+```
+ng build --configuration production --base-href /DeepDeck.Web/
+```
+
+That is what the GitHub Pages copy at
+`deepsea-developments.github.io/DeepDeck.Web` needs. Please do not commit a
+hardcoded absolute `base href` — it silently breaks every other target.
+
 ## Upload to DeepDeck
 
 You can run the following commands:
