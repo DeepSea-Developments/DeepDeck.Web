@@ -91,7 +91,23 @@
                               <p>{{ opcion.descripcion }}</p>
                             </div>
                         </div>
- 
+
+                        <div class="form-group mt-5 led-brightness">
+                            <label for="led-brightness">Brightness: {{ ledBrightness }}%</label>
+                            <input type="range" id="led-brightness" class="form-range"
+                                   min="0" max="100" step="1"
+                                   [(ngModel)]="ledBrightness" [ngModelOptions]="{standalone: true}"
+                                   (ngModelChange)="onBrightnessChange()">
+                            <small>Applies to every mode, and takes effect as you drag. The LEDs are uncomfortably bright at 100%.</small>
+                        </div>
+
+                        <div class="form-group mt-4 led-color" *ngIf="opcionSeleccionadaLed?.id === 4">
+                            <label for="led-color">Solid color:</label>
+                            <input type="color" id="led-color"
+                                   [(ngModel)]="ledColor" [ngModelOptions]="{standalone: true}"
+                                   (ngModelChange)="onLedColorChange()">
+                        </div>
+
                         <div class="form-group mb-5 mt-5">
                             <button type="submit" class="btn btn-primary" (click)="saveLed()">Save </button>
                         </div>

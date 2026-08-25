@@ -89,3 +89,39 @@ button.connected-icon.loading {
     button.connected-icon.red {
     color: red !important; /* Change the color to red or any other desired color */
     }
+/* --- LED brightness and colour ----------------------------------------- */
+
+.led-brightness {
+  max-width: 420px;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
+
+  small {
+    display: block;
+    margin-top: 0.25rem;
+    opacity: 0.7;
+  }
+}
+
+.led-color {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  input[type="color"] {
+    width: 52px;
+    height: 30px;
+    padding: 2px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+  }
+}
