@@ -104,18 +104,23 @@ export class NetworkComponent implements OnInit {
       let match = url.match(regex);
 
       if (match && match.length > 1) {
+        // Served from the DeepDeck itself, so the page's own host is the device.
         this.currentURL = match[1];
         console.log('getLocalIPAddress match',url)
-      }else{
-        let url = new URL(window.location.href);
-        this.currentURL = url.hostname;
-        console.log('getLocalIPAddress  url',url)
+        this.ipAddress = this.currentURL;
+        localStorage.setItem('ipAddress', this.ipAddress);
+        return;
       }
 
-      this.ipAddress =  this.currentURL;
-      // Store the IP address in the localStorage
-      localStorage.setItem('ipAddress', this.ipAddress);
-
+      /* Served from somewhere that is not the device - ng serve on localhost,
+         or the GitHub Pages copy. The page's own hostname is not the DeepDeck,
+         so keep whatever was last entered in the field below rather than
+         overwriting it with "localhost" on every visit to this page. */
+      const stored = localStorage.getItem('ipAddress');
+      if (stored) {
+        this.ipAddress = stored;
+      }
+      console.log('getLocalIPAddress: not served from a device, using', this.ipAddress);
     }
 
     testConnection() {
