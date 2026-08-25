@@ -556,3 +556,46 @@ table {
       padding: 3px!important;
       margin: 3px!important;
      }
+/* --- LED colours ------------------------------------------------------- */
+
+/* A colour input styled to sit alongside the existing key name field rather
+   than showing the browser's default chunky swatch button. */
+.color_field {
+  width: 46px;
+  height: 28px;
+  padding: 2px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.color_field:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.layer-color-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* The base rule leaves li unpositioned - only :hover sets it - so the swatch
+   below would otherwise anchor to some ancestor instead of to its own key. */
+#keydeck li {
+  position: relative;
+}
+
+/* Strip along the bottom of each key showing the colour it will light up,
+   so the whole layer can be read at a glance. */
+.key-color-swatch {
+  display: block;
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 4px;
+  height: 4px;
+  border-radius: 2px;
+}

@@ -27,10 +27,21 @@ export class NetworkComponent implements OnInit {
     { id: 1, nombre: 'Pulsating LEDs', descripcion: 'The LEDs blink gently in a pulsing pattern.' },
     { id: 2, nombre: 'Progresive', descripcion: 'The LEDs light up sequentially, creating a progressive effect.' },
     { id: 3, nombre: 'Rainbow', descripcion: 'The LEDs display a variety of colors in a rainbow-shaped pattern.' },
-    { id: 4, nombre: 'Solid color', descripcion: 'The LEDs display a constant solid color.' }
+    { id: 4, nombre: 'Solid color', descripcion: 'The LEDs display a constant solid color.' },
+    { id: 9, nombre: 'Layer color', descripcion: 'Every mapped key shows the colour of the layer that is active, so you can tell layers apart at a glance.' },
+    { id: 8, nombre: 'Key colors', descripcion: 'Each key shows its own colour. Set them per layer in the layer editor.' }
   ];
-  
+
   opcionSeleccionadaLed: any;
+
+  /* Brightness applies to every mode. The default here only matters until
+     loadLed() has heard back from the device. */
+  ledBrightness: number = 50;
+
+  /* Colour used by the Solid color mode. */
+  ledColor: string = '#002878';
+
+  private brightnessTimer: any = null;
 
   passwordVisible: boolean = false;
 
@@ -45,9 +56,33 @@ export class NetworkComponent implements OnInit {
 
   }
     ngOnInit(): void {
-      this.opcionSeleccionadaLed = this.opcionesLeds[0];
+      /* Deliberately not pre-selecting a mode here. It used to default to
+         opcionesLeds[0], which is "LEDs Off", and loadLed() only corrects that
+         once the device answers - so saving before then, or after a failed
+         load, posted mode 0 and turned the LEDs off. */
       this.loadConfig();
+      this.loadLed();
       this.getLocalIPAddress();
+    }
+
+    /* Read the settings off the device first. Without this the controls would
+       start at the defaults above, and the first save would quietly undo a
+       brightness or colour set from the on-device menu. */
+    loadLed() {
+      this.apiService.getLed().subscribe(
+        value => {
+          const match = this.opcionesLeds.find(opcion => opcion.id === value.mode);
+          if (match) {
+            this.opcionSeleccionadaLed = match;
+          }
+          if (typeof value.brightness === 'number') {
+            this.ledBrightness = value.brightness;
+          }
+          if (value.color) {
+            this.ledColor = value.color;
+          }
+        }
+      );
     }
     
     loadConfig() {
@@ -81,13 +116,36 @@ export class NetworkComponent implements OnInit {
       )
     }
 
+    /* Each control sends only its own field. The firmware merges a partial
+       payload into the settings it already holds, so brightness cannot disturb
+       the mode and the mode cannot disturb the brightness. Sending all three
+       together is what let a stale card selection switch the LEDs off. */
     saveLed(){
-      console.log(this.opcionSeleccionadaLed);
-      this.apiService.saveLed(this.opcionSeleccionadaLed).subscribe(
+      if (!this.opcionSeleccionadaLed) {
+        alert("No LED mode loaded from the device yet.");
+        return;
+      }
+      this.apiService.saveLed({ id: this.opcionSeleccionadaLed.id }).subscribe(
         data => {
           alert("Changes saved.!") 
         }
       )
+    }
+
+    /* Brightness applies as you drag, so the slider shows what it does. The
+       timer coalesces a drag into one request instead of one per pixel. */
+    onBrightnessChange() {
+      if (this.brightnessTimer) {
+        clearTimeout(this.brightnessTimer);
+      }
+      this.brightnessTimer = setTimeout(() => {
+        this.brightnessTimer = null;
+        this.apiService.saveLed({ brightness: this.ledBrightness }).subscribe();
+      }, 200);
+    }
+
+    onLedColorChange() {
+      this.apiService.saveLed({ color: this.ledColor }).subscribe();
     }
 
     onTabHeaderFocusChanged(event: FocusEvent): void {
