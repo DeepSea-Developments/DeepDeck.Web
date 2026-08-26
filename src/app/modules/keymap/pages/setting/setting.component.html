@@ -4,6 +4,10 @@
         <div class="col-md-4">
             <input type="text" maxlength="8" class="form-control input-layer" [(ngModel)]="layer.name">
         </div>
+        <div class="col-md-4 layer-color-picker">
+            <label for="layer-color" class="key_label">Layer color:</label>
+            <input type="color" id="layer-color" class="color_field" [(ngModel)]="layer.layer_color">
+        </div>
         <div class="col-md-8 text-right">
           <button (click)="saveLayer()"       class="btn-p">Save</button>
           <button [routerLink]="['/keymap']"  class="btn-p">Cancel</button>
@@ -26,6 +30,10 @@
                   <!-- <div class="col col-xl-4" > -->
                     <label for="macro-name" class="key_label">Key Name:</label>
                     <input type="text" maxlength="6" id="macro-name" class=" key_name_field " [(ngModel)]="KeyName" (input)="onInputChange($event)" placeholder="" [disabled]="indexDeepKey === ''">
+
+                    <label for="key-color" class="key_label">Key color:</label>
+                    <input type="color" id="key-color" class="color_field" *ngIf="seletedDeepKey" [(ngModel)]="seletedDeepKey.color">
+                    <input type="color" class="color_field" *ngIf="!seletedDeepKey" disabled value="#000000">
                   <!-- </div> -->
                   <!-- <div class="col col-xl-4 text-right"> -->
                    <!--   <button class="key_name_update_button" (click)="updateKeyName()" >>Update key name </button>-->
@@ -39,23 +47,27 @@
                       <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row0, item, i)">
                           <span class="regular-name">{{item.name}}</span>
                           <span class="fixed-name">{{item.key_code_name}}</span>
+                          <span class="key-color-swatch" [style.background]="keyColor(item)"></span>
                       </li>
                     </ul>
                     <ul id="keydeck" *ngFor="let item of layer.row1; let i = index">
                       <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row1, item, i)">
                         <span class="regular-name"  style="user-select: none;">{{item.name}}</span>
                         <span class="fixed-name">{{item.key_code_name}}</span>
+                          <span class="key-color-swatch" [style.background]="keyColor(item)"></span>
                       </li> 
                     </ul>
                     <ul id="keydeck" *ngFor="let item of layer.row2; let i = index">
                       <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row2, item, i)">
                         <span class="regular-name" >{{item.name}}</span>
                         <span class="fixed-name">{{item.key_code_name}}</span>
+                          <span class="key-color-swatch" [style.background]="keyColor(item)"></span>
                       </li>                    </ul>
                     <ul id="keydeck" *ngFor="let item of layer.row3; let i = index">
                       <li [ngClass]="{'active': seletedDeepKey == item}" (click)="pressDeepKey(layer.row3, item, i)">
                         <span class="regular-name">{{item.name}}</span>
                         <span class="fixed-name">{{item.key_code_name}}</span>
+                          <span class="key-color-swatch" [style.background]="keyColor(item)"></span>
                       </li>
                     </ul>
                 </div> 

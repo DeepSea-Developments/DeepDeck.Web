@@ -280,8 +280,57 @@ export class ApiService {
     );
   }
 
-  saveLed(led): Observable<any> {    
-    return this.http.post<any>(`http://${this.ipAddress}/api/led?mode=${led.id}`,JSON.stringify({'mode':led.id})).pipe(
+  /* The firmware merges this into the settings it already has, so only the
+     fields present here change. It used to send nothing but the mode, which
+     meant every mode change also reset saturation, value, speed and
+     brightness to zero. */
+  saveLed(led): Observable<any> {
+    const payload: any = {};
+
+    /* Only the fields the caller actually set. Sending a field the user did not
+       touch means overwriting whatever is on the device with a stale value. */
+    if (led.id !== undefined && led.id !== null) {
+      payload.mode = led.id;
+    }
+    if (led.brightness !== undefined && led.brightness !== null) {
+      payload.brightness = led.brightness;
+    }
+    if (led.color) {
+      payload.color = led.color;
+    }
+
+    return this.http.post<any>(`http://${this.ipAddress}/api/led`, JSON.stringify(payload)).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
+  getProximity(): Observable<any> {
+    return this.http.get<any>(`http://${this.ipAddress}/api/proximity`).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
+  /* Partial updates are merged by the firmware, so send only what changed. */
+  saveProximity(settings): Observable<any> {
+    const payload: any = {};
+
+    if (settings.enabled !== undefined && settings.enabled !== null) {
+      payload.enabled = settings.enabled;
+    }
+    if (settings.threshold !== undefined && settings.threshold !== null) {
+      payload.threshold = settings.threshold;
+    }
+
+    return this.http.post<any>(`http://${this.ipAddress}/api/proximity`, JSON.stringify(payload)).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
+  getLed(): Observable<any> {
+    return this.http.get<any>(`http://${this.ipAddress}/api/led`).pipe(
       retry(1),
       catchError(this.errorHandl)
     );

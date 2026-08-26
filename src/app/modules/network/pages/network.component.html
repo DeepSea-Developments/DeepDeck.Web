@@ -91,9 +91,71 @@
                               <p>{{ opcion.descripcion }}</p>
                             </div>
                         </div>
- 
+
+                        <div class="form-group mt-5 led-brightness">
+                            <label for="led-brightness">Brightness: {{ ledBrightness }}%</label>
+                            <input type="range" id="led-brightness" class="form-range"
+                                   min="0" max="100" step="1"
+                                   [(ngModel)]="ledBrightness" [ngModelOptions]="{standalone: true}"
+                                   (ngModelChange)="onBrightnessChange()">
+                            <small>Applies to every mode, and takes effect as you drag. The LEDs are uncomfortably bright at 100%.</small>
+                        </div>
+
+                        <div class="form-group mt-4 led-color" *ngIf="opcionSeleccionadaLed?.id === 4">
+                            <label for="led-color">Solid color:</label>
+                            <input type="color" id="led-color"
+                                   [(ngModel)]="ledColor" [ngModelOptions]="{standalone: true}"
+                                   (ngModelChange)="onLedColorChange()">
+                        </div>
+
                         <div class="form-group mb-5 mt-5">
                             <button type="submit" class="btn btn-primary" (click)="saveLed()">Save </button>
+                        </div>
+
+                        <div class="proximity-block" *ngIf="proximity.supported">
+                            <h3 class="left-align">Wake on approach</h3>
+                            <p class="proximity-intro">
+                                Reaching toward the DeepDeck brings the screen back without pressing
+                                anything. Only measured while the screen is off, so it costs nothing
+                                while you are using it.
+                            </p>
+
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox"
+                                           [(ngModel)]="proximity.enabled"
+                                           [ngModelOptions]="{standalone: true}"
+                                           (ngModelChange)="onProximityEnabledChange()">
+                                    Enabled
+                                </label>
+                            </div>
+
+                            <div class="form-group proximity-threshold" [class.disabled]="!proximity.enabled">
+                                <label for="proximity-threshold">
+                                    Wake threshold: {{ proximity.threshold }}
+                                </label>
+                                <input type="range" id="proximity-threshold" class="form-range"
+                                       [min]="proximity.min" [max]="proximity.max" step="1"
+                                       [disabled]="!proximity.enabled"
+                                       [(ngModel)]="proximity.threshold"
+                                       [ngModelOptions]="{standalone: true}"
+                                       (ngModelChange)="onProximityThresholdChange()">
+                                <div class="proximity-scale">
+                                    <span>&larr; more sensitive</span>
+                                    <span>less sensitive &rarr;</span>
+                                </div>
+                                <small>
+                                    Measured on this unit: an empty desk reads up to
+                                    {{ proximity.noise_floor }}, and a hand becomes visible at about
+                                    {{ proximity.hand_near }}. Applies as you drag, so you can try it
+                                    against the real thing.
+                                </small>
+                                <small class="proximity-warn" *ngIf="proximityTooSensitive()">
+                                    At {{ proximity.threshold }} this is inside the sensor's own noise
+                                    &mdash; it will wake with nothing in front of it, and the screen
+                                    may never stay off.
+                                </small>
+                            </div>
                         </div>
                     </div>
                 </div>

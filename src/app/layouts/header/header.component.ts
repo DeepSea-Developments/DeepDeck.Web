@@ -18,6 +18,9 @@ export class HeaderComponent implements OnInit {
   responsiveWatcher: Subscription;
   topGap = 56;
   username: any = "admin";
+  /* Assigned in the constructor below but never declared, which fails the
+     build with TS2339. Same shape as ApiService.ipAddress. */
+  ipAddress: any;
 
   
   

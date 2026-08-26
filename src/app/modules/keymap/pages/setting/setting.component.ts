@@ -202,6 +202,7 @@ export class SettingComponent implements OnInit {
       });
 
       this.indexDeepKey='';
+      this.ensureColors(this.layer);
   }
 
   onInputChange(event: Event) {
@@ -236,10 +237,37 @@ export class SettingComponent implements OnInit {
     this.viewportScroller.scrollToPosition([0, 0]);
   }
 
+  /* The firmware fills in a colour for any layer or key that does not carry
+     one, so both fields are optional over the API. The colour inputs below
+     still need something concrete to bind to, hence this. */
+  private ensureColors(layer: any) {
+    if (!layer.layer_color) {
+      layer.layer_color = '#002878';
+    }
+    for (const rowName of ['row0', 'row1', 'row2', 'row3']) {
+      for (const key of layer[rowName] || []) {
+        if (!key.color) {
+          // All zero means "no colour of its own", so it inherits layer_color.
+          key.color = '#000000';
+        }
+      }
+    }
+  }
+
+  /* Colour to draw a key swatch in: its own colour, or the layer colour when it
+     has none, which is what the firmware does when it lights the key. */
+  keyColor(item: any): string {
+    if (!item || !item.color || item.color === '#000000') {
+      return this.layer.layer_color || '#002878';
+    }
+    return item.color;
+  }
+
   getLayersLayout(uuid){
     this.apiService.getLayersLayout(uuid).subscribe(response => {      
       this.layer = response; 
       this.layer.uuid = this.uuid;
+      this.ensureColors(this.layer);
       // Search name of the keys by their keycode, and add key_code_name into the later.
       for (const item of this.layer.row0) {
         item.key_code_name = this.keyboardService.GetKeyNameByKeyCode(item.key_code)
