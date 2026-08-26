@@ -305,6 +305,30 @@ export class ApiService {
     );
   }
 
+  getProximity(): Observable<any> {
+    return this.http.get<any>(`http://${this.ipAddress}/api/proximity`).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
+  /* Partial updates are merged by the firmware, so send only what changed. */
+  saveProximity(settings): Observable<any> {
+    const payload: any = {};
+
+    if (settings.enabled !== undefined && settings.enabled !== null) {
+      payload.enabled = settings.enabled;
+    }
+    if (settings.threshold !== undefined && settings.threshold !== null) {
+      payload.threshold = settings.threshold;
+    }
+
+    return this.http.post<any>(`http://${this.ipAddress}/api/proximity`, JSON.stringify(payload)).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
   getLed(): Observable<any> {
     return this.http.get<any>(`http://${this.ipAddress}/api/led`).pipe(
       retry(1),

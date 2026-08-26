@@ -125,3 +125,51 @@ button.connected-icon.loading {
     cursor: pointer;
   }
 }
+
+/* --- Wake on approach -------------------------------------------------- */
+
+.proximity-block {
+  max-width: 460px;
+  margin-bottom: 3rem;
+
+  h3 {
+    margin-top: 2rem;
+  }
+
+  .proximity-intro {
+    opacity: 0.75;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
+
+  small {
+    display: block;
+    margin-top: 0.35rem;
+    opacity: 0.7;
+  }
+}
+
+.proximity-threshold.disabled {
+  opacity: 0.4;
+}
+
+/* Shown only when the threshold has been dragged into the noise floor. */
+.proximity-warn {
+  color: #dc9f10;
+  opacity: 1 !important;
+}
+
+.proximity-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}

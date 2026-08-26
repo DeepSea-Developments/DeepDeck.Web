@@ -43,6 +43,12 @@ export class NetworkComponent implements OnInit {
 
   private brightnessTimer: any = null;
 
+  /* Proximity wake. `supported` is false if the firmware was built without it,
+     in which case the controls are hidden rather than lying about being live. */
+  proximity: any = { supported: false, enabled: false, threshold: 10,
+                     min: 5, max: 40, noise_floor: 9, hand_near: 12 };
+  private proximityTimer: any = null;
+
   passwordVisible: boolean = false;
 
   ipAddress: string = "192.168.4.1";
@@ -62,6 +68,7 @@ export class NetworkComponent implements OnInit {
          load, posted mode 0 and turned the LEDs off. */
       this.loadConfig();
       this.loadLed();
+      this.loadProximity();
       this.getLocalIPAddress();
     }
 
@@ -120,6 +127,38 @@ export class NetworkComponent implements OnInit {
        payload into the settings it already holds, so brightness cannot disturb
        the mode and the mode cannot disturb the brightness. Sending all three
        together is what let a stale card selection switch the LEDs off. */
+    loadProximity() {
+      this.apiService.getProximity().subscribe(
+        value => {
+          if (value) {
+            this.proximity = value;
+          }
+        }
+      );
+    }
+
+    onProximityEnabledChange() {
+      this.apiService.saveProximity({ enabled: this.proximity.enabled }).subscribe();
+    }
+
+    /* Applies as you drag, coalesced into one request per gesture. Sends only
+       the threshold, so it cannot disturb the enabled flag. */
+    onProximityThresholdChange() {
+      if (this.proximityTimer) {
+        clearTimeout(this.proximityTimer);
+      }
+      this.proximityTimer = setTimeout(() => {
+        this.proximityTimer = null;
+        this.apiService.saveProximity({ threshold: this.proximity.threshold }).subscribe();
+      }, 200);
+    }
+
+    /* True when the threshold has been dragged down into the sensor's own noise,
+       where it will start waking the screen with nothing in front of it. */
+    proximityTooSensitive(): boolean {
+      return this.proximity.threshold <= this.proximity.noise_floor;
+    }
+
     saveLed(){
       if (!this.opcionSeleccionadaLed) {
         alert("No LED mode loaded from the device yet.");
